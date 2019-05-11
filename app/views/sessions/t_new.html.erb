@@ -1,6 +1,3 @@
-<h1>Sessions#new</h1>
-<p>Find me in app/views/sessions/new.html.erb</p>
-
 <h1>Log in</h1>
 
 <div class="row">
@@ -13,7 +10,7 @@
       <%= f.label :password %>
       <%= f.password_field :password, class: 'form-control' %>
 
-      <%= f.hidden_field :type, value: "user"  %>
+      <%= f.hidden_field :type, value: "tourist"  %>
 
       <%= f.submit "Log in", class: "btn btn-primary" %>
     <% end %>
