@@ -1,5 +1,8 @@
 class User < ApplicationRecord
-  before_save { self.email = email.downcase }
+  before_save do
+    self.email = email.downcase
+    self.email += "@st.kyoto-u.ac.jp"
+  end
 
   validates :name, presence: true
   validates :email, presence: true,
