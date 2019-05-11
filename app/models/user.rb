@@ -10,7 +10,7 @@ class User < ApplicationRecord
             length: { maximum: 50 }
   validates :email, presence: true,
             uniqueness: { case_sensitive: false },
-            format: { with: VALID_EMAIL_REGEX },
+            #format: { with: VALID_EMAIL_REGEX },
             length: { maximum: 255 }
   validates :terms, presence: true
 
