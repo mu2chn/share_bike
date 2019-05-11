@@ -8,6 +8,22 @@ module SessionsHelper
     end
   end
 
+  def if_user
+    if user?
+      yield(current_user)
+    else
+      redirect_to '/'
+    end
+  end
+
+  def if_torist
+    if tourist?
+      yield(current_user)
+    else
+      redirect_to '/'
+    end
+  end
+
   def log_in(user)
     if p user.kind_of?(User)
       session[:user_id] = user.id
