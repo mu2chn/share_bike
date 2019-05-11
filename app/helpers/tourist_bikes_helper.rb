@@ -1,0 +1,2 @@
+module TouristBikesHelper
+end
