@@ -3,12 +3,12 @@ class SessionsController < ApplicationController
 
   def u_new
     if logged_in?
-      redirect_to  '/'
+      redirect_to  root_path
     end
   end
   def t_new
     if logged_in?
-      redirect_to '/'
+      redirect_to root_path
     end
   end
 
@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
     end
     if user && user.authenticate(params[:session][:password])
       log_in user
-      redirect_to '/'
+      redirect_to root_path
     else
       # flash.now[:danger] = 'Invalid email/password combination'
       render 'users/new'
@@ -31,10 +31,10 @@ class SessionsController < ApplicationController
   def destroy
     if user?
       log_out
-      redirect_to '/u-login'
+      redirect_to 'u-login'
     elsif tourist?
       log_out
-      redirect_to '/t-login'
+      redirect_to 't-login'
     end
   end
 
