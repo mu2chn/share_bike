@@ -1,5 +1,6 @@
 class Tourist < ApplicationRecord
   has_many :tourist_bikes
+  has_many :bikes, through: :tourist_bikes
 
   before_save do
     self.email = email.downcase
