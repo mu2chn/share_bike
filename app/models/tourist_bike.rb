@@ -1,0 +1,2 @@
+class TouristBike < ApplicationRecord
+end
