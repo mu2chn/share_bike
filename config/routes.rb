@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   get '/bikes/show/:id', to: 'bikes#show', as: 'b-show'
   post '/bikes/rent/:id', to: 'bikes#rent', as: 'b-rent'
 
+  get '/bikes/new', to: 'bikes#new', as: 'b-new'
+  post '/bikes/create', to: 'bikes#create', as: 'b-create'
   get '/bikes/mine', to: 'bikes#mine', as: 'b-mine'
   get '/bikes/edit', to: 'bikes#edit', as: 'b-edit'
 
