@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      log_in(@user)
       redirect_to u_edit_path
     else
       render u_new_path
@@ -32,7 +33,7 @@ class UsersController < ApplicationController
   def update
     if_user do |user|
       @user = user
-      if p @user.update_attributes(update_user_params)
+      if @user.update_attributes(update_user_params)
         #TODO 更新成功時
       else
 
