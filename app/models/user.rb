@@ -1,7 +1,10 @@
 class User < ApplicationRecord
+  before_validation on: :create  do
+    self.email += "@st.kyoto-u.ac.jp"
+  end
+
   before_save do
     self.email = email.downcase
-    self.email += "@st.kyoto-u.ac.jp"
   end
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -10,7 +13,7 @@ class User < ApplicationRecord
             length: { maximum: 50 }
   validates :email, presence: true,
             uniqueness: { case_sensitive: false },
-            #format: { with: VALID_EMAIL_REGEX },
+            format: { with: VALID_EMAIL_REGEX },
             length: { maximum: 255 }
   validates :terms, presence: true
 

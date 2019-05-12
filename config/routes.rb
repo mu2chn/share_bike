@@ -3,16 +3,16 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  get '/users/signup',  to: 'users#new', as: 'u-signup'
+  get '/users/new',  to: 'users#new', as: 'u-new'
   post '/users/create', to: 'users#create', as: 'u-create'
   get '/users/show/:id', to: 'users#show'
   get '/users/edit', to: 'users#edit', as: 'u-edit'
-  post '/users/update', to: 'users#update'
+  patch '/users/update', to: 'users#update', as: 'u-update'
 
-  get '/tourists/signup', to: 'tourists#new', as: 't-signup'
+  get '/tourists/new', to: 'tourists#new', as: 't-new'
   post '/tourists/create', to: 'tourists#create', as: 't-create'
   get '/tourists/edit', to: 'tourists#edit', as: 't-edit'
-  post '/tourists/update', to: 'tourists#update'
+  patch '/tourists/update', to: 'tourists#update', as: 't-update'
 
   get '/bikes', to: 'bikes#index', as: 'b-index'
   get '/bikes/show/:id', to: 'bikes#show', as: 'b-show'

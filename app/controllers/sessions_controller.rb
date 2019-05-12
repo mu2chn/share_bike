@@ -21,10 +21,14 @@ class SessionsController < ApplicationController
     end
     if user && user.authenticate(params[:session][:password])
       log_in user
-      redirect_to root_path
+      if user?
+        redirect_to '/users/edit'
+      elsif
+        redirect_to 'b-index'
+      end
     else
       # flash.now[:danger] = 'Invalid email/password combination'
-      render 'users/new'
+      redirect_to root_path
     end
   end
 
