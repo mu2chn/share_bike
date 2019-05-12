@@ -1,0 +1,16 @@
+<div class="card-columns mt-1">
+  <% @bikes.each do |bike| %>
+    <a href="/bikes/show/<%= bike.id %>" class="text-muted">
+      <div class="card">
+        <%= image_tag bike.image.to_s, class: "card-img-top" %>
+        <div class="card-body">
+          <h5 class="card-title"><%= bike.name %></h5>
+          <p class="card-text"><%= bike.details %></p>
+          <p class="card-text">
+            <small class="text-muted"><%= User.find(bike.user_id).nickname %></small>
+          </p>
+        </div>
+      </div>
+    </a>
+  <% end %>
+</div>
