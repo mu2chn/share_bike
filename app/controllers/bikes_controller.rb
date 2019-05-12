@@ -23,6 +23,13 @@ class BikesController < ApplicationController
     end
   end
 
+  def edit
+    if_user do |user|
+      @user = user
+      @bike = Bike.find(params[:id])
+    end
+  end
+
   def bike_params
     params.require(:bike).permit(:name, :vehicle_num, :security_area, :security_num, :details, :image)
   end
