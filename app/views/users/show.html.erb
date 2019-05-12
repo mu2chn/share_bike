@@ -1,3 +1,18 @@
-<h1>User</h1>
-<%= "name:" +@user.name %></br>
-<%= "email:" +@user.email %>
+<h4 class="mt-3 text-muted"><%= @user.nickname %></h4>
+<div class="col-12 mb-4">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><%= "名前：" + @user.nickname %></li>
+    <li class="list-group-item">評価：</li>
+  </ul>
+</div>
+
+<h4 class="text-muted">すべての自転車</h4>
+<div class="col-12">
+  <ul class="list-group list-group-flush">
+    <% Bike.where(user_id: @user.id).each do |bike| %>
+      <li class="list-group-item">
+        <%= link_to bike.name ,"/bikes/show/"+bike.id.to_s %>
+      </li>
+    <% end %>
+  </ul>
+</div>
