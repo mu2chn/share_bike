@@ -1,4 +1,4 @@
-<h1>Regiter(bike)</h1>
+<h1>Register(bike)</h1>
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= form_for(@bike, url: b_create_path) do |f| %>
@@ -16,6 +16,9 @@
 
       <%= f.label :details %>
       <%= f.text_area :details, class: 'form-control' %>
+
+      <%= f.label :image %>
+      <%= f.file_field :image, class: 'form-control', id: :image_path %>
 
       <%= f.submit "Register new bike", class: "btn btn-primary" %>
     <% end %>

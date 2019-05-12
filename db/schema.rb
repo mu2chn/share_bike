@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20190511141653) do
   create_table "bikes", force: :cascade do |t|
     t.string "name"
     t.integer "user_id"
+    t.string "image"
     t.string "vehicle_num"
     t.string "security_area"
     t.integer "security_num"
