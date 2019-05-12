@@ -17,10 +17,19 @@
       <%= f.label :details %>
       <%= f.text_area :details, class: 'form-control' %>
 
-      <%= f.label :image %>
-      <%= f.file_field :image, class: 'form-control', id: :image_path %>
+      <div class="custom-file mt-3">
+        <%= f.label :image, class: "custom-file-label" %>
+        <%= f.file_field :image, class: 'custom-file-input' %>
+      </div>
 
       <%= f.submit "Register new bike", class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>
+
+<script type="application/javascript">
+    $('input[type="file"]').change(function (e) {
+        var fileName = e.target.files[0].name;
+        $('.custom-file-label').html(fileName);
+    });
+</script>
