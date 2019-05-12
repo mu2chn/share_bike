@@ -20,8 +20,8 @@ Rails.application.routes.draw do
 
   get '/bikes/new', to: 'bikes#new', as: 'b-new'
   post '/bikes/create', to: 'bikes#create', as: 'b-create'
-  get '/bikes/mine', to: 'bikes#mine', as: 'b-mine'
-  get '/bikes/edit', to: 'bikes#edit', as: 'b-edit'
+  #get '/bikes/mine', to: 'bikes#mine', as: 'b-mine'
+  #get '/bikes/edit', to: 'bikes#edit', as: 'b-edit'
 
   get '/u-login',   to: 'sessions#u_new', as: 'u-login'
   get '/t-login', to: 'sessions#t_new', as: 't-login'
