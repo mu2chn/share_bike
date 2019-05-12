@@ -2,10 +2,30 @@
   <%= image_tag @bike.image.to_s, class: "img-thumbnail" %>
 </div>
 
-<div class="col-12">
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">名前：<%= @bike.name %></li>
-    <li class="list-group-item">車体番号：<%= @bike.vehicle_num %></li>
-    <li class="list-group-item">所有者：<%= User.find(@bike.user_id).nickname %></li>
-  </ul>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@bike, url: b_update_path) do |f| %>
+      <%= render 'layouts/error' %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+
+      <%= f.label :details %>
+      <%= f.text_area :details, class: 'form-control' %>
+
+      <div class="custom-file mt-3">
+        <%= f.label "ファイルを選択...", class: "custom-file-label", for: "customFile"%>
+        <%= f.file_field :image, class: 'custom-file-input' %>
+      </div>
+
+      <%= f.submit "Save changes", class: "btn btn-primary" %>
+    <% end %>
+  </div>
 </div>
+
+<script type="application/javascript">
+    $('input[type="file"]').change(function (e) {
+        var fileName = e.target.files[0].name;
+        $('.custom-file-label').html(fileName);
+    });
+</script>
