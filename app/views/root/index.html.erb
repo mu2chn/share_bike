@@ -1,15 +1,30 @@
-<!--<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">-->
-<!--  <div class="carousel-inner">-->
-<!--    <div class="carousel-item active">-->
-      <%#= image_tag 'slide/fall.jpg', class: "d-block w-100"%>
-<!--    </div>-->
-<!--    <div class="carousel-item">-->
-      <%#= image_tag 'slide/gray.jpg', class: "d-block w-100"%>
-<!--    </div>-->
-<!--    <div class="carousel-item">-->
-      <%#= image_tag 'slide/lock.jpg', class: "d-block w-100"%>
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Share Bike</title>
+  <%= csrf_meta_tags %>
 
-<h1>this is Home!!</h1>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <!--    追加分-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="content-language" content="ja">
+</head>
+
+<body>
+<div class="jumbotron jumbotron-fluid" style="background-color: #e3f2fd;">
+  <div class="container">
+    <h1 class="display-4 mt-5">This is Home!</h1>
+    <p class="lead">レンタルします</p><br/><br/>
+      <div class="btn-group d-flex" role="group" aria-label="...">
+        <a role="button" class="btn btn-info w-100 text-light" href="/u-login">京大生の方はこちら</a>
+        <a role="button" class="btn btn-primary w-100 text-light" href="/t-login">利用者の方はこちら</a>
+    </div>
+  </div><!-- /.container -->
+</div><!-- /.jumbotron -->
+<div class="container">
+  ...
+</div><!-- /.container -->
+
+</body>
+</html>

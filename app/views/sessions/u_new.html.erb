@@ -1,10 +1,7 @@
-<h1>Sessions#new</h1>
-<p>Find me in app/views/sessions/new.html.erb</p>
-
-<h1>Log in</h1>
+<h2 class="text-muted mt-3 mb-2 offset-md-3">Log in</h2>
 
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
+  <div class="col-md-6 offset-md-3">
     <%= form_for(:session, url: '/login') do |f| %>
 
       <%= f.label :email %>
@@ -15,9 +12,9 @@
 
       <%= f.hidden_field :type, value: "user"  %>
 
-      <%= f.submit "Log in", class: "btn btn-primary" %>
+      <%= f.submit "Log in", class: "btn btn-primary mt-2" %>
     <% end %>
 
-    <p>New user? <%= link_to "Sign up now!", u_new_path %></p>
+    <h6 class="mt-3"><%= link_to "新規登録はこちら", u_new_path, class: "text-muted" %></h6>
   </div>
 </div>
