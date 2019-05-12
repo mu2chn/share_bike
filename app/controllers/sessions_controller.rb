@@ -1,13 +1,18 @@
 class SessionsController < ApplicationController
 
   def u_new
-    if logged_in?
-      redirect_to  root_path
+    if user?
+      redirect_to u_edit_path
+    elsif tourist?
+      redirect_to b_index_path
     end
   end
+
   def t_new
-    if logged_in?
-      redirect_to root_path
+    if user?
+      redirect_to u_edit_path
+    elsif tourist?
+      redirect_to b_index_path
     end
   end
 
@@ -41,10 +46,10 @@ class SessionsController < ApplicationController
   def destroy
     if user?
       log_out
-      redirect_to u_login_path
+      redirect_to root_path
     elsif tourist?
       log_out
-      redirect_to t_login_path
+      redirect_to root_path
     end
   end
 
