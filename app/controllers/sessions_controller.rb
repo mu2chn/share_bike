@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-  include SessionsHelper
 
   def u_new
     if logged_in?
@@ -16,29 +15,36 @@ class SessionsController < ApplicationController
   def create
     if params[:session][:type] == "user"
       user = User.find_by(email: params[:session][:email].downcase)
+      flag = "user"
     elsif params[:session][:type] == "tourist"
       user = Tourist.find_by(email: params[:session][:email].downcase)
+      flag = "tourist"
     end
     if user && user.authenticate(params[:session][:password])
       log_in user
+      flash[:success] = "ログインしました"
       if user?
-        redirect_to '/users/edit'
+        redirect_to u_edit_path
       elsif
-        redirect_to 'b-index'
+        redirect_to b_index_path
       end
     else
-      # flash.now[:danger] = 'Invalid email/password combination'
-      redirect_to root_path
+      flash[:danger] = 'ログインに失敗しました'
+      if flag == "user"
+        redirect_to u_login_path
+      elsif flag == "tourist"
+        redirect_to t_login_path
+      end
     end
   end
 
   def destroy
     if user?
       log_out
-      redirect_to 'u-login'
+      redirect_to u_login_path
     elsif tourist?
       log_out
-      redirect_to 't-login'
+      redirect_to t_login_path
     end
   end
 

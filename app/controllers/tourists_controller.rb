@@ -1,7 +1,4 @@
 class TouristsController < ApplicationController
-  include TouristsHelper
-
-  include SessionsHelper
 
   def new
     if logged_in?
@@ -14,6 +11,7 @@ class TouristsController < ApplicationController
     @user = Tourist.new(user_params)
     if @user.save
       log_in(@user)
+      flash[:info] = "プロフィール編集画面です。直したい箇所が有る場合はここで修正しましょう"
       redirect_to t_edit_path
     else
       render t_new_path
@@ -30,9 +28,10 @@ class TouristsController < ApplicationController
     if_tourist do |user|
       @user = user
       if @user.update_attributes(update_user_params)
-        #TODO 更新成功時
+        flash[:success] = "Updated"
+        redirect_to t_edit_path
       else
-
+        render t_edit_path
       end
     end
   end

@@ -1,0 +1,55 @@
+<% current_user %>
+
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+  <a class="navbar-brand" href="/">ばいくしぇあ</a>
+  <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーションの切替">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="Navber">
+    <ul class="navbar-nav mr-auto">
+
+      <li class="nav-item">
+        <% if @current_user.kind_of?(User) %>
+          <%= link_to(@current_user.name, u_edit_path, class: "nav-link active") %>
+        <% elsif @current_user.kind_of?(Tourist)%>
+          <%= link_to(@current_user.name, t_edit_path, class: "nav-link active") %>
+        <% else %>
+          <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            ログイン
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <%= link_to("観光客の方", t_login_path, class: "dropdown-item") %>
+            <%= link_to("京大生の方", u_login_path, class: "dropdown-item") %>
+          </div>
+        <% end %>
+      </li>
+
+      <li class="nav-item active">
+        <% if logged_in? %>
+          <%= link_to("Logout", logout_path, class: "nav-link") %>
+        <% end %>
+      </li>
+
+<!--      <li class="nav-item dropdown">-->
+<!--        <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--          ドロップダウン-->
+<!--        </a>-->
+<!--        <div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+<!--          <a class="dropdown-item" href="#">メニュー1</a>-->
+<!--          <a class="dropdown-item" href="#">メニュー2</a>-->
+<!--          <div class="dropdown-divider"></div>-->
+<!--          <a class="dropdown-item" href="#">その他</a>-->
+<!--        </div>-->
+<!--      </li>-->
+
+<!--      <li class="nav-item">-->
+<!--        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">無効</a>-->
+<!--      </li>-->
+    </ul>
+<!--    <form class="form-inline my-2 my-lg-0">-->
+<!--      <input type="search" class="form-control mr-sm-2" placeholder="検索..." aria-label="検索...">-->
+<!--      <button type="submit" class="btn btn-outline-success my-2 my-sm-0">検索</button>-->
+<!--    </form>-->
+  </div><!-- /.navbar-collapse -->
+</nav>

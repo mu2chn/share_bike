@@ -1,5 +1,4 @@
 class BikesController < ApplicationController
-  include SessionsHelper
 
   def index
     @bikes = Bike.all

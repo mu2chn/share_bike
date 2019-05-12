@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  include SessionsHelper
 
   def new
     if logged_in?
@@ -12,6 +11,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       log_in(@user)
+      flash[:info] = "プロフィール編集画面です。直したい箇所が有る場合はここで修正しましょう"
       redirect_to u_edit_path
     else
       render u_new_path
@@ -34,9 +34,10 @@ class UsersController < ApplicationController
     if_user do |user|
       @user = user
       if @user.update_attributes(update_user_params)
-        #TODO 更新成功時
+        flash[:success] = "Updated"
+        redirect_to u_edit_path
       else
-
+        render u_edit_path
       end
     end
   end
