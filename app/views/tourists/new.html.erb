@@ -9,10 +9,10 @@
       <%= f.text_field :name, class: 'form-control' %>
 
       <%= f.label :email %>
-      <%= f.text_field :email, class: 'form-control'%>
+      <%= f.email_field :email, class: 'form-control'%>
 
       <%= f.label :phone_number %>
-      <%= f.phone_field :phmnumber, class: 'form-control'%>
+      <%= f.telephone_field :phmnumber, class: 'form-control'%>
 
       <%= f.label :address %>
       <%= f.text_field :address, class: 'form-control' %>
@@ -22,6 +22,17 @@
 
       <%= f.label :password_confirmation, "Confirmation" %>
       <%= f.password_field :password_confirmation, class: 'form-control mb-2' %>
+
+      <div class="clearfix mt-1 mb-2">
+        <div class="form-check custom-control-inline">
+          <%= f.label "右記の利用規約に同意する", class: "form-check-label" %>
+          <%= f.check_box :temp_terms, class: "form-check-input",:as => :boolean, checked:false %>
+        </div>
+        <button type="button" class="btn btn-info float-right" data-toggle="modal" data-target="#exampleModalLong">
+          利用規約を表示
+        </button>
+      </div>
+      <%= render "util/terms" %>
 
       <%= f.submit "Create my account", class: "btn btn-primary" %>
     <% end %>
