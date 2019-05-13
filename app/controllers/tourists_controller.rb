@@ -37,7 +37,7 @@ class TouristsController < ApplicationController
   end
 
   def user_params
-    params.require(:tourist).permit(:name, :email, :phmnumber, :address, :password,
+    params.require(:tourist).permit(:name, :email, :phmnumber, :address, :password, :temp_terms,
                                  :password_confirmation)
   end
 

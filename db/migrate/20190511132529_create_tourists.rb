@@ -7,6 +7,7 @@ class CreateTourists < ActiveRecord::Migration[5.1]
       t.integer :phmnumber
       t.string :address
       t.string :passport
+      t.boolean :temp_terms, default: false
       t.integer :terms, default: 0
       t.timestamps
     end

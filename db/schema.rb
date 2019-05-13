@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20190511141653) do
     t.integer "phmnumber"
     t.string "address"
     t.string "passport"
+    t.boolean "temp_terms", default: false
     t.integer "terms", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
