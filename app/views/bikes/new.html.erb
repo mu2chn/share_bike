@@ -1,23 +1,23 @@
-<h1>Register(bike)</h1>
+<h2 class="text-muted mt-3 mb-3 offset-md-3">Register bike</h2>
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
+  <div class="col-md-6 offset-md-3">
     <%= form_for(@bike, url: b_create_path) do |f| %>
       <%= f.label :name %>
-      <%= f.text_field :name, class: 'form-control' %>
+      <%= f.text_field :name, class: 'form-control mb-2' %>
 
       <%= f.label :vehicle_num %>
-      <%= f.text_field :vehicle_num, class: 'form-control' %>
+      <%= f.text_field :vehicle_num, class: 'form-control mb-2' %>
 
       <%= f.label :security_area %>
-      <%= f.text_field :security_area, class: 'form-control' %>
+      <%= f.text_field :security_area, class: 'form-control mb-2' %>
 
       <%= f.label :security_num %>
-      <%= f.text_field :security_num, class: 'form-control'%>
+      <%= f.text_field :security_num, class: 'form-control mb-2'%>
 
       <%= f.label :details %>
       <%= f.text_area :details, class: 'form-control' %>
 
-      <div class="custom-file mt-3">
+      <div class="custom-file mt-3 mb-2">
         <%= f.label :image, class: "custom-file-label" %>
         <%= f.file_field :image, class: 'custom-file-input' %>
       </div>

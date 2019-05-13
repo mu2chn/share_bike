@@ -1,7 +1,7 @@
 class BikesController < ApplicationController
 
   def index
-    @bikes = Bike.all
+    @bikes = Bike.easy_search_and(params[:search])
   end
 
   def show
@@ -18,7 +18,7 @@ class BikesController < ApplicationController
       @bike = Bike.new(bike_params)
       @bike.user_id = @user.id
       if @bike.save
-        redirect_to u_edit_path
+        redirect_to "/bikes/edit/"+@bike.id.to_s
       end
     end
   end
