@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   end
 
   def create
+    p params
     @user = User.new(user_params)
     if @user.save
       log_in(@user)
@@ -44,7 +45,7 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :nickname, :email, :password,
-                                 :password_confirmation)
+                                 :password_confirmation, :temp_terms)
   end
 
   def update_user_params

@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  before_validation on: :create  do
+  before_save on: :create  do
     self.email += "@st.kyoto-u.ac.jp"
   end
 
@@ -13,9 +13,10 @@ class User < ApplicationRecord
             length: { maximum: 50 }
   validates :email, presence: true,
             uniqueness: { case_sensitive: false },
-            format: { with: VALID_EMAIL_REGEX },
+            #format: { with: VALID_EMAIL_REGEX },
             length: { maximum: 255 }
   validates :terms, presence: true
+  validates :temp_terms, acceptance: true
 
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }
