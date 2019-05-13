@@ -1,0 +1,32 @@
+<%= render 'layouts/error' %>
+
+<div class="col-md-8 offset-md-2 mt-2">
+  <ul class="list-group">
+    <% @reservations&.each do |res| %>
+      <li class="list-group-item">
+        <%= Bike.find(res.bike_id).name %><br/>
+        <%= res.day %> (<%= [ "月", "火", "水", "木", "金", "土", "日"][res.day.wday] %>)
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<div class="mt-4 mb-1 col-md-6 offset-md-3">
+  <button type="button" class="btn btn-outline-secondary btn-block" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    日程追加
+  </button>
+</div>
+<div class="collapse col-md-6 offset-md-3" id="collapseExample">
+  <div class="card card-body">
+    <%= form_for(@reserve, url: reserve_path) do |f| %>
+
+      <%= f.label "Bike" %>
+      <%= f.select :bike_id, Bike.where(user_id: @user.id)&.map {|b| [b.name, b.id]}, {}, {class: 'custom-select mb-1'} %>
+
+      <%= f.label :day %>
+      <%= f.date_select :day, {}, {class: 'form-control'} %>
+
+      <%= f.submit "Register", class: "btn btn-primary mt-2" %>
+    <% end %>
+  </div>
+</div>

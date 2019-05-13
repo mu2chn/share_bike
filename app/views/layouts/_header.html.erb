@@ -28,7 +28,7 @@
       <li class="nav-item active">
         <% if user? %>
           <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            MyBike
+            My bike
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <% Bike.where(user_id: @current_user.id).each do |bike|%>
@@ -37,6 +37,12 @@
             <div class="dropdown-divider"></div>
             <%= link_to("新規追加", b_new_path, class: "dropdown-item") %>
           </div>
+        <% end %>
+      </li>
+
+      <li class="nav-item active">
+        <% if user? %>
+          <%= link_to("Reservations", u_reserve_path, class: "nav-link") %>
         <% end %>
       </li>
 

@@ -2,7 +2,7 @@
 
 <div class="row">
   <div class="col-md-6 offset-md-3">
-    <%= form_for(:session, url: '/login') do |f| %>
+    <%= form_for(:session, url: login_path) do |f| %>
 
       <%= f.label :email %>
       <%= f.email_field :email, class: 'form-control' %>

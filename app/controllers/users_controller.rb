@@ -24,6 +24,16 @@ class UsersController < ApplicationController
     @bikes = Bike.where(user_id: @user.id)
   end
 
+  def reserve
+    if_user do |user|
+      @user = user
+      @reserve = TouristBike.new
+      @bikes = Bike.where(user_id: @user.id)
+      # @reservations = Bike.joins(:tourist_bikes).includes(:tourist_bikes).where(user_id: @user.id)
+      @reservations = TouristBike.where(bike_id: @bikes.map{|b| b.id })
+    end
+  end
+
   def edit
     if_user do |user|
       @user = user
