@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20190511141653) do
   create_table "tourist_bikes", force: :cascade do |t|
     t.integer "bike_id"
     t.integer "tourist_id"
+    t.date "day"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["bike_id"], name: "index_tourist_bikes_on_bike_id"
