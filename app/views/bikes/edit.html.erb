@@ -1,19 +1,19 @@
-<div class="_row">
+<div class="_row mb-2">
   <%= image_tag @bike.image.to_s, class: "img-thumbnail" %>
 </div>
 
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
+  <div class="col-md-6 offset-md-3">
     <%= form_for(@bike, url: b_update_path) do |f| %>
       <%= render 'layouts/error' %>
 
       <%= f.label :name %>
-      <%= f.text_field :name, class: 'form-control' %>
+      <%= f.text_field :name, class: 'form-control mb-2' %>
 
       <%= f.label :details %>
-      <%= f.text_area :details, class: 'form-control' %>
+      <%= f.text_area :details, class: 'form-control mb-2' %>
 
-      <div class="custom-file mt-3">
+      <div class="custom-file mb-2 mt-2">
         <%= f.label "ファイルを選択...", class: "custom-file-label", for: "customFile"%>
         <%= f.file_field :image, class: 'custom-file-input' %>
       </div>
