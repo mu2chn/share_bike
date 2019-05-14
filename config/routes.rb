@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get '/users/reserve', to: 'users#reserve', as: 'u-reserve'
 
   post '/reserve', to: 'tourist_bikes#reserve', as: 'reserve'
+  delete '/reserve/delete/:id', to: 'tourist_bikes#delete', as: 'r-delete'
 
   get '/tourists/new', to: 'tourists#new', as: 't-new'
   post '/tourists/create', to: 'tourists#create', as: 't-create'
@@ -25,7 +26,7 @@ Rails.application.routes.draw do
   post '/bikes/create', to: 'bikes#create', as: 'b-create'
   #get '/bikes/mine', to: 'bikes#mine', as: 'b-mine'
   get '/bikes/edit/:id', to: 'bikes#edit', as: 'b-edit'
-  patch 'bikes/update/:id', to: 'bikes#update', as: 'b-update'
+  patch '/bikes/update/:id', to: 'bikes#update', as: 'b-update'
 
   get '/u-login',   to: 'sessions#u_new', as: 'u-login'
   get '/t-login', to: 'sessions#t_new', as: 't-login'

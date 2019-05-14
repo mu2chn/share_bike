@@ -12,3 +12,16 @@
     </li>
   </ul>
 </div>
+
+<h5 class="text-muted mt-3 mb-3 offset-md-2">予約可能日</h5>
+<div class="col-md-8 offset-md-2 mt-2">
+  <ul class="list-group">
+    <% @reservations&.each do |res| %>
+      <li class="list-group-item">
+        <%= res.day %> (<%= [ "月", "火", "水", "木", "金", "土", "日"][res.day.wday] %>)
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<%= paginate @reservations %>
