@@ -26,9 +26,12 @@
       <%= f.password_field :password_confirmation, class: 'form-control mb-2' %>
 
       <div class="clearfix mt-1 mb-2">
-        <div class="form-check custom-control-inline ">
+        <div class="form-check custom-control-inline">
+<!--          <label class="form-check-label">右記の利用規約に同意する-->
+            <%#= f.check_box :temp_terms, {class: "form-check-input"}%>
+<!--          </label>-->
           <%= f.label "右記の利用規約に同意する", class: "form-check-label" %>
-          <%= f.check_box :temp_terms, class: "form-check-input",:as => :boolean, checked:false %>
+          <%= f.check_box :temp_terms, {class: "form-check-input"} %>
         </div>
         <button type="button" class="btn btn-info float-right" data-toggle="modal" data-target="#exampleModalLong">
           利用規約を表示
@@ -40,3 +43,9 @@
     <% end %>
   </div>
 </div>
+
+<script type="application/javascript">
+    $(function () {
+        $('.your-checkbox').prop('indeterminate', true);
+    });
+</script>
