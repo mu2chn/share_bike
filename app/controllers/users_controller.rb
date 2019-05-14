@@ -30,7 +30,7 @@ class UsersController < ApplicationController
       @reserve = TouristBike.new
       @bikes = Bike.where(user_id: @user.id)
       # @reservations = Bike.joins(:tourist_bikes).includes(:tourist_bikes).where(user_id: @user.id)
-      @reservations = TouristBike.where(bike_id: @bikes.map{|b| b.id }).paginate(page: params[:page], per_page: 8)
+      @reservations = TouristBike.where(bike_id: @bikes.map{|b| b.id }).page(params[:page]).per(8)
     end
   end
 

@@ -1,7 +1,7 @@
 class BikesController < ApplicationController
 
   def index
-    @bikes = Bike.easy_search_and(params[:search]).page(params[:page]).per(1)
+    @bikes = Bike.easy_search_and(params[:search]).page(params[:page]).per(18)
   end
 
   def show
