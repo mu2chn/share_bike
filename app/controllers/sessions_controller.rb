@@ -29,8 +29,8 @@ class SessionsController < ApplicationController
       log_in user
       flash[:success] = "ログインしました"
       if user?
-        redirect_to u_edit_path
-      elsif
+        redirect_to u_reserve_path
+      elsif tourist?
         redirect_to b_index_path
       end
     else

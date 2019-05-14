@@ -45,7 +45,7 @@ class TouristBikesController < ApplicationController
       @reserve = TouristBike.find(params[:id])
       if !@reserve.tourist_id.nil?
         flash[:danger] = "すでに予約が入っています"
-      elsif @reserve.update(tourist_id: params[:id])
+      elsif @reserve.update(tourist_id: @user.id)
         flash[:success] = "予約しました"
       else
         flash[:danger] = "予約に失敗しました"

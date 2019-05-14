@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   post '/tourists/create', to: 'tourists#create', as: 't-create'
   get '/tourists/edit', to: 'tourists#edit', as: 't-edit'
   patch '/tourists/update', to: 'tourists#update', as: 't-update'
+  get 'tourists/reserve', to: 'tourists#reserve', as: 't-reserve'
 
   get '/bikes', to: 'bikes#index', as: 'b-index'
   get '/bikes/show/:id', to: 'bikes#show', as: 'b-show'
@@ -25,7 +26,6 @@ Rails.application.routes.draw do
 
   get '/bikes/new', to: 'bikes#new', as: 'b-new'
   post '/bikes/create', to: 'bikes#create', as: 'b-create'
-  #get '/bikes/mine', to: 'bikes#mine', as: 'b-mine'
   get '/bikes/edit/:id', to: 'bikes#edit', as: 'b-edit'
   patch '/bikes/update/:id', to: 'bikes#update', as: 'b-update'
 

@@ -36,6 +36,13 @@ class TouristsController < ApplicationController
     end
   end
 
+  def reserve
+    if_tourist do |user|
+      @user = user
+      @reservations = p TouristBike.where(tourist_id: @user.id)
+    end
+  end
+
   def user_params
     params.require(:tourist).permit(:name, :email, :phmnumber, :address, :password, :temp_terms,
                                  :password_confirmation)

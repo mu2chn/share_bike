@@ -12,7 +12,7 @@
       <li class="nav-item">
         <% if @current_user.kind_of?(User) %>
           <%= link_to(@current_user.name, u_edit_path, class: "nav-link active") %>
-        <% elsif @current_user.kind_of?(Tourist)%>
+        <% elsif @current_user.kind_of?(Tourist) %>
           <%= link_to(@current_user.name, t_edit_path, class: "nav-link active") %>
         <% else %>
           <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -31,8 +31,8 @@
             My bike
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <% Bike.where(user_id: @current_user.id).each do |bike|%>
-              <%= link_to(bike.name, "/bikes/edit/"+bike.id.to_s, class: "dropdown-item") %>
+            <% Bike.where(user_id: @current_user.id).each do |bike| %>
+              <%= link_to(bike.name, "/bikes/edit/" + bike.id.to_s, class: "dropdown-item") %>
             <% end %>
             <div class="dropdown-divider"></div>
             <%= link_to("新規追加", b_new_path, class: "dropdown-item") %>
@@ -43,6 +43,8 @@
       <li class="nav-item active">
         <% if user? %>
           <%= link_to("Reservations", u_reserve_path, class: "nav-link") %>
+        <% elsif tourist? %>
+          <%= link_to("Reservations", t_reserve_path, class: "nav-link") %>
         <% end %>
       </li>
 
@@ -58,13 +60,13 @@
         <% end %>
       </li>
 
-<!--      <li class="nav-item">-->
-<!--        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">無効</a>-->
-<!--      </li>-->
+      <!--      <li class="nav-item">-->
+      <!--        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">無効</a>-->
+      <!--      </li>-->
     </ul>
-<!--    <form class="form-inline my-2 my-lg-0">-->
-<!--      <input type="search" class="form-control mr-sm-2" placeholder="検索..." aria-label="検索...">-->
-<!--      <button type="submit" class="btn btn-outline-success my-2 my-sm-0">検索</button>-->
-<!--    </form>-->
+    <!--    <form class="form-inline my-2 my-lg-0">-->
+    <!--      <input type="search" class="form-control mr-sm-2" placeholder="検索..." aria-label="検索...">-->
+    <!--      <button type="submit" class="btn btn-outline-success my-2 my-sm-0">検索</button>-->
+    <!--    </form>-->
   </div><!-- /.navbar-collapse -->
 </nav>
