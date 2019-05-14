@@ -29,9 +29,8 @@ class UsersController < ApplicationController
       @user = user
       @reserve = TouristBike.new
       @bikes = Bike.where(user_id: @user.id)
-      # @reservations = Bike.joins(:tourist_bikes).includes(:tourist_bikes).where(user_id: @user.id)
       @reservations = TouristBike.where(bike_id: @bikes.map{|b| b.id })
-                          .where(day: Date.today.ago(2.days)...Date.today.since(30.days))
+                          .where(day: Date.today.ago(2.days)...Date.today.since(2.months))
                           .order(day: "ASC").page(params[:page]).per(8)
     end
   end

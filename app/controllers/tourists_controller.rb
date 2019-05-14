@@ -39,7 +39,7 @@ class TouristsController < ApplicationController
   def reserve
     if_tourist do |user|
       @user = user
-      @reservations = p TouristBike.where(tourist_id: @user.id)
+      @reservations = TouristBike.where(tourist_id: @user.id).order(day: "ASC").page(params[:page]).per(8)
     end
   end
 
