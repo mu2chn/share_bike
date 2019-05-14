@@ -1,4 +1,5 @@
 class TouristBikesController < ApplicationController
+
   def reserve
     if_user do |user|
       @user = user
@@ -31,7 +32,23 @@ class TouristBikesController < ApplicationController
     end
   end
 
+  def accept
+    if_tourist do |user|
+      @user = user
+      @reserve = TouristBike.find(params[:id])
+      if !@reserve.tourist_id.nil?
+        flash[:danger] = "すでに予約が入っています"
+      else
+        @reserve.tourist_id = params[:id]
+        @reserve.update(tourist_id: params[:id])
+        flash[:success] = "予約しました"
+      end
+      redirect_to b_show_path(@reserve.bike_id)
+    end
+  end
+
   def permit_params
     params.require(:tourist_bike).permit(:bike_id, :day)
   end
+
 end

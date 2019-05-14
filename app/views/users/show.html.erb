@@ -1,4 +1,4 @@
-<h4 class="mt-3 text-muted col-md-8 offset-md-2">Profiele</h4>
+<h5 class="mt-3 text-muted col-md-8 offset-md-2">Profiele</h5>
 <div class="col-md-8 offset-md-2 mb-4">
   <ul class="list-group list-group-flush">
     <li class="list-group-item"><%= "名前：" + @user.nickname %></li>
@@ -6,7 +6,7 @@
   </ul>
 </div>
 
-<h4 class="text-muted col-md-8 offset-md-2">すべての自転車</h4>
+<h5 class="text-muted col-md-8 offset-md-2">すべての自転車</h5>
 <div class="col-md-8 offset-md-2">
   <ul class="list-group">
     <% Bike.where(user_id: @user.id).each do |bike| %>
