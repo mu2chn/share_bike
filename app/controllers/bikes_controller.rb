@@ -6,7 +6,9 @@ class BikesController < ApplicationController
 
   def show
     @bike = Bike.find(params[:id])
-    @reservations = TouristBike.where(bike_id: @bike.id).order(day: "ASC").page(params[:page]).per(4)
+    @reservations = TouristBike.where(bike_id: @bike.id)
+                        .where(day: Date.tomorrow...Date.today.since(2.months))
+                        .order(day: "ASC").page(params[:page]).per(4)
   end
 
   def new

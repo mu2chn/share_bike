@@ -5,7 +5,13 @@ class TouristBikesController < ApplicationController
       @user = user
       @reserve = TouristBike.new(permit_params)
       if Bike.find(@reserve.bike_id.to_i).user_id == @user.id
-        if p @reserve.save
+        if @reserve.day <= Date.today
+          flash[:warning] = "今日以前の日付は無効です"
+        elsif @reserve.day > Date.today.since(2.months)
+          flash[:warning] = "2ヶ月以上先の予約はできません"
+        elsif !TouristBike.where(bike_id: @reserve.bike_id)&.where(day: @reserve.day).empty?
+          flash[:warning] = "同じ日に同じ自転車の貸出はできません"
+        elsif @reserve.save
           flash[:success] = "追加しました"
           # redirect_to u_reserve_path
         else
@@ -24,9 +30,10 @@ class TouristBikesController < ApplicationController
         redirect_to root_path
       elsif !@reserve.tourist_id.nil?
         flash[:danger] = "予約があるので削除できません"
-      else
-        @reserve.delete
+      elsif @reserve.delete
         flash[:success] = "削除しました"
+      else
+        flash[:danger] = "削除できませんでした"
       end
       redirect_to u_reserve_path
     end
@@ -38,10 +45,10 @@ class TouristBikesController < ApplicationController
       @reserve = TouristBike.find(params[:id])
       if !@reserve.tourist_id.nil?
         flash[:danger] = "すでに予約が入っています"
-      else
-        @reserve.tourist_id = params[:id]
-        @reserve.update(tourist_id: params[:id])
+      elsif @reserve.update(tourist_id: params[:id])
         flash[:success] = "予約しました"
+      else
+        flash[:danger] = "予約に失敗しました"
       end
       redirect_to b_show_path(@reserve.bike_id)
     end

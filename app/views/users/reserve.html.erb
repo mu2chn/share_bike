@@ -13,7 +13,9 @@
       <%= f.select :bike_id, Bike.where(user_id: @user.id)&.map {|b| [b.name, b.id]}, {}, {class: 'custom-select mb-1'} %>
 
       <%= f.label :day %>
-      <%= f.date_select :day, {}, {class: 'form-control'} %>
+      <%= f.date_select :day,
+                        {start_year: Date.today.year.to_i, end_year: Date.today.since(1.months).year.to_i, add_month_numbers: true},
+                        {class: 'form-control'} %>
 
       <%= f.submit "Register", class: "btn btn-primary mt-2" %>
     <% end %>
@@ -25,25 +27,16 @@
     <% @reservations&.each do |res| %>
       <div class="list-group-item d-flex w-100 justify-content-between">
         <p><%= Bike.find(res.bike_id).name %></p>
-        <p><%= res.day %> (<%= ["月", "火", "水", "木", "金", "土", "日"][res.day.wday] %>)</p>
+        <p><%= res.day %> (<%= [ "日", "月", "火", "水", "木", "金", "土"][res.day.wday] %>)</p>
         <% if res.tourist_id.nil? %>
           <%= link_to "削除", r_delete_path(res.id), method: :delete,
                       class: "btn btn-outline-primary btn-sm d-flex", role: "button", style: "height: 50%" %>
+        <% else %>
+          <button type="button" class="btn btn-warning btn-sm d-flex" disabled>予約済</button>
         <% end %>
       </div>
     <% end %>
   </div>
 </div>
-
-<!--<div class="col-md-8 offset-md-2 mt-2">-->
-<!--  <ul class="list-group">-->
-<%# @reservations&.each do |res| %>
-<!--      <li class="list-group-item">-->
-<!--        <%#= Bike.find(res.bike_id).name %><br/>-->
-<!--        <%#= res.day %> (<%#= [ "月", "火", "水", "木", "金", "土", "日"][res.day.wday] %>)-->
-<!--      </li>-->
-<%# end %>
-<!--  </ul>-->
-<!--</div>-->
 
 <%= paginate @reservations %>
