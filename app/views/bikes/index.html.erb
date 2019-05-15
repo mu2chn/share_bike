@@ -6,9 +6,9 @@
                          "aria-describedby": "button-addon2"
       %>
       <%= select_tag 'dsearch', options_for_select(@date_hash, selected: @prev_day&.day),
-                     class:'custom-select col-5 col-md-3 col-lg-2', prompt: "日付を選択"%>
+                     class:'custom-select col-5 col-md-3 col-lg-2 btn-outline-secondary', prompt: "日付を選択"%>
       <div class="input-group-append">
-        <%= submit_tag "Search", :name => nil, class: "btn", id: "button-addon2"%>
+        <%= submit_tag "Search", :name => nil, class: "btn btn-outline-secondary", id: "button-addon2"%>
       </div>
     </div>
 
