@@ -17,6 +17,11 @@ label{
   color: #444444;
 }
 
+//テーマカラー
+h1{
+  color: #000080;
+}
+
 //footer
 .context-dark, .bg-gray-dark, .bg-primary {
   color: rgba(255, 255, 255, 0.8);
@@ -64,5 +69,5 @@ ul, ol {
 
 //footer固定
 .mother {
-  min-height: calc(100vh - 192px);
+  min-height: calc(100vh - 168px);
 }
