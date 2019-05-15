@@ -7,7 +7,7 @@ class BikesController < ApplicationController
     if dsearch != nil
       @bikes = @bikes.where(tourist_bikes: {day: dsearch})
     end
-    @bikes = @bikes.page(params[:page]).per(12)
+    @bikes = @bikes.page(params[:page]).per(9)
 
     days = ((Date.tomorrow...Date.tomorrow.end_of_month).to_a + (Date.tomorrow.end_of_month..Date.today.next_month).to_a)
     @date_hash = days.map do |date|
