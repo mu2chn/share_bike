@@ -2,17 +2,19 @@
 <div class="row">
   <div class="col-md-6 offset-md-3">
     <%= form_for(@bike, url: b_create_path) do |f| %>
+      <%= render 'layouts/bike_error' %>
+
       <%= f.label :name %>
       <%= f.text_field :name, class: 'form-control mb-2' %>
 
       <%= f.label :vehicle_num %>
-      <%= f.text_field :vehicle_num, class: 'form-control mb-2' %>
+      <%= f.number_field :vehicle_num, class: 'form-control mb-2' %>
 
       <%= f.label :security_area %>
       <%= f.text_field :security_area, class: 'form-control mb-2' %>
 
       <%= f.label :security_num %>
-      <%= f.text_field :security_num, class: 'form-control mb-2'%>
+      <%= f.number_field :security_num, class: 'form-control mb-2'%>
 
       <%= f.label :details %>
       <%= f.text_area :details, class: 'form-control' %>

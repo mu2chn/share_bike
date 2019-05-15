@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
 
   def u_new
     if user?
-      redirect_to u_edit_path
+      redirect_to b_index_path
     elsif tourist?
       redirect_to b_index_path
     end
@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
 
   def t_new
     if user?
-      redirect_to u_edit_path
+      redirect_to b_index_path
     elsif tourist?
       redirect_to b_index_path
     end

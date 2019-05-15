@@ -11,7 +11,7 @@
   <ul class="list-group">
     <% Bike.where(user_id: @user.id).each do |bike| %>
       <li class="list-group-item">
-        <%= link_to bike.name ,"/bikes/show/"+bike.id.to_s %>
+        <%= link_to bike.name ,b_show_path(bike.id), class: "text-muted"%>
       </li>
     <% end %>
   </ul>

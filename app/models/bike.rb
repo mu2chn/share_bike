@@ -29,7 +29,6 @@ class Bike < ApplicationRecord
     where(stack.join("AND"), *list2)
   end
 
-
   def self.search_bike(params)
     restrict = []
     late = []

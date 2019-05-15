@@ -1,7 +1,20 @@
 class BikesController < ApplicationController
 
   def index
-    @bikes = Bike.easy_search_and(params[:search]).page(params[:page]).per(12)
+    p params
+    @bikes = Bike.joins(:tourist_bikes).eager_load(:tourist_bikes)
+                 .easy_search_and(params[:search])
+    dsearch = search_by_date(params[:dsearch])
+    if dsearch != nil
+      @bikes = @bikes.where(tourist_bikes: {day: dsearch})
+    end
+    @bikes = @bikes.page(params[:page]).per(12)
+
+    days = ((Date.tomorrow...Date.tomorrow.end_of_month).to_a + (Date.tomorrow.end_of_month..Date.today.next_month).to_a)
+    @date_hash = days.map do |date|
+      [ "#{date.month}月#{date.day}日（#{[ "日", "月", "火", "水", "木", "金", "土"][date.wday]}）", date.day]
+    end.to_a
+    @prev_day = dsearch
   end
 
   def show
@@ -21,7 +34,9 @@ class BikesController < ApplicationController
       @bike = Bike.new(bike_params)
       @bike.user_id = @user.id
       if @bike.save
-        redirect_to "/bikes/edit/"+@bike.id.to_s
+        redirect_to b_edit_path(@bike.id)
+      else
+        render b_edit_path(@bike.id)
       end
     end
   end
@@ -58,5 +73,20 @@ class BikesController < ApplicationController
 
   def bike_update_params
     params.require(:bike).permit(:name, :details, :image)
+  end
+
+  def search_by_date(day)
+    if day.nil? || day == ""
+      return nil
+    end
+    day = day.to_i
+    search_date = Date.today
+    if search_date.day >= day
+      search_date = search_date.next_month
+      search_date = search_date.ago((search_date.day-day).days)
+    else
+      search_date = search_date.since((day-search_date.day).days)
+    end
+    search_date
   end
 end
