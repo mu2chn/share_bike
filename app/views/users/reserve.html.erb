@@ -1,27 +1,39 @@
 <%= render 'layouts/error' %>
 
-<div class="mt-2 mb-2 col-md-4 offset-md-4 col-6 offset-3">
-  <button type="button" class="btn btn-outline-primary btn-block" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-    日程追加
-  </button>
-</div>
-<div class="collapse col-md-6 offset-md-3" id="collapseExample">
-  <div class="card card-body">
-    <%= form_for(@reserve, url: reserve_path) do |f| %>
+<div class="row">
 
-      <%= f.label "Bike" %>
-      <%= f.select :bike_id, Bike.where(user_id: @user.id)&.map {|b| [b.name, b.id]}, {}, {class: 'custom-select mb-1'} %>
+  <div class="row col-md-6 offset-md-3 offset-lg-0 col-lg-4">
+    <div class="mt-3 mb-2 col-md-10 offset-md-1 col-6 offset-3">
 
-      <%= f.label :day %>
-      <%= f.date_select :day,
-                        {start_year: Date.today.year.to_i, end_year: Date.today.since(1.months).year.to_i, add_month_numbers: true},
-                        {class: 'form-control'} %>
+      <button type="button" class="btn btn-outline-primary btn-block" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        日程追加
+      </button>
 
-      <%= f.submit "Register", class: "btn btn-primary mt-2" %>
-    <% end %>
+    </div>
+    <!--    <div class="collapse col-md-6 offset-md-3 offset-lg-0 col-lg-4" id="collapseExample">-->
+    <div class="collapse col-12" id="collapseExample">
+
+      <div class="card card-body">
+        <%= form_for(@reserve, url: reserve_path) do |f| %>
+
+          <%= f.label "Bike" %>
+          <%= f.select :bike_id, Bike.where(user_id: @user.id)&.map {|b| [b.name, b.id]}, {}, {class: 'custom-select mb-1'} %>
+
+          <%= f.label :day %>
+          <%= f.date_select :day,
+                            {start_year: Date.today.year.to_i, end_year: Date.today.since(1.months).year.to_i, add_month_numbers: true},
+                            {class: 'form-control'} %>
+
+          <%= f.submit "Register", class: "btn btn-primary mt-2" %>
+        <% end %>
+      </div>
+    </div>
   </div>
-</div>
 
-<%= render 'util/reserve_list' %>
+  <div class="col-md-8 offset-md-2 offset-lg-0 mt-2">
+    <%= render 'util/reserve_list' %>
+  </div>
+
+</div>
 
 <%= paginate @reservations %>

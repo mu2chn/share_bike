@@ -1,38 +1,22 @@
 <div class="row">
   <%= image_tag @bike.image.to_s, class: "img-thumbnail mx-auto d-block" %>
-</div>
 
-<div class="col-md-8 offset-md-2">
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">名前：<%= @bike.name %></li>
-    <li class="list-group-item">車体番号：<%= @bike.vehicle_num %></li>
-    <li class="list-group-item">
-      所有者：
-      <%= link_to User.find(@bike.user_id).nickname, "/users/show/" + @bike.user_id.to_s %>
-    </li>
-  </ul>
+  <div class="col-md-8 offset-md-2 offset-xl-0">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">名前：<%= @bike.name %></li>
+      <li class="list-group-item">車体番号：<%= @bike.vehicle_num %></li>
+      <li class="list-group-item">
+        所有者：
+        <%= link_to User.find(@bike.user_id).nickname, "/users/show/" + @bike.user_id.to_s %>
+      </li>
+    </ul>
+  </div>
 </div>
 
 <h5 class="text-muted mt-3 mb-3 offset-md-2 col-md-8">提供日</h5>
-<!--<div class="col-md-8 offset-md-2 mt-2">-->
-<!--  <div class="list-group">-->
-    <%# @reservations&.each do |res| %>
-<!--      <div class="list-group-item d-flex w-100 justify-content-between">-->
-<!--        <p><%#= Bike.find(res.bike_id).name %></p>-->
-<!--        <p><%#= res.day %> (<%#= [ "日", "月", "火", "水", "木", "金", "土"][res.day.wday] %>)</p>-->
-        <%# if tourist? %>
-          <%# if res.tourist_id.nil? %>
-            <%#= link_to "予約", r_accept_path(res.id), method: :post, class: "btn btn-outline-primary btn-sm d-flex", role: "button" %>
-          <%# else %>
-            <%#= link_to "予約済", r_accept_path(res.id), method: :post, class: "btn btn-outline-primary btn-sm d-flex", role: "button", style: "height: 50%" %>
-<!--            <button type="button" class="btn btn-outline-primary btn-sm d-flex" disabled>予約済</button>-->
-          <%# end %>
-        <%# end %>
-<!--      </div>-->
-    <%# end %>
-<!--  </div>-->
-<!--</div>-->
-<%= render 'util/reserve_list' %>
+<div class="col-md-8 offset-md-2 mt-2">
+  <%= render 'util/reserve_list' %>
+</div>
 
 
 <%= paginate @reservations %>
