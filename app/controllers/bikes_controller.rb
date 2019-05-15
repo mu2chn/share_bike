@@ -2,8 +2,7 @@ class BikesController < ApplicationController
 
   def index
     p params
-    @bikes = Bike.joins(:tourist_bikes).eager_load(:tourist_bikes)
-                 .easy_search_and(params[:search])
+    @bikes = p Bike.joins(:tourist_bikes).eager_load(:tourist_bikes).easy_search_and(params[:search])
     dsearch = search_by_date(params[:dsearch])
     if dsearch != nil
       @bikes = @bikes.where(tourist_bikes: {day: dsearch})

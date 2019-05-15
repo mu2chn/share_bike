@@ -22,6 +22,12 @@ h1{
   color: #000080;
 }
 
+//ブランドロゴ
+.navbar-brand{
+  font-family: 'Maiden Orange', cursive;
+  //font-size: 22px;
+}
+
 //footer
 .context-dark, .bg-gray-dark, .bg-primary {
   color: rgba(255, 255, 255, 0.8);
