@@ -1,7 +1,8 @@
-<div class="row">
-  <%= image_tag @bike.image.to_s, class: "img-thumbnail mx-auto d-block" %>
-
-  <div class="col-md-8 offset-md-2 offset-xl-0">
+<div class="d-flex flex-md-row flex-column align-items-center">
+  <div class="">
+    <%= image_tag @bike.image.to_s, class: "img-thumbnail" %>
+  </div>
+  <div class="w-100">
     <ul class="list-group list-group-flush">
       <li class="list-group-item">名前：<%= @bike.name %></li>
       <li class="list-group-item">車体番号：<%= @bike.vehicle_num %></li>
