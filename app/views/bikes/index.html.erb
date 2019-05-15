@@ -1,12 +1,12 @@
 <div class="mb-2">
   <%= form_tag b_index_path, :method => 'get' do %>
     <div class="input-group mt-2">
-      <%= text_field_tag :search, params[:search], class: "form-control col-5 col-md-4",
+      <%= text_field_tag :search, params[:search], class: "form-control col-5 col-md-4 border-secondary",
                          placeholder: "自転車名で検索",
                          "aria-describedby": "button-addon2"
       %>
       <%= select_tag 'dsearch', options_for_select(@date_hash, selected: @prev_day&.day),
-                     class:'custom-select col-5 col-md-3 col-lg-2 btn-outline-secondary', prompt: "日付を選択"%>
+                     class:'custom-select col-5 col-md-3 col-lg-2 btn-outline-secondary border-secondary', prompt: "日付を選択"%>
       <div class="input-group-append">
         <%= submit_tag "Search", :name => nil, class: "btn btn-outline-secondary", id: "button-addon2"%>
       </div>
