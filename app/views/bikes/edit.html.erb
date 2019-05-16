@@ -10,6 +10,9 @@
       <%= f.label :name %>
       <%= f.text_field :name, class: 'form-control mb-2' %>
 
+      <%= f.label "車体番号" %>
+      <%= f.text_field :vehicle_num, class: 'form-control mb-2', disabled: true%>
+
       <%= f.label :details %>
       <%= f.text_area :details, class: 'form-control mb-2' %>
 

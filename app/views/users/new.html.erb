@@ -27,9 +27,7 @@
 
       <div class="clearfix mt-1 mb-2">
         <div class="form-check custom-control-inline">
-<!--          <label class="form-check-label">右記の利用規約に同意する-->
-            <%#= f.check_box :temp_terms, {class: "form-check-input"}%>
-<!--          </label>-->
+
           <%= f.label "右記の利用規約に同意する", class: "form-check-label" %>
           <%= f.check_box :temp_terms, {class: "form-check-input"} %>
         </div>

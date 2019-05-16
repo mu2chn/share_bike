@@ -5,6 +5,12 @@
     <%= form_for(@user, url: t_update_path) do |f| %>
       <%= render 'layouts/error' %>
 
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control mb-2', disabled: true %>
+
+      <%= f.label :email %>
+      <%= f.text_field :email, class: 'form-control mb-2', disabled: true %>
+
       <%= f.label :password %>
       <%= f.password_field :password, class: 'form-control mb-2' %>
 
