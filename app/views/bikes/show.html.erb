@@ -1,4 +1,4 @@
-<div class="d-flex flex-md-row flex-column align-items-center">
+<div class="d-flex flex-md-row flex-column align-items-center mt-2">
   <div class="">
     <%= image_tag @bike.image.to_s, class: "img-thumbnail" %>
   </div>
@@ -14,8 +14,8 @@
   </div>
 </div>
 
-<h5 class="text-muted mt-3 mb-3 offset-md-2 col-md-8">提供日</h5>
-<div class="col-md-8 offset-md-2 mt-2">
+<h5 class="text-muted mt-3 mb-3 col-12">提供日</h5>
+<div class="col-12 mt-2">
   <%= render 'util/reserve_list' %>
 </div>
 
