@@ -37,6 +37,7 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'kaminari', '~> 0.17.0'
 gem 'kaminari-bootstrap', '~> 3.0.1'
+gem 'font-awesome-sass', '~> 5.2.0'
 
 
 # Use Capistrano for deployment

@@ -10,11 +10,22 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  */
+// 開閉速度
+$transition-base:             all .2s ease-in !default;
+$transition-fade:             opacity .15s linear !default;
+$transition-collapse:         height .25s ease-out !default;
+
 @import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 //labelをうすく
 label{
   color: #444444;
+}
+
+.fa-white{
+  color: white;
 }
 
 //テーマカラー
@@ -27,6 +38,8 @@ h1{
   font-family: 'Maiden Orange', cursive;
   //font-size: 22px;
 }
+
+
 
 //footer
 .context-dark, .bg-gray-dark, .bg-primary {

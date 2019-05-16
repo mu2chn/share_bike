@@ -15,7 +15,9 @@
 
 <body>
 <div class="mother">
-  <%= render 'layouts/header' %>
+  <header class="sticky-top">
+    <%= render 'layouts/header' %>
+  </header>
 
   <div class="container">
     <% flash.each do |message_type, message| %>
