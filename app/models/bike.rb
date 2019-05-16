@@ -6,6 +6,10 @@ class Bike < ApplicationRecord
 
   mount_uploader :image, ImageUploader
 
+  validates :name, presence: true,
+            length: {maximum: 12}
+  validates :details, length: {maximum: 255}
+
   def self.easy_search_and(str="")
 
     ## AND 検索
