@@ -6,13 +6,13 @@
       <%= render 'layouts/error' %>
 
       <%= f.label :name %>
-      <%= f.text_field :name, class: 'form-control' %>
+      <%= f.text_field :name, class: 'form-control mb-3' %>
 
-      <%= f.label :nickname %>
-      <%= f.text_field :nickname, class: 'form-control' %>
+      <%= f.label "表示名" %>
+      <%= f.text_field :nickname, class: 'form-control mb-3' %>
 
       <%= f.label :email %>
-      <div class="input-group">
+      <div class="input-group mb-3">
         <%= f.text_field :email, class: 'form-control' %>
         <div class="input-group-append">
           <span class="input-group-text" id="basic-addon2">@st.kyoto-u.ac.jp</span>
@@ -20,12 +20,12 @@
       </div>
 
       <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
+      <%= f.password_field :password, class: 'form-control mb-3' %>
 
       <%= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation, class: 'form-control mb-2' %>
+      <%= f.password_field :password_confirmation, class: 'form-control mb-3' %>
 
-      <div class="clearfix mt-1 mb-2">
+      <div class="clearfix mt-1 mb-3">
         <div class="form-check custom-control-inline">
 
           <%= f.label "右記の利用規約に同意する", class: "form-check-label" %>

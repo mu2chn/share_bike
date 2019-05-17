@@ -11,8 +11,8 @@ class TouristsController < ApplicationController
     @user = Tourist.new(user_params)
     if @user.save
       log_in(@user)
-      flash[:info] = "プロフィール編集画面です。直したい箇所が有る場合はここで修正しましょう"
-      redirect_to t_edit_path
+      flash[:info] = "乗りたいバイクを探して見ましょう！"
+      redirect_to b_index_path
     else
       render t_new_path
     end
@@ -44,13 +44,13 @@ class TouristsController < ApplicationController
   end
 
   def user_params
-    params.require(:tourist).permit(:name, :email, :phmnumber, :address, :password, :temp_terms,
+    params.require(:tourist).permit(:name, :email, :phmnumber, :password, :temp_terms,
                                  :password_confirmation)
   end
 
   def update_user_params
     dict = {}
-    params.require(:tourist).permit(:address, :password, :password_confirmation).each do |key, content|
+    params.require(:tourist).permit(:password, :password_confirmation).each do |key, content|
       if content != ""
         dict[key] = content
       end

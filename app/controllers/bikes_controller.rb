@@ -33,7 +33,8 @@ class BikesController < ApplicationController
       @bike = Bike.new(bike_params)
       @bike.user_id = @user.id
       if @bike.save
-        redirect_to b_edit_path(@bike.id)
+        flash[:success] = "新しく自転車を追加しました！今度は貸し出す日程を決めましょう"
+        redirect_to u_reserve_path
       else
         render b_edit_path(@bike.id)
       end

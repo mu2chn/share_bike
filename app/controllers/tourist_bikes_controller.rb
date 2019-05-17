@@ -12,7 +12,7 @@ class TouristBikesController < ApplicationController
         elsif !TouristBike.where(bike_id: @reserve.bike_id)&.where(day: @reserve.day).empty?
           flash[:warning] = "同じ日に同じ自転車の貸出はできません"
         elsif @reserve.save
-          flash[:success] = "追加しました"
+          flash[:success] = "新しく日程を追加しました"
           # redirect_to u_reserve_path
         else
           flash[:danger] = "失敗しました"
@@ -45,12 +45,14 @@ class TouristBikesController < ApplicationController
       @reserve = TouristBike.find(params[:id])
       if !@reserve.tourist_id.nil?
         flash[:danger] = "すでに予約が入っています"
+        redirect_to b_show_path(@reserve.bike_id)
       elsif @reserve.update(tourist_id: @user.id)
         flash[:success] = "予約しました"
+        redirect_to t_reserve_path
       else
         flash[:danger] = "予約に失敗しました"
+        redirect_to b_show_path(@reserve.bike_id)
       end
-      redirect_to b_show_path(@reserve.bike_id)
     end
   end
 

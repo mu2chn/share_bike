@@ -12,8 +12,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       log_in(@user)
-      flash[:info] = "プロフィール編集画面です。直したい箇所が有る場合はここで修正しましょう"
-      redirect_to u_edit_path
+      flash[:info] = "まずは自転車を追加しましょう"
+      redirect_to b_new_path
     else
       render u_new_path
     end
