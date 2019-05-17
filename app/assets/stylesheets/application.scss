@@ -20,6 +20,13 @@ $transition-collapse:         height .25s ease-out !default;
 @import "font-awesome";
 @import "tempusdominus-bootstrap-4.css";
 
+//card-column
+.card-columns {
+  @include media-breakpoint-only(sm) {
+    column-count: 2;
+  }
+}
+
 //labelをうすく
 label{
   color: #444444;

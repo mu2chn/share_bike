@@ -7,13 +7,13 @@
     <%= form_for(@bike, url: b_update_path) do |f| %>
       <%= render 'layouts/error' %>
 
-      <%= f.label :name %>
+      <%= f.label :name, class: "text-muted" %>
       <%= f.text_field :name, class: 'form-control mb-2' %>
 
-      <%= f.label "車体番号" %>
+      <%= f.label "車体番号", class: "text-muted" %>
       <%= f.text_field :vehicle_num, class: 'form-control mb-2', disabled: true%>
 
-      <%= f.label :details %>
+      <%= f.label :details, class: "text-muted" %>
       <%= f.text_area :details, class: 'form-control mb-2' %>
 
       <div class="custom-file mb-2 mt-2">
