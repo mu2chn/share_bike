@@ -34,7 +34,7 @@ class SessionsController < ApplicationController
         redirect_to b_index_path
       end
     else
-      flash[:danger] = 'ログインに失敗しました'
+      flash[:error] ="ログインに失敗しました。メールアドレスやパスワードが間違っていないか確認してください。"
       if flag == "user"
         redirect_to u_login_path
       elsif flag == "tourist"
@@ -44,6 +44,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    flash[:success] = "ログアウトしました"
     if user?
       log_out
       redirect_to root_path

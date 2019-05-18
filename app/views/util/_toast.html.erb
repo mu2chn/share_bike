@@ -1,0 +1,21 @@
+<% flash.each do |type, msg| %>
+  <script>
+      toastr['<%= type %>']('<%= msg %>');
+  </script>
+<% end %>
+
+<% if !@guide.nil? %>
+  <script>
+      toastr.options.timeOut = 10000;
+      // toastr.options.extendedTimeOut = 0;
+      toastr.options.positionClass = "toast-bottom-right";
+      toastr.options.showEasing = "swing";
+      toastr.options.preventDuplicates = true;
+      toastr.info("<%= "#{@guide}" %>", "Tips");
+  </script>
+<% end %>
+
+
+<%# flash.each do |message_type, message| %>
+<!--      <div class="alert mt-2 alert-<%#= message_type %>"><%#= message %></div>-->
+<%# end %>

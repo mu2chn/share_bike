@@ -10,9 +10,9 @@ class UsersController < ApplicationController
   def create
     p params
     @user = User.new(user_params)
-    if @user.save
+    if @user.save(context: :create)
       log_in(@user)
-      flash[:info] = "まずは自転車を追加しましょう"
+      flash[:success] = "登録が完了しました！さっそく自転車を追加してみましょう。"
       redirect_to b_new_path
     else
       render u_new_path

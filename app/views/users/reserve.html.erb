@@ -37,9 +37,12 @@
     <%= render 'util/reserve_list' %>
   </div>
 
+  <div class="mx-auto d-block mt-4">
+    <%= paginate @reservations %>
+  </div>
+
 </div>
 
-<%= paginate @reservations %>
 
 <script type="text/javascript">
     $(function () {

@@ -1,19 +1,22 @@
 class BikesController < ApplicationController
 
   def index
-    p params
     @bikes = p Bike.joins(:tourist_bikes).eager_load(:tourist_bikes).easy_search_and(params[:search])
     dsearch = search_by_date(params[:dsearch])
     if dsearch != nil
       @bikes = @bikes.where(tourist_bikes: {day: dsearch})
     end
     @bikes = @bikes.page(params[:page]).per(9)
-
     days = ((Date.tomorrow...Date.tomorrow.end_of_month).to_a + (Date.tomorrow.end_of_month..Date.today.next_month).to_a)
     @date_hash = days.map do |date|
       [ "#{date.month}月#{date.day}日（#{[ "日", "月", "火", "水", "木", "金", "土"][date.wday]}）", date.day]
     end.to_a
     @prev_day = dsearch
+
+    if_login do |user|
+      user.update_attribute(:tutorial,
+                            tutorial(user.tutorial, 0, "ここは自転車検索ページです。日程などから自転車を探すことができます"))
+    end
   end
 
   def show
@@ -36,7 +39,7 @@ class BikesController < ApplicationController
         flash[:success] = "新しく自転車を追加しました！今度は貸し出す日程を決めましょう"
         redirect_to u_reserve_path
       else
-        render b_edit_path(@bike.id)
+        render b_new_path
       end
     end
   end
@@ -57,7 +60,7 @@ class BikesController < ApplicationController
           flash[:success] = "Updated"
           redirect_to "/bikes/edit/"+params[:id].to_s
         else
-          flash[:danger] = "失敗しました"
+          flash[:error] = "失敗しました"
           redirect_to "/bikes/edit/"+params[:id].to_s
         end
       else

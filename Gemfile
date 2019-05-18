@@ -40,6 +40,7 @@ gem 'kaminari-bootstrap', '~> 3.0.1'
 gem 'font-awesome-sass', '~> 5.2.0'
 gem "bootstrap4-datetime-picker-rails"
 gem 'momentjs-rails'
+gem 'toastr-rails'
 
 
 # Use Capistrano for deployment

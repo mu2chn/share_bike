@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  before_save on: :create  do
+  before_create on: :create  do
     self.email += "@st.kyoto-u.ac.jp"
   end
 

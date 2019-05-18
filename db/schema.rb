@@ -40,11 +40,10 @@ ActiveRecord::Schema.define(version: 20190511141653) do
     t.string "name"
     t.string "nickname"
     t.string "email"
-    t.integer "phmnumber"
-    t.string "address"
-    t.string "passport"
+    t.string "phmnumber"
     t.boolean "temp_terms", default: false
     t.integer "terms", default: 0
+    t.integer "tutorial", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
@@ -56,6 +55,7 @@ ActiveRecord::Schema.define(version: 20190511141653) do
     t.string "email"
     t.boolean "temp_terms", default: false
     t.integer "terms", default: 0
+    t.integer "tutorial", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
