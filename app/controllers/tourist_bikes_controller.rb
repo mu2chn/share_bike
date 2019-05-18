@@ -5,7 +5,9 @@ class TouristBikesController < ApplicationController
       @user = user
       @reserve = TouristBike.new(permit_params)
       if Bike.find(@reserve.bike_id.to_i).user_id == @user.id
-        if @reserve.day <= Date.today
+        if @reserve.day.nil?
+          flash[:warning] = "日付を入力してください"
+        elsif @reserve.day <= Date.today
           flash[:warning] = "今日以前の日付は無効です"
         elsif @reserve.day > Date.today.since(2.months)
           flash[:warning] = "2ヶ月以上先の予約はできません"
