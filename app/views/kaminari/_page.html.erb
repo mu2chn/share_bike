@@ -8,5 +8,10 @@
     remote:        data-remote
 -%>
 <!--<span class="page<%#= ' current' if page.current? %>">-->
-  <%= link_to_unless page.current?, page, url, {:remote => remote, :rel => page.next? ? 'next' : page.prev? ? 'prev' : nil} %>
+<%#= link_to_unless page.current?, page, url, {:remote => remote, :rel => page.next? ? 'next' : page.prev? ? 'prev' : nil} %>
+<% if page.current? %>
+  <button type="button" class="btn btn-navy", disabled><%= page %></button>
+<% else %>
+  <%#= link_to page, url, {role: "button", class: "btn btn-outline-navy", :remote => remote, :rel => page.next? ? 'next' : page.prev? ? 'prev' : nil} %>
+<% end %>
 <!--</span>-->
