@@ -10,6 +10,7 @@ class CreateTourists < ActiveRecord::Migration[5.1]
       t.boolean :temp_terms, default: false
       t.integer :terms, default: 0
       t.integer :tutorial, default: 0
+      t.string :remember_digest
       t.timestamps
     end
   end

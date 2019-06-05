@@ -27,6 +27,7 @@ class SessionsController < ApplicationController
     end
     if user && user.authenticate(params[:session][:password])
       log_in user
+      remember user, flag
       flash[:success] = "ログインしました"
       if user?
         redirect_to u_reserve_path
@@ -44,7 +45,10 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    flash[:success] = "ログアウトしました"
+    current_user.forget
+    cookies.delete(:user_id)
+    cookies.delete(:tourist_id)
+    cookies.delete(:remember_token)
     if user?
       log_out
       redirect_to root_path
@@ -52,6 +56,6 @@ class SessionsController < ApplicationController
       log_out
       redirect_to root_path
     end
+    flash[:success] = "ログアウトしました"
   end
-
 end
