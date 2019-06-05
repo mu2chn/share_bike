@@ -35,7 +35,7 @@ class SessionsController < ApplicationController
         redirect_to b_index_path
       end
     else
-      flash[:error] ="ログインに失敗しました。メールアドレスやパスワードが間違っていないか確認してください。"
+      flash[:error] = "ログインに失敗しました。メールアドレスやパスワードが間違っていないか確認してください。"
       if flag == "user"
         redirect_to u_login_path
       elsif flag == "tourist"
@@ -45,17 +45,22 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    current_user.forget
-    cookies.delete(:user_id)
-    cookies.delete(:tourist_id)
-    cookies.delete(:remember_token)
-    if user?
-      log_out
-      redirect_to root_path
-    elsif tourist?
-      log_out
+    if logged_in?
+      current_user.forget
+      cookies.delete(:user_id)
+      cookies.delete(:tourist_id)
+      cookies.delete(:remember_token)
+      if user?
+        log_out
+        redirect_to root_path
+      elsif tourist?
+        log_out
+        redirect_to root_path
+      end
+      flash[:success] = "ログアウトしました"
+    else
+      flash[:warning] = "すでにログアウトしています"
       redirect_to root_path
     end
-    flash[:success] = "ログアウトしました"
   end
 end
