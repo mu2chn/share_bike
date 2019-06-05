@@ -25,7 +25,7 @@ module SessionsHelper
   end
 
   def log_in(user)
-    if p user.kind_of?(User)
+    if user.kind_of?(User)
       session[:user_id] = user.id
     elsif user.kind_of?(Tourist)
       session[:tourist_id] = user.id
@@ -37,6 +37,18 @@ module SessionsHelper
       @current_user ||= User.find(session[:user_id])
     elsif session[:tourist_id]
       @current_user ||= Tourist.find(session[:tourist_id])
+    elsif u = cookies.signed[:user_id]
+      u = User.find(u)
+      if u && u.authenticated?(cookies[:remember_token])
+        log_in u
+        @current_user = u
+      end
+    elsif p u = cookies.signed[:tourist_id]
+      u = Tourist.find(u)
+      if u && u.authenticated?(cookies[:remember_token])
+        log_in u
+        @current_user = u
+      end
     end
   end
 
@@ -56,5 +68,16 @@ module SessionsHelper
     session.delete(:user_id)
     session.delete(:tourist_id)
     @current_user = nil
+  end
+
+  def remember(user, flag)
+    user.remember
+    if flag == "user"
+      cookies.permanent.signed[:user_id] = user.id
+      cookies.permanent[:remember_token] = user.remember_token
+    elsif flag == "tourist"
+      cookies.permanent.signed[:tourist_id] = user.id
+      cookies.permanent[:remember_token] = user.remember_token
+    end
   end
 end
