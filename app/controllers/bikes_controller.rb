@@ -1,7 +1,7 @@
 class BikesController < ApplicationController
 
   def index
-    @bikes = p Bike.joins(:tourist_bikes).eager_load(:tourist_bikes).easy_search_and(params[:search])
+    @bikes = Bike.joins(:tourist_bikes).eager_load(:tourist_bikes).easy_search_and(params[:search])
     dsearch = search_by_date(params[:dsearch])
     if dsearch != nil
       @bikes = @bikes.where(tourist_bikes: {day: dsearch})
@@ -13,7 +13,7 @@ class BikesController < ApplicationController
     end.to_a
     @prev_day = dsearch
 
-    if_login do |user|
+    if user = current_user
       user.update_attribute(:tutorial,
                             tutorial(user.tutorial, 0, "ここは自転車検索ページです。日程などから自転車を探すことができます"))
     end
@@ -24,6 +24,10 @@ class BikesController < ApplicationController
     @reservations = TouristBike.where(bike_id: @bike.id)
                         .where(day: Date.tomorrow...Date.today.since(2.months))
                         .order(day: "ASC").page(params[:page]).per(4)
+    if user = current_user
+      user.update_attribute(:tutorial,
+                            tutorial(user.tutorial, 1, "ここは予約ページです。気に入った自転車の予約をすることができます。"))
+    end
   end
 
   def new

@@ -1,20 +1,6 @@
 <% provide :res_title, "提供日" %>
 
-<div class="d-flex flex-md-row flex-column align-items-center mt-2">
-  <div class="">
-    <%= image_tag @bike.image.to_s, class: "img-thumbnail" %>
-  </div>
-  <div class="mx-2 w-100">
-    <ul class="list-group list-group-flush shadow-sm text-muted">
-      <li class="list-group-item">名前：<%= @bike.name %></li>
-      <li class="list-group-item">車体番号：<%= @bike.vehicle_num %></li>
-      <li class="list-group-item">
-        所有者：
-        <%= link_to User.find(@bike.user_id).nickname, "/users/show/" + @bike.user_id.to_s %>
-      </li>
-    </ul>
-  </div>
-</div>
+<%= render 'bikes/details' %>
 
 <div class="row">
   <div class="col-12 mt-3">

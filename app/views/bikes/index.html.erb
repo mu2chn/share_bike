@@ -1,38 +1,6 @@
-<!--<div class="pb-1 mb-1 sticky-top" style="background-color: white">-->
-<div class="pb-1 mb-1 q-form">
-  <%= form_tag b_index_path, :method => 'get' do %>
-    <div class="input-group mt-2">
-      <%= text_field_tag :search, params[:search], class: "form-control col-5 col-md-4 border-navy text-navy",
-                         placeholder: "自転車検索",
-                         "aria-describedby": "button-addon2"
-      %>
-      <%= select_tag 'dsearch', options_for_select(@date_hash, selected: @prev_day&.day),
-                     class: 'custom-select col-5 col-md-3 col-lg-2 border-navy text-navy', prompt: "日付を選択" %>
-      <div class="input-group-append">
-        <%= submit_tag "Search", :name => nil, class: "btn btn-outline-navy", id: "button-addon2" %>
-      </div>
-    </div>
+<%= render 'bikes/search_box' %>
 
-  <% end %>
-</div>
-
-<div class="card-columns mt-1">
-  <%= @bikes.empty? ? simple_format("自転車が見つかりません", class: "py-3 text-muted") : nil %>
-  <% @bikes.each do |bike| %>
-    <a href="/bikes/show/<%= bike.id %>" class="text-muted">
-      <div class="card border border-0 shadow">
-        <%= image_tag bike.image.to_s, class: "card-img-top" %>
-        <div class="card-body">
-          <h6 class="card-title text-decoration-none"><%= bike.name %></h6>
-          <p class="card-text text-decoration-none"><%= bike.details %></p>
-          <p class="card-text text-decoration-none">
-            <small class="text-muted"><%= User.find(bike.user_id).nickname %></small>
-          </p>
-        </div>
-      </div>
-    </a>
-  <% end %>
-</div>
+<%= render 'bikes/bike_index' %>
 
 <div class="mx-auto d-block mt-4">
   <%= paginate @bikes %>
