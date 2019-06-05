@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20190511141653) do
   create_table "bikes", force: :cascade do |t|
     t.string "name"
     t.integer "user_id"
+    t.string "image"
     t.string "vehicle_num"
     t.string "security_area"
     t.integer "security_num"
@@ -28,6 +29,7 @@ ActiveRecord::Schema.define(version: 20190511141653) do
   create_table "tourist_bikes", force: :cascade do |t|
     t.integer "bike_id"
     t.integer "tourist_id"
+    t.date "day"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["bike_id"], name: "index_tourist_bikes_on_bike_id"
@@ -38,10 +40,10 @@ ActiveRecord::Schema.define(version: 20190511141653) do
     t.string "name"
     t.string "nickname"
     t.string "email"
-    t.integer "phmnumber"
-    t.string "address"
-    t.string "passport"
+    t.string "phmnumber"
+    t.boolean "temp_terms", default: false
     t.integer "terms", default: 0
+    t.integer "tutorial", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
@@ -51,7 +53,9 @@ ActiveRecord::Schema.define(version: 20190511141653) do
     t.string "name"
     t.string "nickname"
     t.string "email"
+    t.boolean "temp_terms", default: false
     t.integer "terms", default: 0
+    t.integer "tutorial", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"

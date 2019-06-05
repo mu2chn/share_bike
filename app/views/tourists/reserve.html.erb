@@ -1,0 +1,9 @@
+<%= provide :res_title, "予約日程" %>
+
+<div class="col-md-10 offset-md-1 mt-2">
+  <%= render 'util/reserve_list' %>
+</div>
+
+<div class="mx-auto d-block mt-4">
+  <%= paginate @reservations %>
+</div>

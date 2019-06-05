@@ -1,0 +1,12 @@
+<% provide :res_title, "提供日" %>
+
+<%= render 'bikes/details' %>
+
+<div class="row">
+  <div class="col-12 mt-3">
+    <%= render 'util/reserve_list' %>
+  </div>
+  <div class="mx-auto d-block mt-4">
+    <%= paginate @reservations %>
+  </div>
+</div>

@@ -1,14 +1,35 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>ShareBike</title>
-    <%= csrf_meta_tags %>
+<head>
+  <title>Share Bike</title>
+  <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <!--    追加分-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="content-language" content="ja">
+  <link href="https://fonts.googleapis.com/css?family=Maiden+Orange" rel="stylesheet">
 
-  <body>
+</head>
+
+<body>
+<div class="mother">
+  <header class="fixed-top">
+    <%= render 'layouts/header' %>
+  </header>
+
+  <div class="my-4 py-2"></div>
+
+  <div class="container">
+
+    <%= render 'util/toast' %>
+
     <%= yield %>
-  </body>
+
+  </div>
+</div>
+
+<%= render 'layouts/footer' %>
+</body>
 </html>

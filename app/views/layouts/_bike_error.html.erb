@@ -1,0 +1,10 @@
+<% if @bike.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-danger">
+      The form contains <%= pluralize(@bike.errors.count, "error") %>.<br/><br/>
+      <% @bike.errors.full_messages.each do |msg| %>
+        <p>: <%= msg %></p>
+      <% end %>
+    </div>
+  </div>
+<% end %>

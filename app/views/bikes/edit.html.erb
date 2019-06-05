@@ -1,0 +1,34 @@
+<div class="row mb-2">
+  <%= image_tag @bike.image.to_s, class: "img-thumbnail mx-auto d-block" %>
+</div>
+
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <%= form_for(@bike, url: b_update_path) do |f| %>
+      <%= render 'layouts/error' %>
+
+      <%= f.label :name, class: "text-muted" %>
+      <%= f.text_field :name, class: 'form-control mb-2' %>
+
+      <%= f.label "車体番号", class: "text-muted" %>
+      <%= f.text_field :vehicle_num, class: 'form-control mb-2', disabled: true%>
+
+      <%= f.label :details, class: "text-muted" %>
+      <%= f.text_area :details, class: 'form-control mb-2' %>
+
+      <div class="custom-file mb-2 mt-2">
+        <%= f.label "ファイルを選択...", class: "custom-file-label", for: "customFile"%>
+        <%= f.file_field :image, class: 'custom-file-input' %>
+      </div>
+
+      <%= f.submit "Save changes", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
+<script type="application/javascript">
+    $('input[type="file"]').change(function (e) {
+        var fileName = e.target.files[0].name;
+        $('.custom-file-label').html(fileName);
+    });
+</script>

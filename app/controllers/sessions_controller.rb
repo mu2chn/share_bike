@@ -1,14 +1,18 @@
 class SessionsController < ApplicationController
-  include SessionsHelper
 
   def u_new
-    if logged_in?
-      redirect_to  '/'
+    if user?
+      redirect_to b_index_path
+    elsif tourist?
+      redirect_to b_index_path
     end
   end
+
   def t_new
-    if logged_in?
-      redirect_to '/'
+    if user?
+      redirect_to b_index_path
+    elsif tourist?
+      redirect_to b_index_path
     end
   end
 
@@ -16,25 +20,37 @@ class SessionsController < ApplicationController
   def create
     if params[:session][:type] == "user"
       user = User.find_by(email: params[:session][:email].downcase)
+      flag = "user"
     elsif params[:session][:type] == "tourist"
       user = Tourist.find_by(email: params[:session][:email].downcase)
+      flag = "tourist"
     end
     if user && user.authenticate(params[:session][:password])
       log_in user
-      redirect_to '/'
+      flash[:success] = "ログインしました"
+      if user?
+        redirect_to u_reserve_path
+      elsif tourist?
+        redirect_to b_index_path
+      end
     else
-      # flash.now[:danger] = 'Invalid email/password combination'
-      render 'users/new'
+      flash[:error] ="ログインに失敗しました。メールアドレスやパスワードが間違っていないか確認してください。"
+      if flag == "user"
+        redirect_to u_login_path
+      elsif flag == "tourist"
+        redirect_to t_login_path
+      end
     end
   end
 
   def destroy
+    flash[:success] = "ログアウトしました"
     if user?
       log_out
-      redirect_to '/u-login'
+      redirect_to root_path
     elsif tourist?
       log_out
-      redirect_to '/t-login'
+      redirect_to root_path
     end
   end
 

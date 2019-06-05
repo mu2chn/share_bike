@@ -1,0 +1,49 @@
+<h3 class="text-muted mt-5 mb-3 offset-md-3">Sign up for students</h3>
+
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <%= form_for(@user, url: u_create_path) do |f| %>
+      <%= render 'layouts/error' %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control mb-3' %>
+
+      <%= f.label "表示名" %>
+      <%= f.text_field :nickname, class: 'form-control mb-3' %>
+
+      <%= f.label :email %>
+      <div class="input-group mb-3">
+        <%= f.text_field :email, class: 'form-control' %>
+        <div class="input-group-append">
+          <span class="input-group-text" id="basic-addon2">@st.kyoto-u.ac.jp</span>
+        </div>
+      </div>
+
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control mb-3' %>
+
+      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.password_field :password_confirmation, class: 'form-control mb-3' %>
+
+      <div class="clearfix mt-1 mb-3">
+        <div class="form-check custom-control-inline">
+
+          <%= f.label "右記の利用規約に同意する", class: "form-check-label" %>
+          <%= f.check_box :temp_terms, {class: "form-check-input"} %>
+        </div>
+        <button type="button" class="btn btn-outline-navy float-right" data-toggle="modal" data-target="#exampleModalLong">
+          利用規約を表示
+        </button>
+      </div>
+      <%= render "util/terms" %>
+
+      <%= f.submit "Create my account", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
+<script type="application/javascript">
+    $(function () {
+        $('.your-checkbox').prop('indeterminate', true);
+    });
+</script>

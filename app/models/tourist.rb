@@ -14,6 +14,7 @@ class Tourist < ApplicationRecord
             format: { with: VALID_EMAIL_REGEX },
             length: { maximum: 255 }
   validates :terms, presence: true
+  validates :temp_terms, acceptance: true
 
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }

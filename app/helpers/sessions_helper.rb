@@ -4,7 +4,7 @@ module SessionsHelper
     if logged_in?
       yield(current_user)
     else
-      redirect_to '/'
+      redirect_to root_path
     end
   end
 
@@ -12,15 +12,15 @@ module SessionsHelper
     if user?
       yield(current_user)
     else
-      redirect_to '/'
+      redirect_to root_path
     end
   end
 
-  def if_torist
+  def if_tourist
     if tourist?
       yield(current_user)
     else
-      redirect_to '/'
+      redirect_to root_path
     end
   end
 

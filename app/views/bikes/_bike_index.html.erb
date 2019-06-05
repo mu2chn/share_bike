@@ -1,0 +1,17 @@
+<div class="card-columns mt-1">
+  <%= @bikes.empty? ? simple_format("自転車が見つかりません", class: "py-3 text-muted") : nil %>
+  <% @bikes.each do |bike| %>
+    <a href="/bikes/show/<%= bike.id %>" class="text-muted">
+      <div class="card border border-0 shadow-sm">
+        <%= image_tag bike.image.to_s, class: "card-img-top" %>
+        <div class="card-body">
+          <h6 class="card-title text-decoration-none"><%= bike.name %></h6>
+          <p class="card-text text-decoration-none"><%= bike.details %></p>
+          <p class="card-text text-decoration-none">
+            <small class="text-muted"><%= User.find(bike.user_id).nickname %></small>
+          </p>
+        </div>
+      </div>
+    </a>
+  <% end %>
+</div>

@@ -1,0 +1,33 @@
+<div class="p-3 bg-white rounded shadow-sm">
+  <h6 class="border-bottom border-gray pb-2 mb-0 text-muted"><%= yield(:res_title) %></h6>
+  <% if @reservations.empty? %>
+    <div class="p-2 mt-1 text-muted">予定が見つかりません</div>
+  <% end %>
+  <% @reservations&.each do |res| %>
+    <div class="media text-muted pt-3">
+      <div class="media-body pb-3 mb-0 border-bottom border-gray">
+        <div class="flex-row d-flex justify-content-between align-items-center flex-wrap ">
+
+          <div class="p-2"><%= Bike.find(res.bike_id).name %></div>
+          <div class="p-2"><%= "#{res.day.month}/#{res.day.day}" %>
+            (<%= ["日", "月", "火", "水", "木", "金", "土"][res.day.wday] %>)
+          </div>
+          <% if user? %>
+            <% if res.tourist_id.nil? && Bike.find(res.bike_id).user_id == @current_user&.id %>
+              <%= link_to "削除", r_delete_path(res.id), method: :delete, class: "btn btn-outline-navy btn-sm", role: "button", style: "height: 50%" %>
+            <% elsif !res.tourist_id.nil? %>
+              <button type="button" class="btn btn-warning btn-sm" disabled>予約済</button>
+            <% end %>
+          <% elsif tourist? %>
+            <% if res.tourist_id.nil? %>
+              <%= link_to "予約", r_accept_path(res.id), method: :post, class: "btn btn-outline-navy btn-sm", role: "button", style: "height: 50%" %>
+            <% else %>
+              <button type="button" class="btn btn-warning btn-sm d-flex" disabled>予約済</button>
+            <% end %>
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
