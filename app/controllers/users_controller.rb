@@ -46,7 +46,7 @@ class UsersController < ApplicationController
     if_user do |user|
       @user = user
       if @user.update_attributes(update_user_params)
-        flash[:success] = "Updated"
+        flash[:success] = "更新しました"
         redirect_to u_edit_path
       else
         render u_edit_path
