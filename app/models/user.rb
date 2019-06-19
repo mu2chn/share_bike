@@ -1,8 +1,10 @@
 class User < ApplicationRecord
   attr_accessor :remember_token
 
-  before_create on: :create  do
-    self.email += "@st.kyoto-u.ac.jp"
+  before_validation do
+    if !self.email.match(VALID_EMAIL_REGEX)
+      self.email += "@st.kyoto-u.ac.jp"
+    end
   end
 
   before_save do
@@ -12,16 +14,16 @@ class User < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   validates :name, presence: true,
-            length: { maximum: 50 }
+            length: {maximum: 50}
   validates :email, presence: true,
-            uniqueness: { case_sensitive: false },
             #format: { with: VALID_EMAIL_REGEX },
-            length: { maximum: 255 }
+            length: {maximum: 255}
+  validates :email, uniqueness: {case_sensitive: false}, on: :create
   validates :terms, presence: true
   validates :temp_terms, acceptance: true
 
   has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, presence: true, length: {minimum: 6}
 
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :

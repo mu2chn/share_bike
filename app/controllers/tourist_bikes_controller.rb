@@ -4,7 +4,9 @@ class TouristBikesController < ApplicationController
     if_user do |user|
       @user = user
       @reserve = TouristBike.new(permit_params)
-      if Bike.find(@reserve.bike_id.to_i).user_id == @user.id
+      if p @reserve.bike_id.nil?
+        flash[:warning] = "自転車が選択されていません"
+      elsif Bike.find(@reserve.bike_id.to_i).user_id == @user.id
         if @reserve.day.nil?
           flash[:warning] = "日付を入力してください"
         elsif @reserve.day <= Date.today
