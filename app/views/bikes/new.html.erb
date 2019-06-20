@@ -22,9 +22,10 @@
       <div class="custom-file mt-3 mb-2">
         <%= f.label "ファイルを追加", class: "custom-file-label", for: "customFile" %>
         <%= f.file_field :image, class: 'custom-file-input' %>
+        <small class="text-muted form-text">縦長が画像の場合、上下が切れることがあります</small>
       </div>
 
-      <%= f.submit "Register", class: "btn btn-primary" %>
+      <%= f.submit "Register", class: "mt-2 btn btn-primary" %>
     <% end %>
   </div>
 </div>
