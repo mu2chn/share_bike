@@ -6,4 +6,8 @@ class RootController < ApplicationController
   def about
 
   end
+
+  def first
+
+  end
 end
