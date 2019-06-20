@@ -1,5 +1,6 @@
 <% flash.each do |type, msg| %>
   <script>
+      toastr.options.positionClass = "toast-top-left";
       toastr['<%= type %>']('<%= msg %>');
   </script>
 <% end %>
@@ -8,7 +9,7 @@
   <script>
       // toastr.options.timeOut = 0;
       // toastr.options.extendedTimeOut = 0;
-      toastr.options.positionClass = "toast-bottom-right";
+      toastr.options.positionClass = "toast-top-left";
       toastr.options.closeButton = true;
       toastr.options.progressBar = true;
       toastr.options.showEasing = "swing";

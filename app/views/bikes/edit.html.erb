@@ -1,8 +1,10 @@
-<div class="row mb-2">
-  <%= image_tag @bike.image.to_s, class: "img-thumbnail mx-auto d-block" %>
+<div class="d-flex flex-md-row flex-column align-items-center mt-2">
+  <%= image_tag @bike.image.to_s, class: "img-thumbnail" %>
 </div>
 
 <div class="row">
+
+
   <div class="col-md-6 offset-md-3">
     <%= form_for(@bike, url: b_update_path) do |f| %>
       <%= render 'layouts/error' %>
@@ -19,9 +21,10 @@
       <div class="custom-file mb-2 mt-2">
         <%= f.label "ファイルを選択...", class: "custom-file-label", for: "customFile"%>
         <%= f.file_field :image, class: 'custom-file-input' %>
+        <small class="text-muted form-text">縦長が画像の場合、上下が切れることがあります</small>
       </div>
 
-      <%= f.submit "Save changes", class: "btn btn-primary" %>
+      <%= f.submit "Save changes", class: "btn btn-primary mt-2" %>
     <% end %>
   </div>
 </div>
