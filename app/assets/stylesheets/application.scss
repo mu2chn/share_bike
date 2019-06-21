@@ -42,7 +42,7 @@ $theme-colors: (
 }
 .rootbody {
   /* 画像ファイルの指定 */
-  background-image: url(/assets/bike.jpg);
+  background-image: url(/assets/gbike.jpg);
 
   /* 画像を常に天地左右の中央に配置 */
   background-position: center center;
@@ -85,10 +85,9 @@ h1{
   font-family: 'Maiden Orange', cursive;
   //font-size: 22px;
 }
-.wf-hannari {
-  font-family: "Hannari";
-}
+.brandtext{ font-family: 'Maiden Orange', cursive;}
 
+//.wf-hannari{ font-family: "Hannari"; }
 //.wf-sawarabimincho { font-family: "Sawarabi Mincho"; }
 
 
