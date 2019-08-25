@@ -1,3 +1,4 @@
+
 <% provide :res_title, "提供日" %>
 
 <%= render 'bikes/details' %>
@@ -10,3 +11,24 @@
     <%= paginate @reservations %>
   </div>
 </div>
+
+<script
+  src="https://www.paypal.com/sdk/js?currency=JPY&client-id=ATE3VkNqYLbHmjZT-UR7nRnFQUYmkLx3gFEcNRC-5mUdw2HxqkjPU9JqUj3v_jxiGcK1jbtTKBBJNsg5">
+</script>
+
+<div id="paypal-button-container"></div>
+
+<script>
+    paypal.Buttons({
+        createOrder: function (data, actions) {
+            // Set up the transaction
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: '500'
+                    }
+                }]
+            });
+        }
+    }).render('#paypal-button-container');
+</script>
