@@ -41,6 +41,8 @@ gem "bootstrap4-datetime-picker-rails"
 gem 'momentjs-rails'
 gem 'toastr-rails'
 
+gem 'paypal-sdk-rest'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
