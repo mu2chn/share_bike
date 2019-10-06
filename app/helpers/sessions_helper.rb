@@ -25,7 +25,9 @@ module SessionsHelper
   end
 
   def log_in(user)
-    if user.kind_of?(User)
+    if !user.activated
+      nil
+    elsif user.kind_of?(User)
       session[:user_id] = user.id
     elsif user.kind_of?(Tourist)
       session[:tourist_id] = user.id

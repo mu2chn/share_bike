@@ -8,6 +8,8 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.integer :terms, default: 0
       t.integer :tutorial, default: 0
       t.string :remember_digest
+      t.boolean :activated, default: false
+      t.string :activate_url
       t.timestamps
     end
   end

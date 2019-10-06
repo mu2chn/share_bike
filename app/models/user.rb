@@ -21,6 +21,7 @@ class User < ApplicationRecord
   validates :email, uniqueness: {case_sensitive: false}, on: :create
   validates :terms, presence: true
   validates :temp_terms, acceptance: true
+  validates :activate_url, uniqueness: true
 
   has_secure_password
   validates :password, presence: true, length: {minimum: 6}
