@@ -130,3 +130,21 @@ ul, ol {
 .mother {
   min-height: calc(100vh - 168px);
 }
+
+//reserve page
+#paypal-button-container{
+  text-align : center ;
+}
+
+.payment-attention{
+  padding: 8px 19px;
+  margin: 2em 0;
+  color: #2c2c2f;
+  background: #cde4ff;
+  border-top: solid 5px #5989cf;
+  border-bottom: solid 5px #5989cf;
+}
+.payment-attention p {
+  margin: 0;
+  padding: 0;
+}

@@ -26,6 +26,13 @@ class TouristBikesController < ApplicationController
     end
   end
 
+  def payment
+    if_tourist do |user|
+      @reserve = TouristBike.find(params[:id])
+      @bike = @reserve.bike
+    end
+  end
+
   def delete
     if_user do |user|
       @user = user
