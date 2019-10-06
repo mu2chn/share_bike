@@ -45,9 +45,7 @@
             return actions.order.capture().then(function(details) {
                 alert('OrderIDは'+data.orderID+'です。必ず控えるようにして下さい。');
                 // Call your server to save the transaction
-                setTimeout(function () {
-                    location.href='/tourists/reserve';
-                }, 5);
+
                 return fetch('/reserve/check', {
                     method: 'post',
                     headers: {
