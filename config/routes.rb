@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   delete '/reserve/delete/:id', to: 'tourist_bikes#delete', as: 'r-delete'
   post '/reserve/accept/:id', to: 'tourist_bikes#accept', as: 'r-accept'
   get '/reserve/payment/:id', to:'tourist_bikes#payment', as: 'r-payment'
+  post '/reserve/check', to: 'payment_api#check', as: 'r-check'
+  post '/reserve/unpaid', to: 'payment_api#unpaid', as: 'r-unpaid'
 
   get '/tourists/new', to: 'tourists#new', as: 't-new'
   post '/tourists/create', to: 'tourists#create', as: 't-create'

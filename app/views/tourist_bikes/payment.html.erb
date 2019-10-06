@@ -26,11 +26,12 @@
 
 
 <script
-  src="https://www.paypal.com/sdk/js?currency=JPY&client-id=ATE3VkNqYLbHmjZT-UR7nRnFQUYmkLx3gFEcNRC-5mUdw2HxqkjPU9JqUj3v_jxiGcK1jbtTKBBJNsg5">
+  src="https://www.paypal.com/sdk/js?currency=JPY&client-id=AbmTHlJhDD2_U9v4JbjXULVdrAcAAFJqb1ZH-ZbpICzZuYWjaMwiQsOoXCytKCcqK2BfP31zjMTpC7sT">
 </script>
 <script>
     paypal.Buttons({
         createOrder: function(data, actions) {
+
             return actions.order.create({
                 purchase_units: [{
                     amount: {
@@ -41,15 +42,20 @@
         },
         onApprove: function(data, actions) {
             return actions.order.capture().then(function(details) {
-                alert('Transaction completed by ' + details.payer.name.given_name);
+                alert('OrderIDは'+data.orderID+'です。必ず控えるようにして下さい。');
                 // Call your server to save the transaction
-                return fetch('/paypal-transaction-complete', {
+                setTimeout(function () {
+                    location.href='/tourists/reserve';
+                }, 5);
+                return fetch('/reserve/check', {
                     method: 'post',
                     headers: {
                         'content-type': 'application/json'
                     },
                     body: JSON.stringify({
-                        orderID: data.orderID
+                        orderID: data.orderID,
+                        touristID: "<%= @tourist.id %>",
+                        reserveID: "<%= @reserve.id %>"
                     })
                 });
             });
