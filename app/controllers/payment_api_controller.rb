@@ -33,7 +33,7 @@ class PaymentApiController < ApplicationController
     client = PayPal::PayPalHttpClient.new(environment)
     json = JSON.parse(request.body.read)
     order = PayPalCheckoutSdk::Orders::OrdersGetRequest::new(json["orderID"])
-    client.execute(order)
+    order_detail = client.execute(order)
 
 
   end
