@@ -30,6 +30,9 @@ class TouristBikesController < ApplicationController
   def payment
     if_tourist do |user|
       @reserve = TouristBike.find(params[:id])
+      unless @reserve.tourist_id.nil?
+        redirect_to b_index_path
+      end
       @bike = @reserve.bike
       @tourist = user
     end
