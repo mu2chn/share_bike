@@ -8,7 +8,7 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.6'
-# Use sqlite3 as the database for Active Record
+# Useq sqlite3 as the database for Active Record
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
@@ -42,6 +42,7 @@ gem 'momentjs-rails'
 gem 'toastr-rails'
 
 gem 'paypal-sdk-rest'
+gem 'paypal-checkout-sdk'
 
 
 # Use Capistrano for deployment
