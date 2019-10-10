@@ -4,7 +4,6 @@ class RootController < ApplicationController
   end
 
   def about
-
   end
 
   def first
