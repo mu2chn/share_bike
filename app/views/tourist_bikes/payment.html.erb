@@ -29,10 +29,10 @@
   src="https://www.paypal.com/sdk/js?currency=JPY&client-id=AbmTHlJhDD2_U9v4JbjXULVdrAcAAFJqb1ZH-ZbpICzZuYWjaMwiQsOoXCytKCcqK2BfP31zjMTpC7sT&intent=authorize">
 </script>
 <script>
-    let unpaid = false;
+    let paid = false;
     paypal.Buttons({
         createOrder: function(data, actions) {
-
+            if(paid){return;}
             return actions.order.create({
                 purchase_units: [{
                     reference_id: "<%= @reserve.id %>"+"@"+"<%= @tourist.id %>",
@@ -50,10 +50,11 @@
         },
         onApprove: function(data, actions) {
             // return actions.order.capture().then(function(details) {
+            paid = true;
             actions.order.authorize().then(function(authorization) {
-                setTimeout(function () {
-                    location.href = "/tourists/reserve"
-                }, 2);
+                // setTimeout(function () {
+                //     location.href = "/tourists/reserve"
+                // }, 2);
 
                 var authorizationID = authorization.purchase_units[0]
                     .payments.authorizations[0].id;
@@ -66,9 +67,15 @@
                     body: JSON.stringify({
                         orderID: data.orderID,
                         authorizationID: authorizationID
-                    })
+                    }),
+                    redirect: "manual"
                 });
             });
+        },
+
+        onError: function (err) {
+            // Show an error page here, when an error occurs
+            alert("エラーが発生しました。もう一度お試しください。")
         }
     }).render('#paypal-button-container');
 </script>
