@@ -30,27 +30,27 @@ class PaymentApiController < ApplicationController
     @reserve = TouristBike.find(reserve_id)
     @tourist = Tourist.find(tourist_id)
 
+    request = PayPalCheckoutSdk::Payments::AuthorizationsCaptureRequest::new(json["authorizationID"])
+    request.prefer("return=representation")
+    request.request_body({})
+    response_auth = client.execute(request)
+    capture_id = response_auth[:result][:id]
+
     if not @reserve.tourist_id.nil? and not @reserve.order_id.nil?
       p "すでに予約されています"
+      refund = PayPalCheckoutSdk::Payments::CapturesRefundRequest::new(capture_id)
+      client.execute(refund)
     elsif amount < 700 or currency != "JPY" or true
       p "金額が不正です"
-      # p refund = PayPalCheckoutSdk::Payments::CapturesRefundRequest::new(json["orderID"])
-      # p response =  client.execute(refund)
-
-      refund = PayPalCheckoutSdk::Payments::CapturesRefundRequest::new(json["orderID"])
-      refund_detail = p client.execute(refund)
-
-      # @sale = Sale.find(json["orderID"])
-      # @refund = @sale.refund_request(
-      #     {:amount => {
-      #         :total => amount,
-      #         :currency => currency } })
+      refund = PayPalCheckoutSdk::Payments::CapturesRefundRequest::new(capture_id)
+      client.execute(refund)
     else
       @reserve.order_id = json["orderID"]
       @reserve.tourist_id = tourist_id
       @reserve.amount = amount
       @reserve.paid_date = DateTime.now
       @reserve.authorization_id = json["authorizationID"]
+      @reserve.capture_id = capture_id
 
       if @reserve.save!
         flash[:success] = "予約が完了しました"
