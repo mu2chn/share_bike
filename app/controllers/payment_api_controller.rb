@@ -4,6 +4,10 @@ class PaymentApiController < ApplicationController
   require 'paypal-checkout-sdk'
   include PayPalCheckoutSdk::Orders
 
+  require 'paypal-sdk-rest'
+  include PayPal::SDK::REST
+  include PayPal::SDK::Core::Logging
+
   def test
     render about_path
   end
@@ -28,13 +32,25 @@ class PaymentApiController < ApplicationController
 
     if not @reserve.tourist_id.nil? and not @reserve.order_id.nil?
       p "すでに予約されています"
-    elsif amount < 700 or currency != "JPY"
+    elsif amount < 700 or currency != "JPY" or true
       p "金額が不正です"
+      # p refund = PayPalCheckoutSdk::Payments::CapturesRefundRequest::new(json["orderID"])
+      # p response =  client.execute(refund)
+
+      refund = PayPalCheckoutSdk::Payments::CapturesRefundRequest::new(json["orderID"])
+      refund_detail = p client.execute(refund)
+
+      # @sale = Sale.find(json["orderID"])
+      # @refund = @sale.refund_request(
+      #     {:amount => {
+      #         :total => amount,
+      #         :currency => currency } })
     else
       @reserve.order_id = json["orderID"]
       @reserve.tourist_id = tourist_id
       @reserve.amount = amount
       @reserve.paid_date = DateTime.now
+      @reserve.authorization_id = json["authorizationID"]
 
       if @reserve.save!
         flash[:success] = "予約が完了しました"

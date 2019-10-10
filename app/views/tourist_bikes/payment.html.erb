@@ -26,9 +26,10 @@
 
 
 <script
-  src="https://www.paypal.com/sdk/js?currency=JPY&client-id=AbmTHlJhDD2_U9v4JbjXULVdrAcAAFJqb1ZH-ZbpICzZuYWjaMwiQsOoXCytKCcqK2BfP31zjMTpC7sT">
+  src="https://www.paypal.com/sdk/js?currency=JPY&client-id=AbmTHlJhDD2_U9v4JbjXULVdrAcAAFJqb1ZH-ZbpICzZuYWjaMwiQsOoXCytKCcqK2BfP31zjMTpC7sT&intent=authorize">
 </script>
 <script>
+    let unpaid = false;
     paypal.Buttons({
         createOrder: function(data, actions) {
 
@@ -38,13 +39,24 @@
                     amount: {
                         value: '700'
                     }
-                }]
+                }],
+                payment:{redirect_urls: {
+                    return_url: '/tourists/reserve',
+                }}
             });
         },
+        onCancel: function(){
+
+        },
         onApprove: function(data, actions) {
-            return actions.order.capture().then(function(details) {
-                alert('OrderIDは'+data.orderID+'です。必ず控えるようにして下さい。');
-                // Call your server to save the transaction
+            // return actions.order.capture().then(function(details) {
+            actions.order.authorize().then(function(authorization) {
+                setTimeout(function () {
+                    location.href = "/tourists/reserve"
+                }, 2);
+
+                var authorizationID = authorization.purchase_units[0]
+                    .payments.authorizations[0].id;
 
                 return fetch('/reserve/check', {
                     method: 'post',
@@ -52,7 +64,8 @@
                         'content-type': 'application/json'
                     },
                     body: JSON.stringify({
-                        orderID: data.orderID
+                        orderID: data.orderID,
+                        authorizationID: authorizationID
                     })
                 });
             });

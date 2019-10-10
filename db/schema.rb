@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20191007063758) do
     t.string "order_id"
     t.integer "amount"
     t.datetime "paid_date"
+    t.string "authorization_id"
     t.index ["bike_id"], name: "index_tourist_bikes_on_bike_id"
     t.index ["tourist_id"], name: "index_tourist_bikes_on_tourist_id"
   end
