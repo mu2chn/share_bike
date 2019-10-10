@@ -55,6 +55,9 @@ ActiveRecord::Schema.define(version: 20191007063758) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
+    t.boolean "authenticated"
+    t.string "authenticate_url"
+    t.datetime "authenticate_expire"
   end
 
   create_table "users", force: :cascade do |t|
@@ -68,6 +71,9 @@ ActiveRecord::Schema.define(version: 20191007063758) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
+    t.boolean "authenticated"
+    t.string "authenticate_url"
+    t.datetime "authenticate_expire"
   end
 
 end
