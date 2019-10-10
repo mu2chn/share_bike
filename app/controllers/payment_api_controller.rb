@@ -4,9 +4,9 @@ class PaymentApiController < ApplicationController
   require 'paypal-checkout-sdk'
   include PayPalCheckoutSdk::Orders
 
-  require 'paypal-sdk-rest'
-  include PayPal::SDK::REST
-  include PayPal::SDK::Core::Logging
+  # require 'paypal-sdk-rest'
+  # include PayPal::SDK::REST
+  # include PayPal::SDK::Core::Logging
 
   def test
     render about_path
@@ -40,7 +40,7 @@ class PaymentApiController < ApplicationController
       p "すでに予約されています"
       refund = PayPalCheckoutSdk::Payments::CapturesRefundRequest::new(capture_id)
       client.execute(refund)
-    elsif amount < 700 or currency != "JPY" or true
+    elsif amount < 700 or currency != "JPY"
       p "金額が不正です"
       refund = PayPalCheckoutSdk::Payments::CapturesRefundRequest::new(capture_id)
       client.execute(refund)
