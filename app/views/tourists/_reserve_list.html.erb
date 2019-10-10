@@ -12,7 +12,7 @@
           <div class="p-2"><%= "#{res.day.month}/#{res.day.day}" %>
             (<%= ["日", "月", "火", "水", "木", "金", "土"][res.day.wday] %>)
           </div>
-          <%= res.bike.user.email %>
+          <%= mail_to res.bike.user.email %>
           <% if tourist? %>
             <% if res.tourist_id.nil? %>
               <%#= link_to "予約", r_accept_path(res.id), method: :post, class: "btn btn-outline-navy btn-sm", role: "button", style: "height: 50%" %>
