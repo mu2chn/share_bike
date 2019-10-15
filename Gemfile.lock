@@ -129,6 +129,7 @@ GEM
     paypal-sdk-rest (1.7.3)
       multi_json (~> 1.0)
       xml-simple
+    pg (1.1.4)
     popper_js (1.14.5)
     public_suffix (3.1.0)
     puma (3.12.1)
@@ -238,6 +239,7 @@ DEPENDENCIES
   momentjs-rails
   paypal-checkout-sdk
   paypal-sdk-rest
+  pg
   puma (~> 3.7)
   rails (~> 5.1.6)
   sass-rails (~> 5.0)
