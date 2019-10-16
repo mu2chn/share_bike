@@ -9,6 +9,7 @@ class PaymentApiController < ApplicationController
   # include PayPal::SDK::Core::Logging
 
   def test
+    NotificationMailer.send_confirm_to_user(Tourist.find_by(email: "face93632@eay.jp")).deliver_later
     render about_path
   end
 
