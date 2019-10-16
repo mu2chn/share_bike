@@ -24,7 +24,7 @@ production:
   adapter: postgresql
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: postgre
-  password: postgre110817
+  username: share_bike
+  password: pgface
   host: localhost
   timeout: 5000
