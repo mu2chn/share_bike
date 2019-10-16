@@ -8,18 +8,39 @@
       <div class="media-body pb-3 mb-0 border-bottom border-gray">
         <div class="flex-row d-flex justify-content-between align-items-center flex-wrap ">
 
-          <div class="p-2"><%= Bike.find(res.bike_id).name %></div>
+<!--          <div class="p-2"><%#= Bike.find(res.bike_id).name %></div>-->
           <div class="p-2"><%= "#{res.day.month}/#{res.day.day}" %>
             (<%= ["日", "月", "火", "水", "木", "金", "土"][res.day.wday] %>)
           </div>
-          <%= mail_to res.bike.user.email %>
+          <%#= mail_to res.bike.user.email %>
           <% if tourist? %>
-            <% if res.tourist_id.nil? %>
+            <%# if res.tourist_id.nil? %>
               <%#= link_to "予約", r_accept_path(res.id), method: :post, class: "btn btn-outline-navy btn-sm", role: "button", style: "height: 50%" %>
-              <%= link_to "予約", r_payment_path(res.id), method: :get, class: "btn btn-outline-navy btn-sm", role: "button", style: "height: 50%" %>
-            <% else %>
-              <button type="button" class="btn btn-warning btn-sm d-flex" disabled>予約済</button>
-            <% end %>
+              <%#= link_to "予約", r_payment_path(res.id), method: :get, class: "btn btn-outline-navy btn-sm", role: "button", style: "height: 50%" %>
+            <%# else %>
+<!--              <button type="button" class="btn btn-warning btn-sm d-flex" disabled>予約済</button>-->
+            <%# end %>
+            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#res<%= res.id %>">
+              詳細
+            </button>
+            <div class="modal fade" id="res<%= res.id %>" tabindex="-1" role="dialog" aria-labelledby="res<%= res.id %>">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" ><%= res.bike.name %></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <p>自転車の貸出について、いつ、どこで自転車を引き渡すかをメール（<%= mail_to res.bike.user.email %>）にてホストに確認しましょう。その際、必ず登録済みのメール（<%= @user.email %>）から送信してください。</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                  </div><!-- /.modal-footer -->
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
           <% end %>
 
         </div>
