@@ -1,0 +1,4 @@
+<%= @user.name %>様
+以下のリンクを踏んでメール認証を完了させましょう！
+
+<%= "http://#{Rails.env.production? ? "kyotosharebike.com":"localhost"}/auth/t?email=#{@user.email}&auth=#{@user.authenticate_url}" %>

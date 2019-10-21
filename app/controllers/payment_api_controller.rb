@@ -55,7 +55,7 @@ class PaymentApiController < ApplicationController
 
       if @reserve.save!
         flash[:success] = "予約が完了しました"
-        NotificationMailer.send_confirm_to_user(@tourist).deliver_later
+        NotificationMailer.payment_confirm_to_user(@tourist, @reserve).deliver_later
         redirect_to t_reserve_path
       else
         flash[:error] = "予約に失敗しました"

@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get '/root/about', to: 'root#about', as:'about'
   get '/root/first', to: 'root#first', as:'first'
 
+  get '/auth/t', to: 'tourists#authenticate'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   get '/users/new',  to: 'users#new', as: 'u-new'

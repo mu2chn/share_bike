@@ -1,5 +1,7 @@
 class TouristsController < ApplicationController
 
+  require 'securerandom'
+
   def new
     if logged_in?
       redirect_to root_path
@@ -8,13 +10,38 @@ class TouristsController < ApplicationController
   end
 
   def create
-    @user = Tourist.new(user_params)
+    custom_params = user_params
+    # custom_params[:authenticate_url] = SecureRandom.urlsafe_base64(30)
+    # custom_params[:authenticated] = false
+    # custom_params[:authenticate_expire] = DateTime.now
+    # p custom_params
+    @user = Tourist.new(custom_params)
     if @user.save
+      AuthMailer.auth_tourist(@user).deliver_later
       log_in(@user)
       flash[:info] = "乗りたいバイクを探して見ましょう！"
+      flash[:info] = "登録したメール宛に認証リンクを送信しました。（メールにあるリンクを踏まないと自転車の予約ができません。）"
       redirect_to b_index_path
     else
       render t_new_path
+    end
+  end
+
+  def authenticate
+    @tourist = Tourist.find_by(email: params[:email])
+    p params[:auth]
+    p @tourist.authenticate_url
+    if DateTime.now > @tourist.authenticate_expire + 1.day
+      str_url = SecureRandom.urlsafe_base64(30)
+      Tourist.update_attributes(authenticate_expire: DateTime.now, authenticate_url: str_url)
+      AuthMailer.auth_tourist(@tourist).deliver_later
+      flash[:info] = "有効期限が切れているため、urlを再送しました"
+      redirect_to root_path
+    elsif @tourist.authenticate_url== params[:auth]
+      @tourist.update_attribute(:authenticated, true)
+      AuthMailer.t_complete_auth(@tourist).deliver_later
+      flash[:info]="認証が完了しました"
+      redirect_to b_index_path
     end
   end
 
