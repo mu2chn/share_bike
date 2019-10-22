@@ -1,0 +1,4 @@
+<%= @user.name %>様
+以下のリンクを踏んでメール認証を完了させましょう！（自転車の貸出には以下のリンクを踏んで認証を済ませてください。）
+
+<%= "http://#{Rails.env.production? ? "kyotosharebike.com":"localhost:3000"}/auth/t?email=#{@user.email}&auth=#{@user.authenticate_url}" %>
