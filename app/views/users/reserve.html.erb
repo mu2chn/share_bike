@@ -1,3 +1,8 @@
+<% if user? && !@current_user&.authenticated %>
+  <div class="explain_box">
+    <p>メールをまだご覧になってないようです。送られたメールにあるURLをクリックして登録を完了させましょう！（それまでは自転車を貸し出すことができません。）</p>
+  </div>
+<% end %>
 <%= provide :res_title, "貸出予定" %>
 <%= render 'layouts/error' %>
 

@@ -37,7 +37,11 @@ class PaymentApiController < ApplicationController
     response_auth = client.execute(request)
     capture_id = response_auth[:result][:id]
 
-    if not @reserve.tourist_id.nil? and not @reserve.order_id.nil?
+    if !@tourist.authenticated
+      p "メール認証されていません"
+      refund = PayPalCheckoutSdk::Payments::CapturesRefundRequest::new(capture_id)
+      client.execute(refund)
+    elsif not @reserve.tourist_id.nil? and not @reserve.order_id.nil?
       p "すでに予約されています"
       refund = PayPalCheckoutSdk::Payments::CapturesRefundRequest::new(capture_id)
       client.execute(refund)

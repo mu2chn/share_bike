@@ -1,3 +1,8 @@
+<% if tourist? && !@current_user&.authenticated %>
+  <div class="explain_box">
+    <p>メールをまだご覧になってないようです。送られたメールにあるURLをクリックして登録を完了させましょう！（それまでは自転車の予約ができません。）</p>
+  </div>
+<% end %>
 
 <% provide :res_title, "提供日" %>
 
