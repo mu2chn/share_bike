@@ -11,10 +11,6 @@ class TouristsController < ApplicationController
 
   def create
     custom_params = user_params
-    # custom_params[:authenticate_url] = SecureRandom.urlsafe_base64(30)
-    # custom_params[:authenticated] = false
-    # custom_params[:authenticate_expire] = DateTime.now
-    # p custom_params
     @user = Tourist.new(custom_params)
     if @user.save
       AuthMailer.auth_tourist(@user).deliver_later
@@ -31,7 +27,10 @@ class TouristsController < ApplicationController
     @tourist = Tourist.find_by(email: params[:email])
     p params[:auth]
     p @tourist.authenticate_url
-    if DateTime.now > @tourist.authenticate_expire + 1.day
+    if @tourist.authenticated
+      flash[:info] = "すでに認証が完了しています"
+      redirect_to root_path
+    elsif DateTime.now > @tourist.authenticate_expire + 1.day
       str_url = SecureRandom.urlsafe_base64(30)
       Tourist.update_attributes(authenticate_expire: DateTime.now, authenticate_url: str_url)
       AuthMailer.auth_tourist(@tourist).deliver_later
