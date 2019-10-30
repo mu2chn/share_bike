@@ -1,0 +1,1820 @@
+=> Booting Puma
+=> Rails 5.1.7 application starting in production 
+=> Run `rails server -h` for more startup options
+Puma starting in single mode...
+* Version 3.12.1 (ruby 2.6.5-p114), codename: Llamas in Pajamas
+* Min threads: 5, max threads: 5
+* Environment: production
+* Listening on unix:///home/face/server/share_bike/tmp/sockets/puma.sock
+Use Ctrl-C to stop
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+- Gracefully stopping, waiting for requests to finish
+=== puma shutdown: 2019-10-17 16:53:27 +0900 ===
+- Goodbye!
+Exiting
+=> Booting Puma
+=> Rails 5.1.7 application starting in production 
+=> Run `rails server -h` for more startup options
+Puma starting in single mode...
+* Version 3.12.1 (ruby 2.6.5-p114), codename: Llamas in Pajamas
+* Min threads: 5, max threads: 5
+* Environment: production
+* Listening on unix:///home/face/server/share_bike/tmp/sockets/puma.sock
+Use Ctrl-C to stop
+- Gracefully stopping, waiting for requests to finish
+=== puma shutdown: 2019-10-17 16:56:15 +0900 ===
+- Goodbye!
+Exiting
+=> Booting Puma
+=> Rails 5.1.7 application starting in production 
+=> Run `rails server -h` for more startup options
+Puma starting in single mode...
+* Version 3.12.1 (ruby 2.6.5-p114), codename: Llamas in Pajamas
+* Min threads: 5, max threads: 5
+* Environment: production
+* Listening on unix:///home/face/server/share_bike/tmp/sockets/puma.sock
+Use Ctrl-C to stop
+- Gracefully stopping, waiting for requests to finish
+=== puma shutdown: 2019-10-17 17:01:10 +0900 ===
+- Goodbye!
+Exiting
+=> Booting Puma
+=> Rails 5.1.7 application starting in production 
+=> Run `rails server -h` for more startup options
+Puma starting in single mode...
+* Version 3.12.1 (ruby 2.6.5-p114), codename: Llamas in Pajamas
+* Min threads: 5, max threads: 5
+* Environment: production
+* Listening on unix:///home/face/server/share_bike/tmp/sockets/puma.sock
+Use Ctrl-C to stop
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+false
+- Gracefully stopping, waiting for requests to finish
+=== puma shutdown: 2019-10-17 17:15:55 +0900 ===
+- Goodbye!
+Exiting
+=> Booting Puma
+=> Rails 5.1.7 application starting in production 
+=> Run `rails server -h` for more startup options
+Puma starting in single mode...
+* Version 3.12.1 (ruby 2.6.5-p114), codename: Llamas in Pajamas
+* Min threads: 5, max threads: 5
+* Environment: production
+* Listening on unix:///home/face/server/share_bike/tmp/sockets/puma.sock
+Use Ctrl-C to stop
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+- Gracefully stopping, waiting for requests to finish
+=== puma shutdown: 2019-10-17 19:32:12 +0900 ===
+- Goodbye!
+Exiting
+=> Booting Puma
+=> Rails 5.1.7 application starting in production 
+=> Run `rails server -h` for more startup options
+Puma starting in single mode...
+* Version 3.12.1 (ruby 2.6.5-p114), codename: Llamas in Pajamas
+* Min threads: 5, max threads: 5
+* Environment: production
+* Listening on unix:///home/face/server/share_bike/tmp/sockets/puma.sock
+Use Ctrl-C to stop
+nil
+nil
+nil
+nil
+nil
+nil
+- Gracefully stopping, waiting for requests to finish
+=== puma shutdown: 2019-10-17 23:49:53 +0900 ===
+- Goodbye!
+Exiting
+=> Booting Puma
+=> Rails 5.1.7 application starting in production 
+=> Run `rails server -h` for more startup options
+Puma starting in single mode...
+* Version 3.12.1 (ruby 2.6.5-p114), codename: Llamas in Pajamas
+* Min threads: 5, max threads: 5
+* Environment: production
+* Listening on unix:///home/face/server/share_bike/tmp/sockets/puma.sock
+Use Ctrl-C to stop
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+- Gracefully stopping, waiting for requests to finish
+=== puma shutdown: 2019-10-18 02:12:50 +0900 ===
+- Goodbye!
+Exiting
+=> Booting Puma
+=> Rails 5.1.7 application starting in production 
+=> Run `rails server -h` for more startup options
+Puma starting in single mode...
+* Version 3.12.1 (ruby 2.6.5-p114), codename: Llamas in Pajamas
+* Min threads: 5, max threads: 5
+* Environment: production
+* Listening on unix:///home/face/server/share_bike/tmp/sockets/puma.sock
+Use Ctrl-C to stop
+false
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+Invalid or incomplete POST params
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+false
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+- Gracefully stopping, waiting for requests to finish
+=== puma shutdown: 2019-10-23 16:00:34 +0900 ===
+- Goodbye!
+Exiting
+=> Booting Puma
+=> Rails 5.1.7 application starting in production 
+=> Run `rails server -h` for more startup options
+Puma starting in single mode...
+* Version 3.12.1 (ruby 2.6.5-p114), codename: Llamas in Pajamas
+* Min threads: 5, max threads: 5
+* Environment: production
+* Listening on unix:///home/face/server/share_bike/tmp/sockets/puma.sock
+Use Ctrl-C to stop
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+"1kh1gg9KvyKp_lg1OiLlg6zebE1h1siV7itJ2va5"
+"1kh1gg9KvyKp_lg1OiLlg6zebE1h1siV7itJ2va5"
+1
+- Gracefully stopping, waiting for requests to finish
+=== puma shutdown: 2019-10-23 16:13:54 +0900 ===
+- Goodbye!
+Exiting
+=> Booting Puma
+=> Rails 5.1.7 application starting in production 
+=> Run `rails server -h` for more startup options
+Puma starting in single mode...
+* Version 3.12.1 (ruby 2.6.5-p114), codename: Llamas in Pajamas
+* Min threads: 5, max threads: 5
+* Environment: production
+* Listening on unix:///home/face/server/share_bike/tmp/sockets/puma.sock
+Use Ctrl-C to stop
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+Invalid or incomplete POST params
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+1
+nil
+nil
+nil
+nil
+nil
+nil
+Invalid or incomplete POST params
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+"OcmAVvPhZKp5joj7C-r8XINGPMjlCncgK46miSFS"
+"OcmAVvPhZKp5joj7C-r8XINGPMjlCncgK46miSFS"
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+4
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+"Vlqm-hpvjLi7OP61W9YBSq6ONBXoLm5s2jyNbk9E"
+"Vlqm-hpvjLi7OP61W9YBSq6ONBXoLm5s2jyNbk9E"
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+1
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+false
+false
+false
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+nil
+- Gracefully stopping, waiting for requests to finish
+=== puma shutdown: 2019-10-30 12:41:58 +0900 ===
+- Goodbye!
+Exiting
+=> Booting Puma
+=> Rails 5.1.7 application starting in production 
+=> Run `rails server -h` for more startup options
+/home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/activesupport-5.1.7/lib/active_support/dependencies.rb:292:in `require': /home/face/server/share_bike/app/controllers/bikes_controller.rb:107: syntax error, unexpected end-of-input, expecting end (SyntaxError)
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/activesupport-5.1.7/lib/active_support/dependencies.rb:292:in `block in require'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/activesupport-5.1.7/lib/active_support/dependencies.rb:258:in `load_dependency'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/activesupport-5.1.7/lib/active_support/dependencies.rb:292:in `require'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/activesupport-5.1.7/lib/active_support/dependencies.rb:379:in `block in require_or_load'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/activesupport-5.1.7/lib/active_support/dependencies.rb:36:in `block in load_interlock'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/activesupport-5.1.7/lib/active_support/dependencies/interlock.rb:12:in `block in loading'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/activesupport-5.1.7/lib/active_support/concurrency/share_lock.rb:149:in `exclusive'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/activesupport-5.1.7/lib/active_support/dependencies/interlock.rb:11:in `loading'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/activesupport-5.1.7/lib/active_support/dependencies.rb:36:in `load_interlock'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/activesupport-5.1.7/lib/active_support/dependencies.rb:357:in `require_or_load'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/activesupport-5.1.7/lib/active_support/dependencies.rb:335:in `depend_on'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/activesupport-5.1.7/lib/active_support/dependencies.rb:251:in `require_dependency'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/railties-5.1.7/lib/rails/engine.rb:476:in `block (2 levels) in eager_load!'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/railties-5.1.7/lib/rails/engine.rb:475:in `each'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/railties-5.1.7/lib/rails/engine.rb:475:in `block in eager_load!'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/railties-5.1.7/lib/rails/engine.rb:473:in `each'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/railties-5.1.7/lib/rails/engine.rb:473:in `eager_load!'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/railties-5.1.7/lib/rails/engine.rb:354:in `eager_load!'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/railties-5.1.7/lib/rails/application/finisher.rb:67:in `each'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/railties-5.1.7/lib/rails/application/finisher.rb:67:in `block in <module:Finisher>'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/railties-5.1.7/lib/rails/initializable.rb:30:in `instance_exec'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/railties-5.1.7/lib/rails/initializable.rb:30:in `run'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/railties-5.1.7/lib/rails/initializable.rb:59:in `block in run_initializers'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/2.6.0/tsort.rb:228:in `block in tsort_each'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/2.6.0/tsort.rb:350:in `block (2 levels) in each_strongly_connected_component'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/2.6.0/tsort.rb:431:in `each_strongly_connected_component_from'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/2.6.0/tsort.rb:349:in `block in each_strongly_connected_component'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/2.6.0/tsort.rb:347:in `each'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/2.6.0/tsort.rb:347:in `call'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/2.6.0/tsort.rb:347:in `each_strongly_connected_component'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/2.6.0/tsort.rb:226:in `tsort_each'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/2.6.0/tsort.rb:205:in `tsort_each'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/railties-5.1.7/lib/rails/initializable.rb:58:in `run_initializers'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/railties-5.1.7/lib/rails/application.rb:353:in `initialize!'
+	from /home/face/server/share_bike/config/environment.rb:5:in `<top (required)>'
+	from config.ru:3:in `require_relative'
+	from config.ru:3:in `block in <main>'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/rack-2.0.7/lib/rack/builder.rb:55:in `instance_eval'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/rack-2.0.7/lib/rack/builder.rb:55:in `initialize'
+	from config.ru:in `new'
+	from config.ru:in `<main>'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/rack-2.0.7/lib/rack/builder.rb:49:in `eval'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/rack-2.0.7/lib/rack/builder.rb:49:in `new_from_string'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/rack-2.0.7/lib/rack/builder.rb:40:in `parse_file'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/rack-2.0.7/lib/rack/server.rb:319:in `build_app_and_options_from_config'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/rack-2.0.7/lib/rack/server.rb:219:in `app'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/railties-5.1.7/lib/rails/commands/server/server_command.rb:24:in `app'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/rack-2.0.7/lib/rack/server.rb:354:in `wrapped_app'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/rack-2.0.7/lib/rack/server.rb:283:in `start'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/railties-5.1.7/lib/rails/commands/server/server_command.rb:44:in `start'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/railties-5.1.7/lib/rails/commands/server/server_command.rb:135:in `block in perform'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/railties-5.1.7/lib/rails/commands/server/server_command.rb:130:in `tap'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/railties-5.1.7/lib/rails/commands/server/server_command.rb:130:in `perform'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/thor-0.20.3/lib/thor/command.rb:27:in `run'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/thor-0.20.3/lib/thor/invocation.rb:126:in `invoke_command'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/thor-0.20.3/lib/thor.rb:387:in `dispatch'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/railties-5.1.7/lib/rails/command/base.rb:63:in `perform'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/railties-5.1.7/lib/rails/command.rb:44:in `invoke'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/railties-5.1.7/lib/rails/commands.rb:16:in `<top (required)>'
+	from /home/face/server/share_bike/bin/rails:9:in `require'
+	from /home/face/server/share_bike/bin/rails:9:in `<top (required)>'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/spring-2.1.0/lib/spring/client/rails.rb:28:in `load'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/spring-2.1.0/lib/spring/client/rails.rb:28:in `call'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/spring-2.1.0/lib/spring/client/command.rb:7:in `call'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/spring-2.1.0/lib/spring/client.rb:30:in `run'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/spring-2.1.0/bin/spring:49:in `<top (required)>'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/spring-2.1.0/lib/spring/binstub.rb:11:in `load'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/spring-2.1.0/lib/spring/binstub.rb:11:in `<top (required)>'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/2.6.0/rubygems/core_ext/kernel_require.rb:54:in `require'
+	from /home/face/.rbenv/versions/2.6.5/lib/ruby/2.6.0/rubygems/core_ext/kernel_require.rb:54:in `require'
+	from /home/face/server/share_bike/bin/spring:15:in `<top (required)>'
+	from bin/rails:3:in `load'
+	from bin/rails:3:in `<main>'
+Exiting
