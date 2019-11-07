@@ -6,7 +6,10 @@ class RootController < ApplicationController
   def about
   end
 
-  def first
-
+  def first_t
   end
+
+  def first_u
+  end
+
 end
