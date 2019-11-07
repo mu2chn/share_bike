@@ -1,10 +1,27 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container titles">
+    <h1 class="display-4 mr-5 mt-5 pt-5  brandtext">Share Your Bike</h1>
+    <p class="lead mt-4 ml-2 ">新しい自転車のシェアリング</p><br/>
+  </div><!-- /.container -->
+</div><!-- /.jumbotron -->
 <div class="container">
   <div class="row">
     <div class="col-12">
       <div class=" p-3">
-        <h1 class="display-4 mr-2 mt-5 pt-5 text-white brandtext">Share Your Bike</h1>
-        <p class="lead mt-4 ml-2 text-white">新しい自転車のシェアリング</p><br/>
-        <div class="btn-group d-flex mt-1" role="group" aria-label="...">
+        <div class="intro" id="intro1">
+
+          <div class="introtext"></div>
+        </div>
+        <div class="intro" id="intro2">
+
+          <div class="introtext"></div>
+        </div>
+        <div class="intro" id="intro3">
+
+          <div class="introtext"></div>
+        </div>
+
+                <div class="btn-group d-flex mt-1" role="group" aria-label="...">
           <a role="button" class="btn btn-danger w-100 d-sm-block d-none" href="/u-login">京大生の方</a>
           <a role="button" class="btn btn-danger w-100 d-sm-block d-none" href="/t-login">利用者の方</a>
           <a role="button" class="btn btn-danger w-100 d-sm-block d-none" href="/root/first">初めての方</a>
@@ -14,12 +31,41 @@
           <a role="button" class="btn btn-danger w-100 mt-2 d-sm-none" href="/t-login">利用者の方</a>
         </div>
         <a role="button" class="btn btn-danger w-100 mt-2 d-sm-none mb-3" href="/root/first">初めての方</a>
-        <!--      <div class="clearfix"><%#= image_tag "bike.svg", :width => "150", :height => "150", class: "back-svg float-right"%></div>-->
+        <%= render 'svg/bike' %>
       </div>
     </div>
   </div>
 </div>
 
+<style>
+  .jumbotron {
+    position: relative;
+    background-image: url(/assets/gbike.jpg);
+    background-size: cover;
+    background-position: center 60%;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  svg use {
+    fill: none;
+    stroke: #a0a0a0;
+    stroke-dasharray: 20;
+    stroke-dashoffset: 0;
+    stroke-width: 1;
+    animation: write 5s ease normal;
+  }
+  @keyframes write{
+    50% {
+      stroke-dasharray: 200;
+    }
+    100% {
+      stroke-dasharray: 20;
+    }
+  }
+</style>
 
 
 

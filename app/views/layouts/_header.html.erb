@@ -1,7 +1,7 @@
 <% current_user %>
 
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #000080;">
-  <a class="navbar-brand text-white" href="/">ShareBK</a>
+<nav class="navbar navbar-expand-lg navbar-light h-shadow" style="background-color: #ffffff;">
+  <a class="navbar-brand" href="/">ShareBK</a>
   <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーションの切替">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -11,12 +11,12 @@
 
       <li class="nav-item">
         <% if @current_user.kind_of?(User) %>
-          <%= link_to(icon("far", "user", class: "fa-white") + " " + @current_user.name, u_edit_path, class: "nav-link active") %>
+          <%= link_to(icon("far", "user", class: "fa-dark") + " " + @current_user.name, u_edit_path, class: "nav-link active") %>
         <% elsif @current_user.kind_of?(Tourist) %>
-          <%= link_to(icon("far", "user", class: "fa-white") + " " + @current_user.name, t_edit_path, class: "nav-link active") %>
+          <%= link_to(icon("far", "user", class: "fa-dark") + " " + @current_user.name, t_edit_path, class: "nav-link active") %>
         <% else %>
-          <a href="#" class="nav-link dropdown-toggle text-white" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= icon("fas", "sign-in-alt", class: "fa-white") %> login
+          <a href="#" class="nav-link dropdown-toggle text-dark" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= icon("fas", "sign-in-alt", class: "fa-dark") %> login
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <%= link_to("京大生の方", u_login_path, class: "dropdown-item") %>
@@ -28,7 +28,7 @@
       <li class="nav-item active">
         <% if user? %>
           <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= icon("fas", "bicycle", class: "fa-white") %> my bike
+            <%= icon("fas", "bicycle", class: "fa-dark") %> my bike
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <% Bike.where(user_id: @current_user.id).each do |bike| %>
@@ -42,32 +42,37 @@
 
       <li class="nav-item active">
         <% if user? %>
-          <%= link_to(icon("fas", "calendar-alt", class: "fa-white") + " reservations", u_reserve_path, class: "nav-link") %>
+          <%= link_to(icon("fas", "calendar-alt", class: "fa-dark") + " reservations", u_reserve_path, class: "nav-link") %>
         <% elsif tourist? %>
-          <%= link_to(icon("fas", "plane-departure", class: "fa-white") + " reservations", t_reserve_path, class: "nav-link") %>
+          <%= link_to(icon("fas", "plane-departure", class: "fa-dark") + " reservations", t_reserve_path, class: "nav-link") %>
         <% end %>
       </li>
 
       <li class="nav-item active">
         <% if tourist? %>
-          <%= link_to(icon("fas", "search", class: "fa-white") + " search bike", b_index_path, class: "nav-link") %>
+          <%= link_to(icon("fas", "search", class: "fa-dark") + " search bike", b_index_path, class: "nav-link") %>
         <% else %>
-          <%= link_to(icon("fas", "search", class: "fa-white") + " search bike", b_index_path, class: "nav-link") %>
+          <%= link_to(icon("fas", "search", class: "fa-dark") + " search bike", b_index_path, class: "nav-link") %>
         <% end %>
       </li>
 
       <li class="nav-item active">
         <% if logged_in? %>
-          <a href="#" class="nav-link dropdown-toggle text-white" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= icon("fas", "sign-out-alt", class: "fa-white")%> logout
+          <a href="#" class="nav-link dropdown-toggle text-dark" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= icon("fas", "sign-out-alt", class: "fa-dark")%> logout
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <%= link_to("logout", logout_path, class: "dropdown-item") %>
           </div>
         <% end %>
       </li>
-
     </ul>
 
   </div><!-- /.navbar-collapse -->
 </nav>
+
+<style>
+  .h-shadow{
+    box-shadow: 5px 5px 7px -5px;
+  }
+</style>

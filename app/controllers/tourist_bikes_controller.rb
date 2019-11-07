@@ -73,7 +73,7 @@ class TouristBikesController < ApplicationController
   end
 
   def permit_params
-    params.require(:tourist_bike).permit(:bike_id, :day)
+    params.require(:tourist_bike).permit(:bike_id, :day, :rent_time, :place_id)
   end
 
 end
