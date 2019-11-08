@@ -12,4 +12,7 @@ class RootController < ApplicationController
   def first_u
   end
 
+  def place
+  end
+
 end

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get '/root/about', to: 'root#about', as:'about'
   get '/root/first-u', to: 'root#first_u', as:'u-first'
   get '/root/first-t', to: 'root#first_t', as:'t-first'
+  get '/root/place', to: 'root#place', as: 'place'
 
   get '/auth/t', to: 'tourists#authenticate'
   get '/auth/u', to: 'users#authenticate'
@@ -23,7 +24,7 @@ Rails.application.routes.draw do
   get '/reserve/payment/:id', to:'tourist_bikes#payment', as: 'r-payment'
   post '/reserve/check', to: 'payment_api#check', as: 'r-check'
   post '/reserve/unpaid', to: 'payment_api#unpaid', as: 'r-unpaid'
-  get '/t', to: 'payment_api#test'
+  # get '/t', to: 'payment_api#test'
 
   get '/tourists/new', to: 'tourists#new', as: 't-new'
   post '/tourists/create', to: 'tourists#create', as: 't-create'

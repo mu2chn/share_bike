@@ -11,7 +11,7 @@
           <div class="p-2"><%= Bike.find(res.bike_id).name %></div>
           <div class="p-2"><%= "#{res.day.month}/#{res.day.day}" %>
             (<%= ["日", "月", "火", "水", "木", "金", "土"][res.day.wday] %>)
-            <%= "-"+["ルネ前", "百万遍", "京大病院"][res.place_id] if res.place_id %>
+            <a href="/root/place"><%= "-"+["ルネ前", "百万遍", "京大病院"][res.place_id] if res.place_id %></a>
             <%= "-"+res.rent_time.strftime("%H:%M") if res.rent_time%></div>
           <% if user? %>
             <% if res.tourist_id.nil? && Bike.find(res.bike_id).user_id == @current_user&.id %>
@@ -19,10 +19,10 @@
             <% elsif !res.tourist_id.nil? %>
               <button type="button" class="btn btn-warning btn-sm" disabled>予約済</button>
             <% end %>
-          <% elsif tourist? %>
+        <% elsif tourist? %>
+            <div>700円</div>
 
             <% if res.tourist_id.nil? &&  @current_user.authenticated%>
-                <div>700円</div>
 
               <%#= link_to "予約", r_accept_path(res.id), method: :post, class: "btn btn-outline-navy btn-sm", role: "button", style: "height: 50%" %>
               <%= link_to "予約", r_payment_path(res.id), method: :get, class: "btn btn-outline-navy btn-sm", role: "button", style: "height: 50%" %>
