@@ -1,25 +1,104 @@
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <div class=" p-3">
-        <h1 class="display-4 mr-2 mt-5 pt-5 text-white brandtext">Share Your Bike</h1>
-        <p class="lead mt-4 ml-2 text-white">新しい自転車のシェアリング</p><br/>
-        <div class="btn-group d-flex mt-1" role="group" aria-label="...">
-          <a role="button" class="btn btn-danger w-100 d-sm-block d-none" href="/u-login">京大生の方</a>
-          <a role="button" class="btn btn-danger w-100 d-sm-block d-none" href="/t-login">利用者の方</a>
-          <a role="button" class="btn btn-danger w-100 d-sm-block d-none" href="/root/first">初めての方</a>
-        </div>
-        <div class="btn-group d-flex mt-4" role="group" aria-label="...">
-          <a role="button" class="btn btn-danger w-100 mt-2 d-sm-none" href="/u-login">京大生の方</a>
-          <a role="button" class="btn btn-danger w-100 mt-2 d-sm-none" href="/t-login">利用者の方</a>
-        </div>
-        <a role="button" class="btn btn-danger w-100 mt-2 d-sm-none mb-3" href="/root/first">初めての方</a>
-        <!--      <div class="clearfix"><%#= image_tag "bike.svg", :width => "150", :height => "150", class: "back-svg float-right"%></div>-->
-      </div>
-    </div>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container titles">
+    <h1 class="display-4 mr-5 pt-3  brandtext text-white">Share Your Bike</h1>
+    <p class="lead mt-4 ml-2 text-white">新しい自転車のシェアリング</p><br/>
   </div>
 </div>
 
+
+
+<div class="container">
+    <div class="btn-group d-flex mt-1" role="group" aria-label="...">
+      <button type="button" class="btn btn-outline-primary w-100" data-toggle="modal" data-target="#firstman">初めての方</button>
+      <button type="button" class="btn btn-outline-primary w-100" data-toggle="modal" data-target="#secondman">すでに登録済みの方</button>
+    </div>
+  <div class="row">
+    <div class="col-12 col-md-6 text-center">
+      <%= render 'svg/school' %>
+    </div>
+    <div class="col-12 col-md-6 text-center pt-5">
+      京大生の自転車が簡単に使え、コミュニケーションを簡単にとれます。
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-md-6 text-center pt-5">
+      京大生の自転車が簡単に使え、コミュニケーションを簡単にとれます。
+    </div>
+    <div class="col-12 col-md-6 text-center ">
+      <%= render 'svg/school' %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-md-6 text-center ">
+      <%= render 'svg/school' %>
+    </div>
+    <div class="col-12 col-md-6 text-center pt-5">
+      京大生の自転車が簡単に使え、コミュニケーションを簡単にとれます。
+    </div>
+  </div>
+  <div class="btn-group d-flex mt-1" role="group" aria-label="...">
+    <button type="button" class="btn btn-outline-primary w-100" data-toggle="modal" data-target="#firstman">初めての方</button>
+    <button type="button" class="btn btn-outline-primary w-100" data-toggle="modal" data-target="#secondman">すでに登録済みの方</button>
+  </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="secondman">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <!--      <div class="modal-header">-->
+      <!--      </div>-->
+      <div class="modal-body">
+        <p class="text-center">いずれか選択してください</p>
+        <div class="btn-group d-flex mt-1" role="group" aria-label="...">
+          <a role="button" class="btn btn-info w-100" href="/t-login">利用者</a>
+          <a role="button" class="btn btn-info w-100" href="/u-login">京大生</a>
+        </div>
+      </div><!-- /.modal-body -->
+    </div><!-- /.modal-content -->
+  </div>
+</div>
+<div class="modal fade" tabindex="-1" role="dialog" id="firstman">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+<!--      <div class="modal-header">-->
+<!--      </div>-->
+      <div class="modal-body">
+        <p class="text-center">いずれか選択してください</p>
+        <div class="btn-group d-flex mt-1" role="group" aria-label="...">
+          <a role="button" class="btn btn-info w-100" href="/root/first-t">観光客</a>
+          <a role="button" class="btn btn-info w-100" href="/root/first-u">京大生</a>
+        </div>
+      </div><!-- /.modal-body -->
+    </div><!-- /.modal-content -->
+  </div>
+</div>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vivus/0.4.5/vivus.js" crossorigin="anonymous"></script>
+<script>
+    new Vivus('school', {duration: 100, start: 'autostart', type: 'oneByOne'});
+</script>
+<style>
+  .jumbotron {
+    position: relative;
+    background-image: url(<%= image_url 'town-xml.svg'%>);
+    background-size: cover;
+    background-position: left 60%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .svgs {
+    fill: none;
+    stroke: brown;
+    stroke-width: 0.5px;
+  }
+
+</style>
 
 
 

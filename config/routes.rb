@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   root to: 'root#index'
 
   get '/root/about', to: 'root#about', as:'about'
-  get '/root/first', to: 'root#first', as:'first'
+  get '/root/first-u', to: 'root#first_u', as:'u-first'
+  get '/root/first-t', to: 'root#first_t', as:'t-first'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
