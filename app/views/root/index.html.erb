@@ -78,6 +78,8 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vivus/0.4.5/vivus.js" crossorigin="anonymous"></script>
 <script>
+    let vh = window.innerHeight*0.01;
+    document.documentElement.style.setProperty('--vh',`${vh}px`);
     new Vivus('school', {duration: 100, start: 'autostart', type: 'oneByOne'});
 </script>
 <style>
@@ -87,6 +89,7 @@
     background-size: cover;
     background-position: left 60%;
     height: 100vh;
+    height: calc(var(--vh, 1vh)*100);
     display: flex;
     justify-content: center;
     align-items: center;
