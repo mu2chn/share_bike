@@ -2,9 +2,9 @@ class User < ApplicationRecord
   attr_accessor :remember_token
 
   before_validation do
-    if !self.email.match(VALID_EMAIL_REGEX)
-      self.email += "@st.kyoto-u.ac.jp"
-    end
+    # if !self.email.match(VALID_EMAIL_REGEX)
+    #   self.email += "@st.kyoto-u.ac.jp"
+    # end
   end
 
   before_save do
@@ -12,11 +12,12 @@ class User < ApplicationRecord
   end
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  KYODAY_EMAIL = /\A[\w+\-.]+@st.kyoto-u.ac.jp/i
 
   validates :name, presence: true,
             length: {maximum: 50}
   validates :email, presence: true,
-            #format: { with: VALID_EMAIL_REGEX },
+            format: { with: KYODAY_EMAIL },
             length: {maximum: 255}
   validates :email, uniqueness: {case_sensitive: false}, on: :create
   validates :terms, presence: true

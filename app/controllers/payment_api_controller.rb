@@ -40,10 +40,12 @@ class PaymentApiController < ApplicationController
       p "すでに予約されています"
       refund = PayPalCheckoutSdk::Payments::CapturesRefundRequest::new(capture_id)
       client.execute(refund)
+      render json: {payment: false}
     elsif amount < 700 or currency != "JPY"
       p "金額が不正です"
       refund = PayPalCheckoutSdk::Payments::CapturesRefundRequest::new(capture_id)
       client.execute(refund)
+      render json: {payment: false}
     else
       @reserve.order_id = json["orderID"]
       @reserve.tourist_id = tourist_id
@@ -53,11 +55,10 @@ class PaymentApiController < ApplicationController
       @reserve.capture_id = capture_id
 
       if @reserve.save!
-        flash[:success] = "予約が完了しました"
         NotificationMailer.send_confirm_to_user(@tourist).deliver_later
-        redirect_to t_reserve_path
+        render json: {payment: true}
       else
-        flash[:error] = "予約に失敗しました"
+        render json: {payment: false}, status: :unprocessable_entity
       end
     end
   end

@@ -1,13 +1,16 @@
 <div class="row">
   <div class="col-12 payment-attention">
-    <p>以下の内容で予約を確定します。宜しければ、以下のボタンよりPaypalまたはクレジットカードにてお支払いください。</p>
+    <p>以下の内容で予約を確定します。宜しければ、以下のボタンよりお支払いください。</p>
   </div>
 </div>
+<button type="button" class="btn btn-warning w-100" data-toggle="modal" data-target="#myModal">
+  お支払へ進む
+</button>
 
-<div id="paypal-button-container"></div>
-
-<div class="d-flex flex-md-row flex-column align-items-center mt-2">
-
+<div class="d-flex flex-md-row flex-column align-items-center mt-4">
+  <div class="">
+    <%= image_tag @bike.image.to_s, class: "img-thumbnail" %>
+  </div>
   <div class="mx-2 w-100">
     <ul class="list-group list-group-flush shadow-sm text-muted">
       <li class="list-group-item">名前：<%= @bike.name %></li>
@@ -17,14 +20,35 @@
         <%= link_to User.find(@bike.user_id).nickname, "/users/show/" + @bike.user_id.to_s %>
       </li>
       <li class="list-group-item">日時：<%= "#{@reserve.day.month}/#{@reserve.day.day}" %>(<%= ["日", "月", "火", "水", "木", "金", "土"][@reserve.day.wday] %>)</li>
+      <li class="list-group-item">金額：700円</li>
+      <li class="list-group-item">場所：<%= ["ルネ前", "百万遍", "京大病院"][@reserve.place_id]%></li>
+      <li class="list-group-item">時間：<%= @reserve.rent_time.strftime("%H:%M") %></li>
     </ul>
   </div>
-  <div class="">
-    <%= image_tag @bike.image.to_s, class: "img-thumbnail" %>
-  </div>
+
 </div>
 
 
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">お支払い方法選択</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>以下からお支払い方法を選択してください</p>
+        <div id="paypal-button-container"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+      </div><!-- /.modal-footer -->
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 <script
   src="https://www.paypal.com/sdk/js?currency=JPY&client-id=AbmTHlJhDD2_U9v4JbjXULVdrAcAAFJqb1ZH-ZbpICzZuYWjaMwiQsOoXCytKCcqK2BfP31zjMTpC7sT&intent=authorize">
 </script>
@@ -51,26 +75,34 @@
         onApprove: function(data, actions) {
             // return actions.order.capture().then(function(details) {
             paid = true;
+
             actions.order.authorize().then(function(authorization) {
-
-                var authorizationID = authorization.purchase_units[0]
-                    .payments.authorizations[0].id;
-
-                return fetch('/reserve/check', {
-                    method: 'post',
-                    headers: {
-                        'content-type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        orderID: data.orderID,
-                        authorizationID: authorizationID
-                    }),
-                    redirect: "manual"
+                var authorizationID = authorization.purchase_units[0].payments.authorizations[0].id;
+                axios.post('/reserve/check',{
+                    orderID: data.orderID,
+                    authorizationID: authorizationID
+                }).then(function(response){
+                    location.href="/tourists/reserve";
+                }).catch(function (reason) {
+                    console.log(reason);
+                    alert("支払いに失敗しました");
                 });
+                // return fetch('/reserve/check', {
+                //     method: 'post',
+                //     headers: {
+                //         'content-type': 'application/json'
+                //     },
+                //     body: JSON.stringify({
+                //         orderID: data.orderID,
+                //         authorizationID: authorizationID
+                //     }),
+                //     redirect: "manual"
+                // });
             });
         },
 
         onError: function (err) {
+            console.log(err);
             // Show an error page here, when an error occurs
             alert("エラーが発生しました。もう一度お試しください。")
         }
