@@ -70,8 +70,6 @@ ActiveRecord::Schema.define(version: 20191106153919) do
     t.integer "terms", default: 0
     t.integer "tutorial", default: 0
     t.string "remember_digest"
-    t.boolean "activated", default: false
-    t.string "activate_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
