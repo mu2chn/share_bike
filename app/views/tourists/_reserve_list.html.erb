@@ -7,19 +7,10 @@
     <div class="media text-muted pt-3">
       <div class="media-body pb-3 mb-0 border-bottom border-gray">
         <div class="flex-row d-flex justify-content-between align-items-center flex-wrap ">
-
-<!--          <div class="p-2"><%#= Bike.find(res.bike_id).name %></div>-->
           <div class="p-2"><%= "#{res.day.month}/#{res.day.day}" %>
             (<%= ["日", "月", "火", "水", "木", "金", "土"][res.day.wday] %>)
           </div>
-          <%#= mail_to res.bike.user.email %>
           <% if tourist? %>
-            <%# if res.tourist_id.nil? %>
-              <%#= link_to "予約", r_accept_path(res.id), method: :post, class: "btn btn-outline-navy btn-sm", role: "button", style: "height: 50%" %>
-              <%#= link_to "予約", r_payment_path(res.id), method: :get, class: "btn btn-outline-navy btn-sm", role: "button", style: "height: 50%" %>
-            <%# else %>
-<!--              <button type="button" class="btn btn-warning btn-sm d-flex" disabled>予約済</button>-->
-            <%# end %>
             <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#res<%= res.id %>">
               詳細を表示
             </button>

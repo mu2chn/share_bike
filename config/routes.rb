@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   get '/root/first-t', to: 'root#first_t', as:'t-first'
   get '/root/place', to: 'root#place', as: 'place'
 
+  get '/user/review', to: 'user_reviews#set_review', as: 'u-setreview'
+  post '/user/review', to: 'user_reviews#add_review', as: 'u-createreview'
+
   get '/auth/t', to: 'tourists#authenticate'
   get '/auth/u', to: 'users#authenticate'
 

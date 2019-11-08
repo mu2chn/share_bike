@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191106153919) do
+ActiveRecord::Schema.define(version: 20191108162629) do
 
   create_table "bikes", force: :cascade do |t|
     t.string "name"
@@ -60,6 +60,17 @@ ActiveRecord::Schema.define(version: 20191106153919) do
     t.boolean "authenticated"
     t.string "authenticate_url"
     t.datetime "authenticate_expire"
+  end
+
+  create_table "user_reviews", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "tourist_bike_id"
+    t.integer "rate"
+    t.text "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tourist_bike_id"], name: "index_user_reviews_on_tourist_bike_id"
+    t.index ["user_id"], name: "index_user_reviews_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

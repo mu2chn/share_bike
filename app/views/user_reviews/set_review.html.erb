@@ -1,0 +1,50 @@
+<h3 class="h5 my-5"><%= @tourist.name %>さん、<%= @user.name %>さんとのレビューをお願いします</h3>
+
+<label>評価</label>
+<%= select_tag '評価', options_for_select({"良い": 3, "普通": 2, "悪い": 1}), class: "form-control mb-3", id: "rate" %>
+
+<label>コメント</label>
+<%= text_area_tag 'コメント', nil, class: "form-control mb-3", id: "comment" %>
+
+<%= button_tag '送信', class: "btn btn-primary", id: "send" %>
+
+<script>
+    function getUrlVars() {
+        var vars = [], max = 0, hash = "", array = "";
+        var url = window.location.search;
+
+        //?を取り除くため、1から始める。複数のクエリ文字列に対応するため、&で区切る
+        hash = url.slice(1).split('&');
+        max = hash.length;
+        for (var i = 0; i < max; i++) {
+            array = hash[i].split('=');    //keyと値に分割。
+            vars.push(array[0]);    //末尾にクエリ文字列のkeyを挿入。
+            vars[array[0]] = array[1];    //先ほど確保したkeyに、値を代入。
+        }
+
+        return vars;
+    }
+
+    function sendComment() {
+        const vars = getUrlVars();
+        console.log(vars);
+        const body = {
+            rate: document.getElementById("rate").value,
+            comment: document.getElementById("comment").value,
+            reserve: vars["reserve"],
+            key: vars["tourist_id"]
+        };
+        axios.post('/user/review', body)
+            .then(function () {
+                toastr.success("レビューが完了しました！");
+                setTimeout(function () {
+                    location.href = "/";
+                }, 1000)
+            })
+            .catch(function () {
+                toastr.warning("エラーが発生しました");
+            })
+    }
+
+    document.getElementById("send").addEventListener('click', sendComment, false);
+</script>
