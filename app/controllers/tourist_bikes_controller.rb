@@ -6,6 +6,8 @@ class TouristBikesController < ApplicationController
       @reserve = TouristBike.new(permit_params)
       if p @reserve.bike_id.nil?
         flash[:warning] = "自転車が選択されていません"
+      elsif !@user.authenticated
+        flash[:warning] = "メール認証を済ませて下さい"
       elsif Bike.find(@reserve.bike_id.to_i).user_id == @user.id
         if @reserve.day.nil?
           flash[:warning] = "日付を入力してください"

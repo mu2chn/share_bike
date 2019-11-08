@@ -10,11 +10,34 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save(context: :create)
+      AuthMailer.auth_user(@user).deliver_later
       log_in(@user)
       flash[:success] = "登録が完了しました！さっそく自転車を追加してみましょう。"
+      flash[:info] = "登録したメール宛に認証リンクを送信しました。（メールにあるリンクを踏まないと自転車の貸出まではできません。）"
       redirect_to b_new_path
     else
       render u_new_path
+    end
+  end
+
+  def authenticate
+    @user = User.find_by(email: params[:email])
+    p params[:auth]
+    p @user.authenticate_url
+    if @user.authenticated
+      flash[:info] = "すでに認証が完了しています"
+      redirect_to root_path
+    elsif DateTime.now > @user.authenticate_expire + 1.day
+      str_url = SecureRandom.urlsafe_base64(30)
+      Tourist.update_attributes(authenticate_expire: DateTime.now, authenticate_url: str_url)
+      AuthMailer.auth_tourist(@tourist).deliver_later
+      flash[:info] = "有効期限が切れているため、urlを再送しました"
+      redirect_to root_path
+    elsif @user.authenticate_url== params[:auth]
+      @user.update_attribute(:authenticated, true)
+      AuthMailer.t_complete_auth(@user).deliver_later
+      flash[:info]="認証が完了しました"
+      redirect_to b_index_path
     end
   end
 

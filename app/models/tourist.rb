@@ -6,7 +6,11 @@ class Tourist < ApplicationRecord
 
   before_save do
     self.email = email.downcase
+    self.authenticate_url ||= SecureRandom.urlsafe_base64(30)
+    self.authenticated ||= false
+    self.authenticate_expire = DateTime.now
   end
+
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   validates :name, presence: true,
@@ -17,6 +21,7 @@ class Tourist < ApplicationRecord
             length: { maximum: 255 }
   validates :terms, presence: true
   validates :temp_terms, acceptance: true
+  # validates :authenticated, presence: true
 
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }

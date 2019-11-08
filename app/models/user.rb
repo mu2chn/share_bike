@@ -5,10 +5,14 @@ class User < ApplicationRecord
     # if !self.email.match(VALID_EMAIL_REGEX)
     #   self.email += "@st.kyoto-u.ac.jp"
     # end
+
   end
 
   before_save do
     self.email = email.downcase
+    self.authenticate_url ||= SecureRandom.urlsafe_base64(30)
+    self.authenticated ||= false
+    self.authenticate_expire = DateTime.now
   end
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

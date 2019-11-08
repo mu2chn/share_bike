@@ -21,11 +21,14 @@
             <% end %>
           <% elsif tourist? %>
 
-            <% if res.tourist_id.nil? %>
-              <div>700円</div>
+            <% if res.tourist_id.nil? &&  @current_user.authenticated%>
+                <div>700円</div>
+
               <%#= link_to "予約", r_accept_path(res.id), method: :post, class: "btn btn-outline-navy btn-sm", role: "button", style: "height: 50%" %>
               <%= link_to "予約", r_payment_path(res.id), method: :get, class: "btn btn-outline-navy btn-sm", role: "button", style: "height: 50%" %>
-            <% else %>
+            <%elsif  res.tourist_id.nil?%>
+              <button type="button" class="btn btn-info btn-sm d-flex" disabled>予約可</button>
+        <% else %>
               <button type="button" class="btn btn-warning btn-sm d-flex" disabled>予約済</button>
             <% end %>
           <% end %>

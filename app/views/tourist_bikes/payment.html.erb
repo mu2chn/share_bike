@@ -1,3 +1,7 @@
+<div class="loading">
+  <%= image_tag "load.gif" %>
+</div>
+
 <div class="row">
   <div class="col-12 payment-attention">
     <p>以下の内容で予約を確定します。宜しければ、以下のボタンよりお支払いください。</p>
@@ -28,8 +32,6 @@
 
 </div>
 
-
-
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -53,27 +55,37 @@
   src="https://www.paypal.com/sdk/js?currency=JPY&client-id=AbmTHlJhDD2_U9v4JbjXULVdrAcAAFJqb1ZH-ZbpICzZuYWjaMwiQsOoXCytKCcqK2BfP31zjMTpC7sT&intent=authorize">
 </script>
 <script>
+    $(window).on('load', function(){
+        $('.loading').fadeOut();
+    });
+
     let paid = false;
     paypal.Buttons({
-        createOrder: function(data, actions) {
-            if(paid){return;}
+        createOrder: function (data, actions) {
+            if (paid) {
+                return;
+            }
             return actions.order.create({
                 purchase_units: [{
-                    reference_id: "<%= @reserve.id %>"+"@"+"<%= @tourist.id %>",
+                    reference_id: "<%= @reserve.id %>" + "@" + "<%= @tourist.id %>",
                     amount: {
                         value: '700'
                     }
                 }],
-                payment:{redirect_urls: {
-                    return_url: '/tourists/reserve',
-                }}
+                payment: {
+                    redirect_urls: {
+                        return_url: '/tourists/reserve',
+                    }
+                }
             });
         },
-        onCancel: function(){
+        onCancel: function () {
 
         },
-        onApprove: function(data, actions) {
+        onApprove: function (data, actions) {
             // return actions.order.capture().then(function(details) {
+            $('.loading').show();
+
             paid = true;
 
             actions.order.authorize().then(function(authorization) {
@@ -104,7 +116,8 @@
         onError: function (err) {
             console.log(err);
             // Show an error page here, when an error occurs
-            alert("エラーが発生しました。もう一度お試しください。")
+            // alert("エラーが発生しました。もう一度お試しください。")
         }
     }).render('#paypal-button-container');
 </script>
+

@@ -9,6 +9,7 @@ class PaymentApiController < ApplicationController
   # include PayPal::SDK::Core::Logging
 
   def test
+    NotificationMailer.send_confirm_to_user(Tourist.find_by(email: "face93632@eay.jp")).deliver_later
     render about_path
   end
 
@@ -36,7 +37,11 @@ class PaymentApiController < ApplicationController
     response_auth = client.execute(request)
     capture_id = response_auth[:result][:id]
 
-    if not @reserve.tourist_id.nil? and not @reserve.order_id.nil?
+    if !@tourist.authenticated
+      p "メール認証されていません"
+      refund = PayPalCheckoutSdk::Payments::CapturesRefundRequest::new(capture_id)
+      client.execute(refund)
+    elsif not @reserve.tourist_id.nil? and not @reserve.order_id.nil?
       p "すでに予約されています"
       refund = PayPalCheckoutSdk::Payments::CapturesRefundRequest::new(capture_id)
       client.execute(refund)
@@ -55,7 +60,7 @@ class PaymentApiController < ApplicationController
       @reserve.capture_id = capture_id
 
       if @reserve.save!
-        NotificationMailer.send_confirm_to_user(@tourist).deliver_later
+        NotificationMailer.payment_confirm_to_user(@tourist, @reserve).deliver_later
         render json: {payment: true}
       else
         render json: {payment: false}, status: :unprocessable_entity

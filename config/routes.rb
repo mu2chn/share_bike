@@ -5,11 +5,14 @@ Rails.application.routes.draw do
   get '/root/first-u', to: 'root#first_u', as:'u-first'
   get '/root/first-t', to: 'root#first_t', as:'t-first'
 
+  get '/auth/t', to: 'tourists#authenticate'
+  get '/auth/u', to: 'users#authenticate'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   get '/users/new',  to: 'users#new', as: 'u-new'
   post '/users/create', to: 'users#create', as: 'u-create'
-  get '/users/show/:id', to: 'users#show'
+  get '/users/show/:id', to: 'users#show', as: 'u-show'
   get '/users/edit', to: 'users#edit', as: 'u-edit'
   patch '/users/update', to: 'users#update', as: 'u-update'
   get '/users/reserve', to: 'users#reserve', as: 'u-reserve'
