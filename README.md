@@ -14,3 +14,22 @@ Rails 5.1.7
 $ git --version
 git version 2.17.1
 ```
+
+## Settings
+### deploy
+```bash
+$ bundle install --without development
+$ bundle exec rake assets:precompile RAILS_ENV=production
+$ rails db:migrate RAILS_ENV=production
+$ bundle exec whenever --update-crontab
+# not recommend
+$ nohup rails s -e production &
+
+```
+
+### StopServer
+```bash
+# kill puma process
+$ ps aux | grep puma
+$ bundle exec whenever --clear-crontab
+```

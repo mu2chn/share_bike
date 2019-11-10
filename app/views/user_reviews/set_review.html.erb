@@ -32,7 +32,7 @@
             rate: document.getElementById("rate").value,
             comment: document.getElementById("comment").value,
             reserve: vars["reserve"],
-            key: vars["tourist_id"]
+            key: vars["key"]
         };
         axios.post('/user/review', body)
             .then(function () {
