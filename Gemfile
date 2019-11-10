@@ -43,6 +43,7 @@ gem 'toastr-rails'
 
 gem 'paypal-sdk-rest'
 gem 'paypal-checkout-sdk'
+gem 'whenever'
 
 
 # Use Capistrano for deployment

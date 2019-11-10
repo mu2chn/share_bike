@@ -1,6 +1,6 @@
 class AuthMailer < ApplicationMailer
 
-  default from: "info@mail.kyotosharebike.com"
+  # default from: "info@mail.kyotosharebike.com"
 
   def auth_tourist(user)
     @user = user

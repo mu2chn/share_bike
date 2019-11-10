@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191108162629) do
+ActiveRecord::Schema.define(version: 20191109112459) do
 
   create_table "bikes", force: :cascade do |t|
     t.string "name"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20191108162629) do
     t.string "capture_id"
     t.integer "place_id"
     t.time "rent_time"
+    t.integer "status", default: 0
     t.index ["bike_id"], name: "index_tourist_bikes_on_bike_id"
     t.index ["tourist_id"], name: "index_tourist_bikes_on_tourist_id"
   end
