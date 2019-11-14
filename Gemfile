@@ -45,6 +45,10 @@ gem 'paypal-sdk-rest'
 gem 'paypal-checkout-sdk'
 gem 'whenever'
 
+#for admin page
+gem 'activeadmin'
+gem 'devise'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
