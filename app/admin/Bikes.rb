@@ -1,5 +1,5 @@
 ActiveAdmin.register Bike do
-  permit_params :vehicle_num, :security_area, :security_num, :name, :details
+  permit_params :vehicle_num, :security_area, :security_num, :name, :details, :void
   actions :all, except: [:destroy ]
 
 
@@ -27,6 +27,7 @@ ActiveAdmin.register Bike do
       f.input :security_num
       f.input :security_area
       f.input :details
+      f.input :void
     end
     f.actions
   end

@@ -1,5 +1,5 @@
 ActiveAdmin.register TouristBike do
-  permit_params :user_prob, :tourist_prob, :place_id
+  permit_params :user_prob, :tourist_prob, :place_id, :rent_time, :day, :void
   actions :all, except: [:destroy]
 
   index do
@@ -19,13 +19,16 @@ ActiveAdmin.register TouristBike do
   form do |f|
     f.inputs do
       f.input :place_id
+      f.input :day
+      f.input :rent_time
       f.input :user_prob
       f.input :tourist_prob
+      f.input :void
     end
     f.actions
   end
 
-  action_item :cancel, only: :show do
+  action_item :cancel, only: :edit do
     link_to 'Cancel Reserve (Refund)', cancel_admin_tourist_bike_path
   end
 

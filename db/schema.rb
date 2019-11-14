@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191114063453) do
+ActiveRecord::Schema.define(version: 20191114170301) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20191114063453) do
     t.text "details"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "void", default: false
     t.index ["user_id"], name: "index_bikes_on_user_id"
   end
 
@@ -68,6 +69,7 @@ ActiveRecord::Schema.define(version: 20191114063453) do
     t.integer "place_id"
     t.time "rent_time"
     t.integer "status", default: 0
+    t.boolean "void", default: false
     t.index ["bike_id"], name: "index_tourist_bikes_on_bike_id"
     t.index ["tourist_id"], name: "index_tourist_bikes_on_tourist_id"
   end
@@ -87,6 +89,7 @@ ActiveRecord::Schema.define(version: 20191114063453) do
     t.boolean "authenticated"
     t.string "authenticate_url"
     t.datetime "authenticate_expire"
+    t.boolean "void", default: false
   end
 
   create_table "user_reviews", force: :cascade do |t|
@@ -114,6 +117,7 @@ ActiveRecord::Schema.define(version: 20191114063453) do
     t.boolean "authenticated"
     t.string "authenticate_url"
     t.datetime "authenticate_expire"
+    t.boolean "void", default: false
   end
 
 end
