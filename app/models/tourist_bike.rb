@@ -19,9 +19,9 @@ class TouristBike < ApplicationRecord
               paid_date: nil,
               status: 0
           )
-          return status[1]
+          return status[1][:result]
       else
-        return status[1]
+          return status[1][:result]
       end
   end
 end

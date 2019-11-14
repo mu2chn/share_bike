@@ -14,45 +14,34 @@ class PaymentApiController < ApplicationController
   end
 
   def check
-    client_id = "AbmTHlJhDD2_U9v4JbjXULVdrAcAAFJqb1ZH-ZbpICzZuYWjaMwiQsOoXCytKCcqK2BfP31zjMTpC7sT"
-    client_secret = "EOo9mHVWT1T4fubdtQErBcgEXIbd3XTEiCrKjr9l3CwNzDW59PgYlcNP7dEp1DSvYyaAYkXwPexFwZ0_"
-    environment = PayPal::SandboxEnvironment.new(client_id, client_secret)
-    client = PayPal::PayPalHttpClient.new(environment)
+    client = Payment.init_client
     json = JSON.parse(request.body.read)
-    order = PayPalCheckoutSdk::Orders::OrdersGetRequest::new(json["orderID"])
-    order_detail = client.execute(order)
+    order_detail = Payment.order(json["orderID"], client)[1]
+
     currency = order_detail[:result][:purchase_units][0][:amount][:currency_code]
     amount = order_detail[:result][:purchase_units][0][:amount][:value].to_i
     reserve_tourist_id = order_detail[:result][:purchase_units][0][:reference_id]
-
     reserve_id = /^\d+/.match(reserve_tourist_id)[0].to_i
     tourist_id = /\d+$/.match(reserve_tourist_id)[0].to_i
-
     @reserve = TouristBike.find(reserve_id)
     @tourist = Tourist.find(tourist_id)
 
-    request = PayPalCheckoutSdk::Payments::AuthorizationsCaptureRequest::new(json["authorizationID"])
-    request.prefer("return=representation")
-    request.request_body({})
-    response_auth = client.execute(request)
+    response_auth = Payment.auth(json["authorizationID"], client)[1]
     capture_id = response_auth[:result][:id]
+
     if @reserve.void
       p "voidです"
-      refund = PayPalCheckoutSdk::Payments::CapturesRefundRequest::new(capture_id)
-      client.execute(refund)
+      Payment.refund(capture_id, client)
     elsif !@tourist.authenticated
       p "メール認証されていません"
-      refund = PayPalCheckoutSdk::Payments::CapturesRefundRequest::new(capture_id)
-      client.execute(refund)
+      Payment.refund(capture_id, client)
     elsif not @reserve.tourist_id.nil? and not @reserve.order_id.nil?
       p "すでに予約されています"
-      refund = PayPalCheckoutSdk::Payments::CapturesRefundRequest::new(capture_id)
-      client.execute(refund)
+      Payment.refund(capture_id, client)
       render json: {payment: false}
     elsif amount < 700 or currency != "JPY"
       p "金額が不正です"
-      refund = PayPalCheckoutSdk::Payments::CapturesRefundRequest::new(capture_id)
-      client.execute(refund)
+      Payment.refund(capture_id, client)
       render json: {payment: false}
     else
       update = @reserve.update_attributes(
