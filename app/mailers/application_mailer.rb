@@ -1,4 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'info@mail.kyotosharebike.com'
+  default from: '京都シェアバイク協会 <info@mail.kyotosharebike.com>'
+
   layout 'mailer'
 end

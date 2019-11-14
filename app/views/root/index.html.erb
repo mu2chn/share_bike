@@ -1,46 +1,69 @@
-<div class="jumbotron jumbotron-fluid">
+<div class="jumbotron jumbotron-fluid jumbo-top">
   <div class="container titles">
     <h1 class="display-4 mr-5 pt-3  brandtext text-white">Share Your Bike</h1>
     <p class="lead mt-4 ml-2 text-white">新しい自転車のシェアリング</p><br/>
   </div>
 </div>
 
+<div class="jumbotron jumbotron-fluid jumbo-down">
+  <div class="container titles mb-5 text-white">
+    <div class="jmbtext col-md-6 offset-md-3 col-12 p-4">
+      <h2 class="text-center">Shrarebike とは？</h2>
+      <p class="">シェアバイクは新しい自転車貸し借りサービスです。どなたでもご利用に慣れます。シェアバイクは新しい自転車貸し借りサービスです。どなたでもご利用に慣れます。
+        シェアバイクは新しい自転車貸し借りサービスです。どなたでもご利用に慣れます。シェアバイクは新しい自転車貸し借りサービスです。どなたでもご利用に慣れます。</p>
+    </div>
+  </div>
+</div>
+
 
 
 <div class="container">
-    <div class="btn-group d-flex mt-1" role="group" aria-label="...">
-      <button type="button" class="btn btn-outline-primary w-100" data-toggle="modal" data-target="#firstman">初めての方</button>
-      <button type="button" class="btn btn-outline-primary w-100" data-toggle="modal" data-target="#secondman">すでに登録済みの方</button>
+
+
+
+    <div class="btn-group d-flex mt-1 justify-content-center" role="group" aria-label="...">
+      <button type="button" class="btn btn-outline-primary w-50" data-toggle="modal" data-target="#firstman">初めての方</button>
+      <button type="button" class="btn btn-outline-primary w-50" data-toggle="modal" data-target="#secondman">登録済みの方</button>
     </div>
-  <div class="row">
+  <div class="row mt-2">
     <div class="col-12 col-md-6 text-center">
-      <%= render 'svg/school' %>
+      <%= render 'svg/bike' %>
     </div>
-    <div class="col-12 col-md-6 text-center pt-5">
-      京大生の自転車が簡単に使え、コミュニケーションを簡単にとれます。
+    <div class="col-12 col-md-6 text-center">
+      <p class="mt-md-5">
+        京大生の自転車が簡単に使え、コミュニケーションを簡単にとれます。京大生の自転車が簡単に使え、コミュニケーションを簡単にとれます。京大生の自転車が簡単に使え、コミュニケーションを簡単にとれます。
+      </p>
     </div>
   </div>
-  <div class="row">
-    <div class="col-12 col-md-6 text-center pt-5">
-      京大生の自転車が簡単に使え、コミュニケーションを簡単にとれます。
-    </div>
+  <div class="row mt-2">
     <div class="col-12 col-md-6 text-center ">
-      <%= render 'svg/school' %>
+      <%= render 'svg/bike' %>
+    </div>
+    <div class="col-12 col-md-6 text-center">
+      <p class="mt-md-5">
+        京大生の自転車が簡単に使え、コミュニケーションを簡単にとれます。京大生の自転車が簡単に使え、コミュニケーションを簡単にとれます。京大生の自転車が簡単に使え、コミュニケーションを簡単にとれます。
+      </p>
     </div>
   </div>
-  <div class="row">
+  <div class="row mt-2">
     <div class="col-12 col-md-6 text-center ">
-      <%= render 'svg/school' %>
+      <%= render 'svg/bike' %>
     </div>
-    <div class="col-12 col-md-6 text-center pt-5">
-      京大生の自転車が簡単に使え、コミュニケーションを簡単にとれます。
+    <div class="col-12 col-md-6 text-center">
+      <p class="mt-md-5">
+        京大生の自転車が簡単に使え、コミュニケーションを簡単にとれます。京大生の自転車が簡単に使え、コミュニケーションを簡単にとれます。京大生の自転車が簡単に使え、コミュニケーションを簡単にとれます。
+      </p>
     </div>
   </div>
-  <div class="btn-group d-flex mt-1" role="group" aria-label="...">
-    <button type="button" class="btn btn-outline-primary w-100" data-toggle="modal" data-target="#firstman">初めての方</button>
-    <button type="button" class="btn btn-outline-primary w-100" data-toggle="modal" data-target="#secondman">すでに登録済みの方</button>
+  <h5 class="text-center my-5">いかがでしょうか？面白いと思ったら以下、「初めての方」より詳しい説明をどうぞ！</h5>
+  <div class="btn-group d-flex mt-1 justify-content-center" role="group" aria-label="...">
+    <button type="button" class="btn btn-outline-primary w-50" data-toggle="modal" data-target="#firstman">初めての方</button>
+    <button type="button" class="btn btn-outline-primary w-50" data-toggle="modal" data-target="#secondman">登録済みの方</button>
   </div>
 </div>
+
+
+
 
 <div class="modal fade" tabindex="-1" role="dialog" id="secondman">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -76,14 +99,17 @@
 
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vivus/0.4.5/vivus.js" crossorigin="anonymous"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/vivus/0.4.5/vivus.js" crossorigin="anonymous"></script>-->
 <script>
     let vh = window.innerHeight*0.01;
     document.documentElement.style.setProperty('--vh',`${vh}px`);
-    new Vivus('school', {duration: 100, start: 'autostart', type: 'oneByOne'});
+    // new Vivus('school', {duration: 100, start: 'autostart', type: 'oneByOne'});
+
+
+    var rellax = new Rellax('.rellax');
 </script>
 <style>
-  .jumbotron {
+  .jumbo-top {
     position: relative;
     background-image: url(<%= image_url 'town-xml.svg'%>);
     background-size: cover;
@@ -93,12 +119,51 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 0;
+  }
+
+  .jumbo-down{
+    background-color: #377590;
+    /*background: linear-gradient(180deg, #377590, #4b86c7);*/
+  }
+
+  .jmbtext{
+    /*background-color: #ffffff;*/
+    border-radius: 20px;
   }
 
   .svgs {
     fill: none;
     stroke: brown;
     stroke-width: 0.5px;
+  }
+
+  .btn-top{
+    width:200px;
+    height:100px;
+    line-height:100px;
+  }
+  .btn-top a{
+    display:block;
+    width:100%;
+    height:100%;
+    text-decoration: none;
+    background:#0099FF;
+    text-align:center;
+    color:#FFFFFF;
+    font-size:30px;
+    font-weight:bold;
+    border-radius:10px;
+    -webkit-border-radius:10px;
+    -moz-border-radius:10px;
+    box-shadow:5px 5px 0px 0px #DEDEDE ;
+  }
+  .btn-top a:hover{
+    background:#0099FF;
+    color:#FFFFFF;
+    margin-left:0px;
+    margin-top:0px;
+    box-shadow:none;
   }
 
 </style>

@@ -24,4 +24,5 @@
 //toast
 //= require toastr
 
+//= require rellax.min.js
 //= require_tree .
