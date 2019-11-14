@@ -24,7 +24,8 @@ class Tourist < ApplicationRecord
   # validates :authenticated, presence: true
 
   has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, length: {minimum: 6, maximum: 100}, on: :update, allow_blank: true
+  validates :password, presence: true, length: {minimum: 6, maximum: 100}, on: :create
 
   def Tourist.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :

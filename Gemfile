@@ -48,6 +48,8 @@ gem 'whenever'
 #for admin page
 gem 'activeadmin'
 gem 'devise'
+# gem "active_material", github: "vigetlabs/active_material"
+gem 'active_admin_theme'
 
 
 # Use Capistrano for deployment
