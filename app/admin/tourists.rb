@@ -1,5 +1,6 @@
 ActiveAdmin.register Tourist do
-  permit_params :email, :name, :authenticated, :nickname, :phmnumber
+  permit_params :name, :authenticated, :nickname, :phmnumber
+  actions :all, except: [:destroy ]
 
   index do
     id_column
@@ -19,7 +20,6 @@ ActiveAdmin.register Tourist do
   form do |f|
     f.inputs do
       f.input :name
-      f.input :email
       f.input :nickname
       f.input :phmnumber
       f.input :authenticated

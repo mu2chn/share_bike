@@ -1,5 +1,6 @@
 ActiveAdmin.register TouristBike do
   permit_params :user_prob, :tourist_prob, :place_id
+  actions :all, except: [:destroy]
 
   index do
     id_column
@@ -22,5 +23,14 @@ ActiveAdmin.register TouristBike do
       f.input :tourist_prob
     end
     f.actions
+  end
+
+  action_item :cancel, only: :show do
+    link_to 'Cancel Reserve (Refund)', cancel_admin_tourist_bike_path
+  end
+
+  member_action :cancel, method: :get do
+    status = resource.cancel
+    redirect_to resource_path, notice: "Canceled! exit code #{status}"
   end
 end

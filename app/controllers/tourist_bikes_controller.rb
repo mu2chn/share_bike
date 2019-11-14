@@ -28,7 +28,7 @@ class TouristBikesController < ApplicationController
     end
   end
 
-
+  #お支払画面
   def payment
     if_tourist do |user|
       @reserve = TouristBike.find(params[:id])
@@ -40,6 +40,7 @@ class TouristBikesController < ApplicationController
     end
   end
 
+  #予約削除
   def delete
     if_user do |user|
       @user = user
@@ -57,23 +58,26 @@ class TouristBikesController < ApplicationController
     end
   end
 
-  def accept
-    if_tourist do |user|
-      @user = user
-      @reserve = TouristBike.find(params[:id])
-      if !@reserve.tourist_id.nil?
-        flash[:error] = "すでに予約が入っています"
-        redirect_to b_show_path(@reserve.bike_id)
-      elsif @reserve.update(tourist_id: @user.id)
-        flash[:success] = "予約しました"
-        redirect_to t_reserve_path
-      else
-        flash[:error] = "予約に失敗しました"
-        redirect_to b_show_path(@reserve.bike_id)
-      end
-    end
-  end
+  #
+  # def accept
+  #   if_tourist do |user|
+  #     @user = user
+  #     @reserve = TouristBike.find(params[:id])
+  #     if !@reserve.tourist_id.nil?
+  #       flash[:error] = "すでに予約が入っています"
+  #       redirect_to b_show_path(@reserve.bike_id)
+  #     elsif @reserve.update(tourist_id: @user.id)
+  #       flash[:success] = "予約しました"
+  #       redirect_to t_reserve_path
+  #     else
+  #       flash[:error] = "予約に失敗しました"
+  #       redirect_to b_show_path(@reserve.bike_id)
+  #     end
+  #   end
+  # end
 
+
+  private
   def permit_params
     params.require(:tourist_bike).permit(:bike_id, :day, :rent_time, :place_id)
   end

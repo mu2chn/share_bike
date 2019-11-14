@@ -1,5 +1,6 @@
 ActiveAdmin.register User do
-  permit_params :email, :name, :authenticated, :nickname
+  permit_params :name, :authenticated, :nickname
+  actions :all, except: [:destroy ]
 
   filter :email
   filter :nikname
@@ -20,7 +21,6 @@ ActiveAdmin.register User do
     f.inputs do
       f.input :name
       f.input :nickname
-      f.input :email
       f.input :authenticated
     end
     f.actions
