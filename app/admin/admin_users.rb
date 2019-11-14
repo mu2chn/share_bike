@@ -1,6 +1,6 @@
 ActiveAdmin.register AdminUser do
-  permit_params :email, :password, :password_confirmation
-  actions :all, except: [:destroy, :new ]
+  permit_params
+  actions :all, except: [:destroy, :new, :edit ]
 
   index do
     id_column

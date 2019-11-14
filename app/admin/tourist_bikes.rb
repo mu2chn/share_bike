@@ -1,6 +1,6 @@
 ActiveAdmin.register TouristBike do
   permit_params :user_prob, :tourist_prob, :place_id, :rent_time, :day, :void
-  actions :all, except: [:destroy]
+  actions :all, except: [:destroy, :new]
 
   index do
     id_column

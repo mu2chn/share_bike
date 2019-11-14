@@ -12,22 +12,27 @@ ActiveAdmin.register_page "Dashboard" do
 
     # Here is an example of a simple dashboard with columns and panels.
     #
-    # columns do
-    #   column do
-    #     panel "Recent Posts" do
-    #       ul do
-    #         Post.recent(5).map do |post|
-    #           li link_to(post.title, admin_post_path(post))
-    #         end
-    #       end
-    #     end
-    #   end
+    columns do
+      column do
+        panel "Recent Resv" do
+          ul do
+            TouristBike.last(5).reverse.map do |res|
+              li link_to(res.day.to_s + res.bike.name, admin_tourist_bike_path(res))
+            end
+          end
+        end
+      end
 
-    #   column do
-    #     panel "Info" do
-    #       para "Welcome to ActiveAdmin."
-    #     end
-    #   end
-    # end
+      column do
+        panel "Info" do
+          h3 "how to manage db"
+          para "データーベースの操作（Edit）にはできるだけ注意してほしい。少しでもわからないことがあれば聞いてください。"
+          # h3 "TouristBike"
+          # para ""
+          # h3 "Bike"
+          # para "Welcome to ActiveAdmin."
+        end
+      end
+    end
   end # content
 end

@@ -7,7 +7,7 @@ class Bike < ApplicationRecord
   mount_uploader :image, ImageUploader
 
   validates :name, presence: true,
-            length: {maximum: 12}
+            length: {maximum: 30}
   validates :vehicle_num, presence: true
   validates :security_num, presence: true
   validates :details, length: {maximum: 255}

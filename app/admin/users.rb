@@ -1,6 +1,6 @@
 ActiveAdmin.register User do
   permit_params :name, :authenticated, :nickname, :void
-  actions :all, except: [:destroy ]
+  actions :all, except: [:destroy, :new ]
 
   filter :email
   filter :nikname

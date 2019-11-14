@@ -37,3 +37,6 @@ en:
       previous: "&lsaquo; Prev"
       next: "Next &rsaquo;"
       truncate: "&hellip;"
+#  time:
+#    formats:
+#      long: "%H:%M"

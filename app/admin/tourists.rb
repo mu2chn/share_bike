@@ -1,6 +1,6 @@
 ActiveAdmin.register Tourist do
   permit_params :name, :authenticated, :nickname, :phmnumber, :void
-  actions :all, except: [:destroy ]
+  actions :all, except: [:destroy, :new ]
 
   index do
     id_column
