@@ -14,6 +14,7 @@ class Tourist < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   validates :name, presence: true,
+            uniqueness: true,
             length: { maximum: 50 }
   validates :email, presence: true,
             uniqueness: { case_sensitive: false },
@@ -21,11 +22,15 @@ class Tourist < ApplicationRecord
             length: { maximum: 255 }
   validates :terms, presence: true
   validates :temp_terms, acceptance: true
-  # validates :authenticated, presence: true
+
 
   has_secure_password
   validates :password, length: {minimum: 6, maximum: 100}, on: :update, allow_blank: true
   validates :password, presence: true, length: {minimum: 6, maximum: 100}, on: :create
+
+
+
+
 
   def Tourist.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
