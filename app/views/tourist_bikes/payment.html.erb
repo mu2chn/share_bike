@@ -74,13 +74,35 @@
                 purchase_units: [{
                     reference_id: "<%= @reserve.id %>" + "@" + "<%= @tourist.id %>",
                     amount: {
-                        value: '700'
-                    }
+                        currency_code: "JPY",
+                        value: "700",
+                        breakdown: {
+                            "item_total": { "currency_code":"JPY", "value":"700"},
+                            // "shipping": { "currency_code":"JPY", "value":"0"},
+                            // "tax_total": { "currency_code":"JPY", "value":"2.4"},
+                            // "discount": { "currency_code":"JPY", "value":"0"}
+                        }
+                    },
+                    items:[
+                        {
+                            name: "自転車レンタル代金",
+                            unit_amount: {
+                                value: "700",
+                                currency_code: "JPY"
+                            },
+                            quantity: "1"
+                        }
+                    ]
                 }],
-                payment: {
-                    redirect_urls: {
-                        return_url: '/tourists/reserve',
-                    }
+                application_context:{
+                    locale: "ja-JP",
+                    shipping_preference: "NO_SHIPPING"
+                },
+                payer: {
+                  address: {
+                      country_code: "JP",
+                  },
+                  email_address: "<%= @tourist.email %>"
                 }
             });
         },
