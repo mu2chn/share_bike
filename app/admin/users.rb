@@ -3,7 +3,7 @@ ActiveAdmin.register User do
   actions :all, except: [:destroy, :new ]
 
   filter :email
-  filter :nikname
+  filter :nickname
   filter :name
   filter :created_at
 

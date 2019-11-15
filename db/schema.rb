@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191114170301) do
+ActiveRecord::Schema.define(version: 20191115103204) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -70,8 +70,10 @@ ActiveRecord::Schema.define(version: 20191114170301) do
     t.time "rent_time"
     t.integer "status", default: 0
     t.boolean "void", default: false
+    t.integer "transaction_id"
     t.index ["bike_id"], name: "index_tourist_bikes_on_bike_id"
     t.index ["tourist_id"], name: "index_tourist_bikes_on_tourist_id"
+    t.index ["transaction_id"], name: "index_tourist_bikes_on_transaction_id"
   end
 
   create_table "tourists", force: :cascade do |t|
@@ -90,6 +92,20 @@ ActiveRecord::Schema.define(version: 20191114170301) do
     t.string "authenticate_url"
     t.datetime "authenticate_expire"
     t.boolean "void", default: false
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.string "order_id"
+    t.string "authorization_id"
+    t.string "capture_id"
+    t.integer "tourist_id"
+    t.boolean "void", default: false
+    t.boolean "refunded", default: false
+    t.integer "amount"
+    t.string "currency"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tourist_id"], name: "index_transactions_on_tourist_id"
   end
 
   create_table "user_reviews", force: :cascade do |t|
