@@ -102,7 +102,7 @@
                     location.href="/tourists/reserve/?payment=true";
                 }).catch(function (reason) {
                     console.log(reason);
-                    alert("支払いに失敗しました");
+                    alert(reason.response.data['msg']);
                     location.href="/";
                 });
             });

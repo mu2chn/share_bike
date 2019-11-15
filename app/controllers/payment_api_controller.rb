@@ -21,6 +21,10 @@ class PaymentApiController < ApplicationController
         {void: true, order_id: json["orderID"], authorization_id: json["authorizationID"]})
 
     order = transaction.order_detail(client, 700, "JPY")
+    if order[0] == 1
+      render json: {payment: false, msg: "金額が不正です"}, status: :unprocessable_entity
+      return nil
+    end
     @tourist = transaction.tourist
 
     reserve_tourist_id = order[1][:result][:purchase_units][0][:reference_id]
@@ -28,14 +32,11 @@ class PaymentApiController < ApplicationController
     @reserve = TouristBike.find(reserve_id)
 
     if @reserve.void
-      msg = "voidです"
-      render json: {payment: false, msg: msg}
+      msg = "無効な予約です"
     elsif !@tourist.authenticated
       msg = "メール認証されていません"
-      render json: {payment: false, msg: msg}
     elsif @reserve.tourist_id.present?
       msg = "すでに予約されています"
-      render json: {payment: false, msg: msg}
     else
       auth = transaction.authorization(client)
       if auth[0] == 0
@@ -43,17 +44,17 @@ class PaymentApiController < ApplicationController
         if @reserve.tourist_id.present?
           msg = "すでに予約されています"
           transaction.refund_order(client)
-          render json: {payment: false, msg: msg}
         else
           @reserve.update_attributes(tourist_id: @tourist.id, transaction_id: transaction.id)
           NotificationMailer.send_confirm_to_user(@tourist, @reserve).deliver_later
           render json: {payment: true}
+          return nil
         end
       else
         msg = "支払いに失敗しました"
-        render json: {payment: false, msg: msg}
       end
     end
+    render json: {payment: false, msg: msg}, status: :unprocessable_entity
   end
 
   def unpaid

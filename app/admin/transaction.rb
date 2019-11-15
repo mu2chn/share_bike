@@ -3,6 +3,7 @@ ActiveAdmin.register Transaction do
   actions :all, except: [:destroy, :new, :edit ]
 
   filter :tourist
+  filter :id
 
   index do
     id_column

@@ -23,7 +23,7 @@ class Transaction < ApplicationRecord
         return order_detail
       end
     end
-    order_detail
+    [1, order_detail[1]]
   end
 
   def authorization(client)
@@ -31,8 +31,8 @@ class Transaction < ApplicationRecord
     if capture[0] == 0
       capture_id = capture[1][:result][:id]
       self.update_attributes(capture_id: capture_id)
-      return [0, capture[1]]
       self.update_attributes(void: false)
+      return [0, capture[1]]
     end
     [1, capture[1]]
   end
