@@ -16,47 +16,42 @@ class PaymentApiController < ApplicationController
   def check
     client = Payment.init_client
     json = JSON.parse(request.body.read)
-    order_detail = Payment.order(json["orderID"], client)[1]
 
-    currency = order_detail[:result][:purchase_units][0][:amount][:currency_code]
-    amount = order_detail[:result][:purchase_units][0][:amount][:value].to_i
-    reserve_tourist_id = order_detail[:result][:purchase_units][0][:reference_id]
+    transaction = Transaction.create(
+        {void: true, order_id: json["orderID"], authorization_id: json["authorizationID"]})
+
+    order = transaction.order_detail(client, 700, "JPY")
+    @tourist = transaction.tourist
+
+    reserve_tourist_id = order[1][:result][:purchase_units][0][:reference_id]
     reserve_id = /^\d+/.match(reserve_tourist_id)[0].to_i
-    tourist_id = /\d+$/.match(reserve_tourist_id)[0].to_i
     @reserve = TouristBike.find(reserve_id)
-    @tourist = Tourist.find(tourist_id)
-
-    response_auth = Payment.auth(json["authorizationID"], client)[1]
-    capture_id = response_auth[:result][:id]
 
     if @reserve.void
-      p "voidです"
-      Payment.refund(capture_id, client)
+      msg = "voidです"
+      render json: {payment: false, msg: msg}
     elsif !@tourist.authenticated
-      p "メール認証されていません"
-      Payment.refund(capture_id, client)
-    elsif not @reserve.tourist_id.nil? and not @reserve.order_id.nil?
-      p "すでに予約されています"
-      Payment.refund(capture_id, client)
-      render json: {payment: false}
-    elsif amount < 700 or currency != "JPY"
-      p "金額が不正です"
-      Payment.refund(capture_id, client)
-      render json: {payment: false}
+      msg = "メール認証されていません"
+      render json: {payment: false, msg: msg}
+    elsif @reserve.tourist_id.present?
+      msg = "すでに予約されています"
+      render json: {payment: false, msg: msg}
     else
-      update = @reserve.update_attributes(
-          order_id: json["orderID"],
-          tourist_id: tourist_id,
-          amount: amount,
-          paid_date: DateTime.now,
-          authorization_id: json["authorizationID"],
-          capture_id: capture_id
-      )
-      if update
-        NotificationMailer.send_confirm_to_user(@tourist, @reserve).deliver_later
-        render json: {payment: true}
+      auth = transaction.authorization(client)
+      if auth[0] == 0
+        transaction.update_attributes(void: false)
+        if @reserve.tourist_id.present?
+          msg = "すでに予約されています"
+          transaction.refund_order(client)
+          render json: {payment: false, msg: msg}
+        else
+          @reserve.update_attributes(tourist_id: @tourist.id, transaction_id: transaction.id)
+          NotificationMailer.send_confirm_to_user(@tourist, @reserve).deliver_later
+          render json: {payment: true}
+        end
       else
-        render json: {payment: false}, status: :unprocessable_entity
+        msg = "支払いに失敗しました"
+        render json: {payment: false, msg: msg}
       end
     end
   end

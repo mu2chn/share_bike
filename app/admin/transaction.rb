@@ -10,7 +10,7 @@ ActiveAdmin.register Transaction do
     column :created_at
     column :amount
     column :currency
-    column :refund
+    column :refunded
     column :void
     actions
   end

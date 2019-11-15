@@ -2,26 +2,28 @@ class TouristBike < ApplicationRecord
   belongs_to :bike
   belongs_to :tourist, optional: true
 
-
   #########################
   # admin methods
   #########################
 
   def cancel
-      status = Payment.refund(self.capture_id)
+    if self.tourist_id.present?
+      trans = Transaction.find(self.transaction_id)
+      status = trans.refund_order(Payment.init_client)
       if status[0] == 0
-          self.update_attributes(
-              capture_id: nil,
-              order_id: nil,
-              tourist_id: nil,
-              authorization_id: nil,
-              amount: nil,
-              paid_date: nil,
-              status: 0
+          trans.update_attributes(
+            void: true,
+            refunded: true
           )
-          return status[1][:result]
+          self.update_attributes(
+            transaction_id: nil,
+            tourist_id: nil
+          )
+          return status[1]
       else
-          return status[1][:result]
+          return status[1]
       end
+    end
+    return "no record"
   end
 end
