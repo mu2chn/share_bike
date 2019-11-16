@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191115103204) do
+ActiveRecord::Schema.define(version: 20191116055040) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -105,6 +105,9 @@ ActiveRecord::Schema.define(version: 20191115103204) do
     t.string "currency"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "voided"
+    t.string "refund_id"
+    t.string "payer_id"
     t.index ["tourist_id"], name: "index_transactions_on_tourist_id"
   end
 

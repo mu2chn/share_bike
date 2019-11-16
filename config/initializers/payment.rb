@@ -30,15 +30,15 @@ class Payment
     return [0, res]
   end
 
-  def self.auth(authorization_id, client=self.init_client)
+  def self.capture(authorization_id, capture_body, client=self.init_client)
     begin
       request = PayPalCheckoutSdk::Payments::AuthorizationsCaptureRequest::new(authorization_id)
       request.prefer("return=representation")
-      request.request_body({})
+      request.request_body(capture_body)
       res = client.execute(request)
     rescue => e
       p e.result
-      return [1, e.status_code.to_s + e.result.to_s]
+      return [1, e]
     end
     return [0, res]
   end
@@ -48,7 +48,7 @@ class Payment
       order = PayPalCheckoutSdk::Orders::OrdersGetRequest::new(order_id)
       order_detail = client.execute(order)
     rescue => e
-      return [1, e.status_code.to_s + e.result.to_s]
+      return [1, e]
     end
     return [0, order_detail]
   end
@@ -59,9 +59,19 @@ class Payment
       void = PayPalCheckoutSdk::Payments::AuthorizationsVoidRequest::new(authorization_id)
       void_detail = client.execute(void)
     rescue => e
-      return [1, e.status_code.to_s + e.result.to_s]
+      return [1, e]
     end
     return [0, void_detail]
+  end
+
+  def self.re_auth(authorization_id, client=self.init_client)
+    begin
+      re_auth = PayPalCheckoutSdk::Payments::AuthorizationsReauthorizeRequest::new(authorization_id)
+      re_auth_detail = client.execute(re_auth)
+    rescue => e
+      return [1, e]
+    end
+    return [0, re_auth_detail]
   end
 
 end

@@ -23,4 +23,13 @@ ActiveAdmin.register Transaction do
     f.actions
   end
 
+  action_item :order_detail, only: :show do
+    link_to 'Details', order_detail_admin_transaction_path
+  end
+
+  member_action :order_detail, method: :get do
+    status = resource.show_order[1][:result][:payer]#[:purchase_units]
+    redirect_to resource_path, notice: "DETAIL === #{status}"
+  end
+
 end

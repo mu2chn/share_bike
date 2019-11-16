@@ -20,7 +20,7 @@ class PaymentApiController < ApplicationController
     transaction = Transaction.create(
         {void: true, order_id: json["orderID"], authorization_id: json["authorizationID"]})
 
-    order = transaction.order_detail(client, 700, "JPY")
+    order = transaction.order_detail(2700, "JPY", client)
     if order[0] == 1
       render json: {payment: false, msg: "金額が不正です"}, status: :unprocessable_entity
       return nil
@@ -38,7 +38,7 @@ class PaymentApiController < ApplicationController
     elsif @reserve.tourist_id.present?
       msg = "すでに予約されています"
     else
-      auth = transaction.authorization(client)
+      auth = transaction.capture_for_ticket({amount: {value: "700", currency_code: "JPY"}}, client)
       if auth[0] == 0
         transaction.update_attributes(void: false)
         if @reserve.tourist_id.present?
@@ -54,6 +54,7 @@ class PaymentApiController < ApplicationController
         msg = "支払いに失敗しました"
       end
     end
+    transaction.void_order(client)
     render json: {payment: false, msg: msg}, status: :unprocessable_entity
   end
 
