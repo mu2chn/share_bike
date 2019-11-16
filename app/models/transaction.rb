@@ -18,9 +18,9 @@ class Transaction < ApplicationRecord
               payer_id: payer_id
       )
       if currency != expected_currency
-        self.update_attributes(void: true)
+        self.update_attributes(valid_ticket: false )
       elsif amount != expected_amount.to_i
-        self.update_attributes(void: true)
+        self.update_attributes(valid_ticket: false )
       else
         return order_detail
       end
@@ -39,26 +39,27 @@ class Transaction < ApplicationRecord
     capture = Payment.capture(self.authorization_id, capture_body, client)
     if capture[0] == 0
       capture_id = capture[1][:result][:id]
-      update_amount = self.amount - capture[1][:result][:amount][:value].to_i
+      ticket_price = capture[1][:result][:amount][:value].to_i
       self.update_attributes(
-          capture_id: capture_id,
-          void: false,
-          amount: update_amount
+          capture_ticket: capture_id,
+          valid_ticket: true,
+          ticket_amount: ticket_price
       )
       return [0, capture[1]]
     end
     [1, capture[1]]
   end
 
-  def refund_order(client=Payment.init_client)
+  def refund_before_ride(client=Payment.init_client)
     if self.refunded
       return [2, "already refunded"]
     end
-    refund = Payment.refund(self.capture_id, client)
+    refund = Payment.refund(self.capture_ticket, client)
     if refund[0] == 0
       self.update_attributes(
-          refunded: true,
-          void: true
+          refund_ticket: refund[1][:result][:id],
+          valid_ticket: false,
+          voided_deposit: true
       )
       refund
     else
@@ -66,17 +67,66 @@ class Transaction < ApplicationRecord
     end
   end
 
-  def void_order(client=Payment.init_client)
-    unless self.voided && self.capture_id.nil?
+  def void_all_of_order(client=Payment.init_client)
+    unless self.voided_all
       void_response = Payment.void(self.authorization_id)
       if void_response[0] == 0
         self.update_attributes(
-            voided: true,
-            void: true
+            valid_ticket: false ,
+            voided_all: true
         )
       end
       void_response
     end
     [1, "already voided or captured"]
+  end
+
+  # after 3 days
+  def capture_for_deposit(capture_body, client=Payment.init_client)
+    re_auth = Payment.re_auth(self.authorization_id, client)
+    if re_auth[0] == 1
+      # return re_auth
+    else
+      re_auth_id = re_auth[1][:result][:id]
+      self.update_attributes(
+          re_authorization_id: re_auth_id
+      )
+    end
+    re_auth_id ||= self.authorization_id #TODO fix before rerease
+    unless capture_body.dig(:amount, :currency_code) == self.currency or capture_body.dig(:amount, :currency_code).nil?
+      return [1, "currency_code invalid"]
+    end
+    capture = Payment.capture(re_auth_id, capture_body, client)
+    # if (not self.voided_deposit) and (self.capture_deposit.nil?)
+    if capture[0] == 0
+      capture_id = capture[1][:result][:id]
+      deposit_price = capture[1][:result][:amount][:value].to_i
+      self.update_attributes(
+          capture_deposit: capture_id,
+          deposit_amount: deposit_price
+      )
+      return [0, capture[1]]
+    end
+    [1, capture[1]]
+  end
+
+  def refund_for_deposit(client=Payment.init_client)
+    if self.capture_deposit.present?
+      refund = Payment.refund(self.capture_deposit, client)
+      if refund[0] == 0
+        self.update_attributes(refund_deposit: refund[1][:result][:id])
+      end
+      return refund
+    end
+    [1, "didnt capture deposit"]
+  end
+
+  def void_deposit(client=Payment.init_client)
+    void = Payment.void(self.authorization_id) #TODO makes err?
+    if void[0] == 0
+      self.update_attributes(voided_deposit: true)
+      return void
+    end
+    void
   end
 end

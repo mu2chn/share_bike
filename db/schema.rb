@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191116055040) do
+ActiveRecord::Schema.define(version: 20191116183647) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -108,6 +108,16 @@ ActiveRecord::Schema.define(version: 20191116055040) do
     t.boolean "voided"
     t.string "refund_id"
     t.string "payer_id"
+    t.string "capture_ticket"
+    t.string "capture_deposit"
+    t.string "refund_ticket"
+    t.string "refund_deposit"
+    t.boolean "voided_all", default: false
+    t.boolean "voided_deposit", default: false
+    t.boolean "valid_ticket", default: false
+    t.string "re_authorization_id"
+    t.integer "ticket_amount"
+    t.integer "deposit_amount"
     t.index ["tourist_id"], name: "index_transactions_on_tourist_id"
   end
 
