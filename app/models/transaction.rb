@@ -122,11 +122,11 @@ class Transaction < ApplicationRecord
   end
 
   def void_deposit(client=Payment.init_client)
-    void = Payment.void(self.authorization_id) #TODO makes err?
-    if void[0] == 0
+    void_detail = Payment.void(self.authorization_id) #TODO makes err?
+    if void_detail[0] == 0
       self.update_attributes(voided_deposit: true)
-      return void
+      return void_detail
     end
-    void
+    void_detail
   end
 end
