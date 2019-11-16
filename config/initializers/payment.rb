@@ -52,4 +52,16 @@ class Payment
     end
     return [0, order_detail]
   end
+
+
+  def self.void(authorization_id, client=self.init_client)
+    begin
+      void = PayPalCheckoutSdk::Payments::AuthorizationsVoidRequest::new(authorization_id)
+      void_detail = client.execute(void)
+    rescue => e
+      return [1, e.status_code.to_s + e.result.to_s]
+    end
+    return [0, void_detail]
+  end
+
 end
