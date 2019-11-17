@@ -1,7 +1,7 @@
 class BikesController < ApplicationController
 
   def index
-    @bikes = Bike.joins(:tourist_bikes).eager_load(:tourist_bikes).where(void: false).easy_search_and(params[:search])
+    @bikes = Bike.joins(:tourist_bikes).eager_load(:tourist_bikes).easy_search_and(params[:search]) #didnt void
     dsearch = search_by_date(params[:dsearch])
     if dsearch != nil
       @bikes = @bikes.where(tourist_bikes: {day: dsearch, void: false})
@@ -32,7 +32,6 @@ class BikesController < ApplicationController
     @bike = Bike.find(params[:id])
     @reservations = TouristBike.where(bike_id: @bike.id)
                         .where(day: Date.tomorrow...Date.today.since(2.months))
-                        .where(void: false)
                         .order(day: "ASC").page(params[:page]).per(4)
     if user = current_user
       user.update_attribute(:tutorial,
