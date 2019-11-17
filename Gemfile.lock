@@ -283,7 +283,6 @@ DEPENDENCIES
   byebug
   capybara (~> 2.13)
   carrierwave
-  coffee-rails (~> 4.2)
   devise
   font-awesome-sass (~> 5.2.0)
   jbuilder (~> 2.5)
