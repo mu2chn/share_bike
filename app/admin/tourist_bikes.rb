@@ -31,9 +31,25 @@ ActiveAdmin.register TouristBike do
   action_item :cancel, only: :edit do
     link_to 'Cancel Reserve (Refund)', cancel_admin_tourist_bike_path
   end
+  action_item :get_deposit, only: :edit do
+    link_to 'Get Deposit', get_deposit_admin_tourist_bike_path
+  end
+  action_item :refund_deposit, only: :edit do
+    link_to 'Refund Deposit', refund_deposit_admin_tourist_bike_path
+  end
 
   member_action :cancel, method: :get do
     status = resource.cancel
-    redirect_to resource_path, notice: "Canceled! exit code #{status}"
+    redirect_to resource_path, notice: "METHOD=Cancel #{status}"
+  end
+
+  member_action :get_deposit, method: :get do
+    status = resource.get_deposit
+    redirect_to resource_path, notice: "METHOD=getDeposit #{status}"
+  end
+
+  member_action :refund_deposit, method: :get do
+    status = resource.refund_deposit
+    redirect_to resource_path, notice: "METHOD=refundDeposit #{status}"
   end
 end
