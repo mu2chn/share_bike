@@ -16,7 +16,12 @@ $transition-fade:             opacity .15s linear !default;
 $transition-collapse:         height .20s ease-in-out !default;
 
 $theme-colors: (
-        "navy": #000080
+        "navy": #4790BB,//#000080,
+        "first": #4790BB,
+        "second": #B0D7D5,
+        "third": #2A5772,
+        "forth": #DFDFDF,
+        "watch": #FF9800
 );
 
 

@@ -6,35 +6,53 @@
   <% @reservations&.each do |res| %>
     <div class="media text-muted pt-3">
       <div class="media-body pb-3 mb-0 border-bottom border-gray">
-        <div class="flex-row d-flex justify-content-between align-items-center flex-wrap ">
-
-          <div class="p-2"><%= Bike.find(res.bike_id).name %></div>
-          <div class="p-2"><%= "#{res.day.month}/#{res.day.day}" %>
-            (<%= ["日", "月", "火", "水", "木", "金", "土"][res.day.wday] %>)
-            <a href="/root/place"><%= "-"+["ルネ前", "百万遍", "京大病院"][res.place_id] if res.place_id %></a>
-            <%= "-"+res.rent_time.strftime("%H:%M") if res.rent_time%></div>
-          <% if user? %>
-            <% if res.tourist_id.nil? && Bike.find(res.bike_id).user_id == @current_user&.id %>
-              <%= link_to "削除", r_delete_path(res.id), method: :delete, class: "btn btn-outline-navy btn-sm", role: "button", style: "height: 50%" %>
-            <% elsif !res.tourist_id.nil? %>
-              <button type="button" class="btn btn-warning btn-sm" disabled>予約済</button>
-            <% end %>
-        <% elsif tourist? %>
-            <div>700円</div>
-
-            <% if res.tourist_id.nil? &&  @current_user.authenticated%>
-
-              <%#= link_to "予約", r_accept_path(res.id), method: :post, class: "btn btn-outline-navy btn-sm", role: "button", style: "height: 50%" %>
-              <%= link_to "予約", r_payment_path(res.id), method: :get, class: "btn btn-outline-navy btn-sm", role: "button", style: "height: 50%" %>
-            <%elsif  res.tourist_id.nil?%>
-              <button type="button" class="btn btn-info btn-sm d-flex" disabled>予約可</button>
-        <% else %>
-              <button type="button" class="btn btn-warning btn-sm d-flex" disabled>予約済</button>
-            <% end %>
+        <div class="px-3">
+          <% if false %>
+            <div class="p-2"><%= Bike.find(res.bike_id).name %></div>
           <% end %>
 
+          <ul class="">
+          <li class="">
+            Rental Date: <%= "#{res.day.month}/#{res.day.day}" %>(<%= ["日", "月", "火", "水", "木", "金", "土"][res.day.wday] %>)</li>
+          <li class="">
+            Place: <a href="/root/place"><%= ["ルネ前", "百万遍", "京大病院"][res.place_id] if res.place_id %></a></li>
+          <li class="">
+            Rental Time: <%= res.rent_time.strftime("%H:%M") if res.rent_time%></li>
+          <li class="">Price: 700円</li>
+          </ul>
+
+          <br/>
+          <div class="float-right">
+            <% if res.tourist_id.present? %>
+                <button type="button" class="btn btn-warning btn-sm d-flex" disabled>予約済</button>
+
+            <% elsif user? %>
+                  <% if res.tourist_id.nil? && Bike.find(res.bike_id).user_id == @current_user&.id %>
+                    <%= link_to "削除", r_delete_path(res.id), method: :delete, class: "btn btn-outline-navy btn-sm", role: "button", style: "height: 100%" %>
+                  <% end %>
+
+
+            <% elsif tourist? %>
+                  <% if res.tourist_id.nil? &&  @current_user.authenticated%>
+                    <%= link_to "予約", r_payment_path(res.id), method: :get, class: "btn btn-outline-navy btn-sm", role: "button", style: "height: 100%" %>
+                  <% end %>
+
+            <% elsif res.tourist_id.nil?%>
+                <button type="button" class="btn btn-info btn-sm d-flex" disabled>予約可</button>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
   <% end %>
 </div>
+
+<!--<style>-->
+<!--  ul li:before {-->
+<!--    font-family: "Font Awesome 5 Free";-->
+<!--    content: "\f00c";-->
+<!--    position: absolute;-->
+<!--    left : 1em; /*左端からのアイコンまで*/-->
+<!--    color: #ffb03f; /*アイコン色*/-->
+<!--  }-->
+<!--</style>-->
