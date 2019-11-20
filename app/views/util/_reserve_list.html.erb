@@ -25,20 +25,20 @@
           <div class="float-right">
             <% if res.tourist_id.present? %>
                 <button type="button" class="btn btn-warning btn-sm d-flex" disabled>予約済</button>
-
-            <% elsif user? %>
-                  <% if res.tourist_id.nil? && Bike.find(res.bike_id).user_id == @current_user&.id %>
-                    <%= link_to "削除", r_delete_path(res.id), method: :delete, class: "btn btn-outline-navy btn-sm", role: "button", style: "height: 100%" %>
-                  <% end %>
-
-
-            <% elsif tourist? %>
-                  <% if res.tourist_id.nil? &&  @current_user.authenticated%>
-                    <%= link_to "予約", r_payment_path(res.id), method: :get, class: "btn btn-outline-navy btn-sm", role: "button", style: "height: 100%" %>
-                  <% end %>
-
             <% elsif res.tourist_id.nil?%>
-                <button type="button" class="btn btn-info btn-sm d-flex" disabled>予約可</button>
+
+                <% if user? &&  @current_user.authenticated%>
+                    <% if Bike.find(res.bike_id).user_id == @current_user&.id %>
+                      <%= link_to "削除", r_delete_path(res.id), method: :delete, class: "btn btn-outline-navy btn-sm", role: "button", style: "height: 100%" %>
+                    <% end %>
+
+
+                <% elsif tourist? &&  @current_user.authenticated%>
+                    <%= link_to "予約", r_payment_path(res.id), method: :get, class: "btn btn-outline-navy btn-sm", role: "button", style: "height: 100%" %>
+                <% else %>
+                  <button type="button" class="btn btn-info btn-sm d-flex" disabled>予約可</button>
+                <% end %>
+
             <% end %>
           </div>
         </div>
