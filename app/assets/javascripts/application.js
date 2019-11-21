@@ -26,3 +26,5 @@
 
 //= require rellax.min.js
 //= require_tree .
+
+//= require now-ui-kit

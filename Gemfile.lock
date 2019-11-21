@@ -185,6 +185,8 @@ GEM
     nio4r (2.5.2)
     nokogiri (1.10.5)
       mini_portile2 (~> 2.4.0)
+    now-ui-kit-rails (0.0.5)
+      sass-rails
     orm_adapter (0.5.0)
     paypal-checkout-sdk (1.0.2)
       braintreehttp (~> 0.5)
@@ -331,6 +333,7 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.2)
   mini_magick
   momentjs-rails
+  now-ui-kit-rails
   paypal-checkout-sdk
   paypal-sdk-rest
   pg

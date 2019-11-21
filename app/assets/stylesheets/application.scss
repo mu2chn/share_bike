@@ -21,15 +21,34 @@ $theme-colors: (
         "second": #B0D7D5,
         "third": #2A5772,
         "forth": #DFDFDF,
-        "watch": #FF9800
+        "watch": #FF9800,
 );
-
+$primary-color: #82c9ff;
 
 @import "bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "tempusdominus-bootstrap-4.css";
 @import "toastr";
+
+@import "now-ui-kit";
+//@import "now-ui-kit/variables";
+//@import 'now-ui-kit/mixins';
+//@import "now-ui-kit/plugins/plugin-bootstrap-switch";
+//@import "now-ui-kit/plugins/plugin-nouislider";
+//@import "now-ui-kit/plugins/plugin-datepicker";
+//@import "now-ui-kit/buttons";
+//@import "now-ui-kit/inputs";
+//@import "now-ui-kit/checkboxes-radio";
+//@import "now-ui-kit/progress";
+//@import "now-ui-kit/badges";
+//@import "now-ui-kit/pagination";
+//@import "now-ui-kit/typography";
+//@import "now-ui-kit/misc";
+//@import "now-ui-kit/pills";
+//@import "now-ui-kit/navbar";
+//@import "now-ui-kit/modals";
+
 
 //card-column
 .card-columns {
