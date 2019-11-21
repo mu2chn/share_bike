@@ -29,7 +29,9 @@ $primary-color: #82c9ff;
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "tempusdominus-bootstrap-4.css";
-//@import "toastr";
+
+@import "footer";
+@import "payment_design";
 
 //@import "now-ui-kit";
 @import 'now-ui-kit/variables';
@@ -88,109 +90,15 @@ $primary-color: #82c9ff;
   border: solid 3px #000000;
 }
 
-.back-svg{
-   opacity: 0.2;
-}
-
-//labelをうすく
-label{
-  color: #444444;
-}
-
 .fa-white{
   color: white;
-}
-
-//テーマカラー
-h1{
-  color: #000080;
 }
 
 //ブランドロゴ
 .navbar-brand{
   font-family: 'Maiden Orange', cursive;
-  //font-size: 22px;
 }
 .brandtext{ font-family: 'Maiden Orange', cursive;}
 
-//.wf-hannari{ font-family: "Hannari"; }
-//.wf-sawarabimincho { font-family: "Sawarabi Mincho"; }
 
 
-
-//footer
-.context-dark, .bg-gray-dark, .bg-primary {
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.footer-classic a, .footer-classic a:focus, .footer-classic a:active {
-  color: #ffffff;
-}
-.nav-list li {
-  padding-top: 5px;
-  padding-bottom: 5px;
-}
-
-ul, ol {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.social-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  padding: 23px;
-  font: 900 13px/1 "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.5);
-}
-.social-container .col {
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-
-//footer固定
-.mother {
-  min-height: calc(100vh - 168px);
-}
-
-//reserve page
-#paypal-button-container{
-  text-align : center ;
-}
-
-.payment-attention{
-  padding: 8px 19px;
-  margin: 2em 0;
-  color: #2c2c2f;
-  background: #cde4ff;
-  border-top: solid 5px #5989cf;
-  border-bottom: solid 5px #5989cf;
-}
-.payment-attention p {
-  margin: 0;
-  padding: 0;
-}
-
-.loading {
-  width: 100%;
-  height: 100%;
-  background: rgba(255,255,255,1.0);
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 20000;
-}
-
-.loading img {
-  width: 40px;
-  height: 40px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-top: -20px;
-  margin-left: -20px;
-}
