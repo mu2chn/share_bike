@@ -4,7 +4,7 @@ class BikesController < ApplicationController
     @bikes = Bike.joins(:tourist_bikes).eager_load(:tourist_bikes).easy_search_and(params[:search]) #didnt void
     dsearch = search_by_date(params[:dsearch])
     if dsearch != nil
-      @bikes = @bikes.where(tourist_bikes: {day: dsearch, void: false})
+      @bikes = @bikes.where(tourist_bikes: {day: dsearch})
     end
     @bikes = @bikes.page(params[:page]).per(9)
     pre_month = (Date.tomorrow...Date.tomorrow.end_of_month).to_a   
