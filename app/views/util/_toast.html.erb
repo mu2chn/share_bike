@@ -1,6 +1,19 @@
+<script>
+  //共通設定
+  toastr.options = {
+      tapToDismiss: true,
+      positionClass: "toast-bottom-left",
+      timeOut: 0,
+      extendedTimeOut: 0,
+      closeButton: true,
+      hideDuration: 10,
+      closeHtml: '<button type="button">×</button>',
+  }
+  // toastr.options.positionClass = "toast-bottom-right"
+</script>
+
 <% flash.each do |type, msg| %>
   <script>
-      toastr.options.positionClass = "toast-top-left";
       toastr['<%= type %>']('<%= msg %>');
   </script>
 <% end %>
@@ -9,16 +22,18 @@
   <script>
       // toastr.options.timeOut = 0;
       // toastr.options.extendedTimeOut = 0;
-      toastr.options.positionClass = "toast-top-left";
-      toastr.options.closeButton = true;
-      toastr.options.progressBar = true;
-      toastr.options.showEasing = "swing";
-      toastr.options.preventDuplicates = true;
-      toastr.info("<%= "#{@guide}" %>", "Tips");
+      // toastr.options.closeButton = true;
+      // toastr.options.progressBar = true;
+      // toastr.options.showEasing = "swing";
+      // toastr.options.preventDuplicates = true;
+<!--      toastr.info("<%= "#{@guide}" %>", "Tips");-->
   </script>
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="cache-control" content="no-cache" />
-  <meta http-equiv="expires" content="0" />
+  <div class="explain_box">
+    <p><%= @guide %></p>
+  </div>
+<!--  <meta http-equiv="Pragma" content="no-cache" />-->
+<!--  <meta http-equiv="cache-control" content="no-cache" />-->
+<!--  <meta http-equiv="expires" content="0" />-->
 <% end %>
 
 

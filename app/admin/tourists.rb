@@ -1,5 +1,5 @@
 ActiveAdmin.register Tourist do
-  permit_params :name, :authenticated, :nickname, :phmnumber, :void
+  permit_params :name, :authenticated, :nickname, :phmnumber, :void, :tutorial
   actions :all, except: [:destroy, :new ]
 
   index do
@@ -22,6 +22,7 @@ ActiveAdmin.register Tourist do
       f.input :name
       f.input :nickname
       f.input :phmnumber
+      f.input :tutorial
       f.input :authenticated
       f.input :void
     end
