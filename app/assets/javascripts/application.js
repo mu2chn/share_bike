@@ -28,3 +28,14 @@
 //= require_tree .
 
 //= require now-ui-kit
+
+document.addEventListener('turbolinks:load', function(){
+    $toggle = $(document.window);
+
+        $('html').removeClass('nav-open');
+        nowuiKit.misc.navbar_menu_visible = 0;
+        $('#bodyClick').remove();
+        setTimeout(function() {
+            $toggle.removeClass('toggled');
+        }, 550);
+});
