@@ -29,13 +29,13 @@
 
 //= require now-ui-kit
 
-document.addEventListener('turbolinks:load', function(){
+document.addEventListener('turbolinks:click', function(){
     $toggle = $(document.window);
-
-        $('html').removeClass('nav-open');
+     $('html').removeClass('nav-open');
         nowuiKit.misc.navbar_menu_visible = 0;
         $('#bodyClick').remove();
         setTimeout(function() {
             $toggle.removeClass('toggled');
-        }, 550);
+        }, 250);
+    $('#myModal').modal('hide')
 });
