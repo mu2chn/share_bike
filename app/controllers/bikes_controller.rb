@@ -17,7 +17,7 @@ class BikesController < ApplicationController
       days = pre_month + next_month
     end
 
-    @date_hash = days.map do |date|
+    @date_hash = days[0, 9].map do |date|
       [ "#{date.month}月#{date.day}日（#{[ "日", "月", "火", "水", "木", "金", "土"][date.wday]}）", date.day]
     end.to_a
     @prev_day = dsearch
