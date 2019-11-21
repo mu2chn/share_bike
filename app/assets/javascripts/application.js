@@ -38,4 +38,5 @@ document.addEventListener('turbolinks:click', function(){
             $toggle.removeClass('toggled');
         }, 250);
     $('#myModal').modal('hide')
+
 });
