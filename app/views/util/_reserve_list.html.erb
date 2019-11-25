@@ -29,7 +29,7 @@
 
                 <% if user? &&  @current_user.authenticated%>
                     <% if Bike.find(res.bike_id).user_id == @current_user&.id %>
-                      <%= link_to "削除", r_delete_path(res.id), method: :delete, class: "btn btn-outline-navy btn-sm", role: "button", style: "height: 100%" %>
+                      <%= link_to "削除", r_delete_path(res.id), method: :delete, class: "btn btn-danger btn-sm", role: "button", style: "height: 100%" %>
                     <% end %>
 
 

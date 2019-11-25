@@ -1,0 +1,70 @@
+<div class="accordion" id="accordion2" role="tablist">
+  <%= @reservations.empty? ? simple_format("自転車が見つかりません", class: "py-3 text-muted") : nil %>
+  <% @reservations.each_with_index do |res, i| %>
+    <div class="card shadow mb-3">
+      <a data-toggle="collapse" class="text-body text-decoration-none" href="#res-<%= res.id %>" aria-expanded="true" aria-controls="collapse1">
+
+        <div class="card-header _bg-white d-flex justify-content-between" role="tab" id="res-<%= res.id %>">
+            <h6 class="mb-0">
+              <%= res.day %>
+            </h6>
+          <%= icon("fas", "angle-down", class: "text-right") %>
+        </div>
+      </a>
+
+      <div id="res-<%= res.id %>" class="collapse <%= "show" if i==0 %>" role="tabpanel" aria-labelledby="heading1" data-parent="#accordion2">
+        <div class="card-body">
+
+          <div class="px-3">
+            <% if false %>
+              <div class="p-2"><%= Bike.find(res.bike_id).name %></div>
+            <% end %>
+
+            <ul class="">
+              <li>
+                Bike Name: <%= res.bike.name %>
+              </li>
+              <li class="">
+                Rental Date: <%= "#{res.day.month}/#{res.day.day}" %>(<%= ["日", "月", "火", "水", "木", "金", "土"][res.day.wday] %>)</li>
+              <li class="">
+                Place: <a href="/root/place"><%= ["ルネ前", "百万遍", "京大病院"][res.place_id] if res.place_id %></a></li>
+              <li class="">
+                Rental Time: <%= res.rent_time.strftime("%H:%M") if res.rent_time%></li>
+              <li class="">Price: 700円</li>
+            </ul>
+
+            <br/>
+            <div class="float-right">
+              <% if res.tourist_id.present? %>
+                <button type="button" class="btn btn-warning btn-sm" disabled>予約済</button>
+              <% elsif res.tourist_id.nil?%>
+
+                <% if user? &&  @current_user.authenticated%>
+                  <% if Bike.find(res.bike_id).user_id == @current_user&.id %>
+                    <%= link_to "削除", r_delete_path(res.id), method: :delete, class: "btn btn-danger btn-sm", role: "button", style: "height: 100%" %>
+                  <% end %>
+
+
+                <% elsif tourist? &&  @current_user.authenticated%>
+                  <%= link_to "予約", r_payment_path(res.id), method: :get, class: "btn btn-info btn-sm", role: "button", style: "height: 100%;" %>
+                <% else %>
+                  <button type="button" class="btn btn-info btn-sm" disabled>予約可</button>
+                <% end %>
+              <% end %>
+              <object>
+              <%= link_to "詳細", b_show_path(res.bike_id), method: :get, class: "btn btn-outline-navy btn-sm", role: "button", style: "height: 100%;" %>
+              </object>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<style>
+  a .btn{
+    pointer-events: none;
+  }
+</style>

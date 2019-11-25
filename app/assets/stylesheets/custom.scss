@@ -16,6 +16,32 @@
 }
 
 //labelをうすく
-label{
-  color: #BBBBBB;
+//label{
+//  color: #BBBBBB;
+//}
+
+
+//card-column
+.card-columns {
+  @include media-breakpoint-only(sm) {
+    column-count: 2;
+  }
 }
+
+.explain_box {
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  font-weight: bold;
+  border: solid 3px #000000;
+}
+
+.fa-white{
+  color: white;
+}
+
+//ブランドロゴ
+.navbar-brand{
+  font-family: 'Maiden Orange', cursive;
+}
+.brandtext{ font-family: 'Maiden Orange', cursive;}
+

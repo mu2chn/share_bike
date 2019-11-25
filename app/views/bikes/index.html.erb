@@ -1,8 +1,10 @@
 <%= render 'bikes/search_box' %>
 
-<%= render 'bikes/bike_index' %>
+<%#= render 'bikes/bike_index' %>
+<%#= render 'bikes/reserve_base' %>
+<%= render 'util/reserve_list_accordion' %>
 
 <div class="mx-auto d-block mt-4">
-  <%= paginate @bikes %>
+  <%= paginate @reservations %>
 </div>
 

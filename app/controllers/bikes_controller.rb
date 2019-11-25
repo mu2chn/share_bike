@@ -1,26 +1,16 @@
 class BikesController < ApplicationController
 
   def index
-    @bikes = Bike.joins(:tourist_bikes).eager_load(:tourist_bikes).easy_search_and(params[:search]) #didnt void
     dsearch = search_by_date(params[:dsearch])
-    if dsearch != nil
-      @bikes = @bikes.where(tourist_bikes: {day: dsearch})
-    end
-    @bikes = @bikes.page(params[:page]).per(9)
-    pre_month = (Date.tomorrow...Date.tomorrow.end_of_month).to_a   
-    next_month =  (Date.tomorrow.end_of_month..Date.today.next_month).to_a
-    if !pre_month
-      days = next_month
-    elsif !next_month
-      days = pre_month
+
+    if dsearch.nil?
+      @reservations = TouristBike.all.order(:day).page(params[:page]).per(9)
     else
-      days = pre_month + next_month
+      @reservations = TouristBike.where(day: dsearch).order(:day).page(params[:page]).per(9)
     end
 
-    @date_hash = days[0, 9].map do |date|
-      [ "#{date.month}月#{date.day}日（#{[ "日", "月", "火", "水", "木", "金", "土"][date.wday]}）", date.day]
-    end.to_a
     @prev_day = dsearch
+    @date_hash = make_month
 
     if user = current_user
       user.update_attribute(:tutorial,
@@ -83,12 +73,28 @@ class BikesController < ApplicationController
     end
   end
 
+  private
   def bike_params
     params.require(:bike).permit(:name, :vehicle_num, :security_area, :security_num, :details, :image)
   end
 
   def bike_update_params
     params.require(:bike).permit(:name, :details, :image)
+  end
+
+  def make_month
+    pre_month = (Date.tomorrow...Date.tomorrow.end_of_month).to_a
+    next_month =  (Date.tomorrow.end_of_month..Date.today.next_month).to_a
+    if !pre_month
+      days = next_month
+    elsif !next_month
+      days = pre_month
+    else
+      days = pre_month + next_month
+    end
+    days[0, 9].map do |date|
+      [ "#{date.month}月#{date.day}日（#{[ "日", "月", "火", "水", "木", "金", "土"][date.wday]}）", date.day]
+    end.to_a
   end
 
   def search_by_date(day)
