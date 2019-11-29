@@ -34,7 +34,7 @@
 
 
                 <% elsif tourist? &&  @current_user.authenticated%>
-                    <%= link_to "予約", r_payment_path(res.id), method: :get, class: "btn btn-outline-navy btn-sm", role: "button", style: "height: 100%" %>
+                    <%= link_to "予約", r_payment_path(res.id), method: :get, class: "btn btn-primary btn-sm", role: "button", style: "height: 100%" %>
                 <% else %>
                   <button type="button" class="btn btn-info btn-sm d-flex" disabled>予約可</button>
                 <% end %>
