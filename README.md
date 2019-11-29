@@ -23,8 +23,13 @@ $ bundle exec rake assets:precompile RAILS_ENV=production
 $ rails db:migrate RAILS_ENV=production
 $ bundle exec whenever --update-crontab
 # not recommend
-$ nohup rails s -e production &
+$ rails s -e production
 
+```
+
+### Util
+```bash
+$ rails c -e production
 ```
 
 ### StopServer
