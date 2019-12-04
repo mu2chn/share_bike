@@ -3,19 +3,27 @@ class TouristBikesController < ApplicationController
   def reserve
     if_user do |user|
       @user = user
-      @reserve = TouristBike.new(permit_params)
+      permitted = permit_params
+      @reserve = TouristBike.new(
+        bike_id: permitted["bike_id"],
+        start_datetime: Time.parse("#{permitted["date"]} #{permitted["start_datetime(4i)"]}:#{permitted["start_datetime(5i)"]}"),
+        end_datetime: Time.parse("#{permitted["date"]} #{permitted["end_datetime(4i)"]}:#{permitted["end_datetime(5i)"]}"),
+        place_id: permitted["place_id"]
+      )
       if p @reserve.bike_id.nil?
         flash[:warning] = "自転車が選択されていません"
       elsif !@user.authenticated
         flash[:warning] = "メール認証を済ませて下さい"
       elsif Bike.find(@reserve.bike_id.to_i).user_id == @user.id
-        if @reserve.day.nil?
+        if @reserve.start_datetime.nil?
           flash[:warning] = "日付を入力してください"
-        elsif @reserve.day <= Date.today
-          flash[:warning] = "今日以前の日付は無効です"
-        elsif @reserve.day > Date.today.since(2.months)
+        elsif @reserve.start_datetime + 10.minutes > @reserve.end_datetime
+          flash[:warning] = "開始時刻が終了時刻よりも早いです"
+        elsif @reserve.start_datetime <= Time.now + 30.minutes
+          flash[:warning] = "開始時刻の３０分前までにご登録下さい"
+        elsif @reserve.start_datetime > Date.today.since(2.months)
           flash[:warning] = "2ヶ月以上先の予約はできません"
-        elsif !TouristBike.where(bike_id: @reserve.bike_id)&.where(day: @reserve.day).empty?
+        elsif !TouristBike.where(bike_id: @reserve.bike_id)&.where(start_datetime: @reserve.start_datetime).empty?
           flash[:warning] = "同じ日に同じ自転車の貸出はできません"
         elsif @reserve.save
           flash[:success] = "新しく日程を追加しました"
@@ -58,28 +66,13 @@ class TouristBikesController < ApplicationController
     end
   end
 
-  #
-  # def accept
-  #   if_tourist do |user|
-  #     @user = user
-  #     @reserve = TouristBike.find(params[:id])
-  #     if !@reserve.tourist_id.nil?
-  #       flash[:error] = "すでに予約が入っています"
-  #       redirect_to b_show_path(@reserve.bike_id)
-  #     elsif @reserve.update(tourist_id: @user.id)
-  #       flash[:success] = "予約しました"
-  #       redirect_to t_reserve_path
-  #     else
-  #       flash[:error] = "予約に失敗しました"
-  #       redirect_to b_show_path(@reserve.bike_id)
-  #     end
-  #   end
-  # end
-
-
   private
   def permit_params
-    params.require(:tourist_bike).permit(:bike_id, :day, :rent_time, :place_id)
+    params.permit(:bike_id, :date, :start_datetime, :end_datetime, :place_id)
+  end
+
+  def check_valid_reserve
+
   end
 
 end

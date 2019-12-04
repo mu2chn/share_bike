@@ -37,6 +37,8 @@ class PaymentApiController < ApplicationController
       msg = "無効な予約です"
     elsif !@tourist.authenticated
       msg = "メール認証されていません"
+    elsif @reserve.end_datetime < Time.now
+      msg = "すでに終了しています"
     elsif @reserve.tourist_id.present?
       msg = "すでに予約されています"
     else

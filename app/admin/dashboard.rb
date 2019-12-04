@@ -17,7 +17,7 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Recent Resv" do
           ul do
             TouristBike.last(5).reverse.map do |res|
-              li link_to(res.day.to_s + res.bike.name, admin_tourist_bike_path(res))
+              li link_to(res.start_datetime.to_s + res.bike.name, admin_tourist_bike_path(res))
             end
           end
         end

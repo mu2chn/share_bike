@@ -21,8 +21,8 @@ class BikesController < ApplicationController
   def show
     @bike = Bike.find(params[:id])
     @reservations = TouristBike.where(bike_id: @bike.id)
-                        .where(day: Date.tomorrow...Date.today.since(2.months))
-                        .order(day: "ASC").page(params[:page]).per(4)
+                        .where(start_datetime: (Time.now)...Time.now.since(2.weeks))
+                        .order(start_datetime: "ASC").page(params[:page]).per(4)
     if user = current_user
       user.update_attribute(:tutorial,
                             tutorial(user.tutorial, 1, "ここは予約ページです。気に入った自転車の予約をすることができます。"))

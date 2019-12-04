@@ -51,9 +51,9 @@ class UsersController < ApplicationController
       @user = user
       @reserve = TouristBike.new
       @bikes = Bike.where(user_id: @user.id)
-      @reservations = TouristBike.where(bike_id: @bikes.map{|b| b.id }) # .where(void: false)
-                          .where(day: Date.today.ago(2.days)...Date.today.since(2.months))
-                          .order(day: "ASC").page(params[:page]).per(8)
+      @reservations = TouristBike.where(bike_id: @bikes.map{|b| b.id })
+                          .where(start_datetime: Date.today.ago(2.days)...Date.today.since(2.months))
+                          .order(start_datetime: "ASC").page(params[:page]).per(8)
     end
   end
 

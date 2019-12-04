@@ -7,8 +7,8 @@
     <div class="media text-muted pt-3">
       <div class="media-body pb-3 mb-0 border-bottom border-gray">
         <div class="flex-row d-flex justify-content-between align-items-center flex-wrap ">
-          <div class="p-2"><%= "#{res.day.month}/#{res.day.day}" %>
-            (<%= ["日", "月", "火", "水", "木", "金", "土"][res.day.wday] %>)
+          <div class="p-2"><%= "#{res.start_datetime.month}/#{res.start_datetime.day}" %>
+            (<%= ["日", "月", "火", "水", "木", "金", "土"][res.start_datetime.wday] %>)
           </div>
           <% if tourist? %>
             <button type="button" class="btn btn-navy" data-toggle="modal" data-target="#res<%= res.id %>">
@@ -18,8 +18,8 @@
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" ><%= res.bike.name %> [<%= "#{res.day.month}/#{res.day.day}" %>
-                      (<%= ["日", "月", "火", "水", "木", "金", "土"][res.day.wday] %>)]</h5>
+                    <h5 class="modal-title" ><%= res.bike.name %> [<%= "#{res.start_datetime.month}/#{res.start_datetime.day}" %>
+                      (<%= ["日", "月", "火", "水", "木", "金", "土"][res.start_datetime.wday] %>)]</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -27,7 +27,7 @@
                   <div class="modal-body">
                     <p>自転車の貸出について、いつ、どこで自転車を引き渡すかをメール（<%= mail_to res.bike.user.email %>）にてホストに確認しましょう。その際、必ず登録済みのメール（<%= @user.email %>）から送信してください。</p>
                     <p>場所：<a href="/root/place"><%= ["ルネ前", "百万遍", "京大病院"][res.place_id] %></a></p>
-                    <p>時間：<%= res.rent_time.strftime("%H:%M") %></p>
+                    <p>時間：<%= res.start_datetime.strftime("%H:%M") %>〜<%= res.end_datetime.strftime("%H:%M") %></p>
                     <p>自転車の詳細については<%= link_to "こちら", b_show_path(res.bike_id)%></p>
                     <p>オーナーの詳細については<%= link_to "こちら", u_show_path(res.bike.user_id)%></p>
                   </div>

@@ -9,7 +9,6 @@ ActiveAdmin.register Bike do
     column :user
     column :vehicle_num
     column :security_num
-    column :security_area
     column :created_at
     actions
   end

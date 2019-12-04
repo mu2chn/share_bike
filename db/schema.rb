@@ -55,13 +55,13 @@ ActiveRecord::Schema.define(version: 2019_05_11_123822) do
   create_table "tourist_bikes", force: :cascade do |t|
     t.integer "bike_id"
     t.integer "tourist_id"
-    t.date "day"
+    t.datetime "start_datetime"
+    t.datetime "end_datetime"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_prob"
     t.integer "tourist_prob"
     t.integer "place_id"
-    t.time "rent_time"
     t.integer "status", default: 0
     t.boolean "void", default: false
     t.integer "transaction_id"
@@ -89,7 +89,6 @@ ActiveRecord::Schema.define(version: 2019_05_11_123822) do
   create_table "transactions", force: :cascade do |t|
     t.string "order_id"
     t.string "authorization_id"
-    t.string "capture_id"
     t.integer "tourist_id"
     t.integer "amount"
     t.string "currency"
