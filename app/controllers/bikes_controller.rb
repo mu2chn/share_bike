@@ -1,12 +1,12 @@
 class BikesController < ApplicationController
 
   def index
-    dsearch = search_by_date(params[:dsearch])
-
-    if dsearch.nil?
-      @reservations = TouristBike.all.order(:start_datetime).page(params[:page]).per(9)
+    dsearch = nil
+    if params["dsearch"].present?
+      dsearch = Time.parse(params[:dsearch])
+      @reservations = TouristBike.where(start_datetime: Time.now..(Time.now+10.days)).where(start_datetime: dsearch..dsearch+1.days).order(:start_datetime).page(params[:page]).per(9)
     else
-      @reservations = TouristBike.where(start_datetime: dsearch).order(:start_datetime).page(params[:page]).per(9)
+      @reservations = TouristBike.where(start_datetime: Time.now..(Time.now+10.days)).order(:start_datetime).page(params[:page]).per(9)
     end
 
     @prev_day = dsearch
@@ -83,7 +83,7 @@ class BikesController < ApplicationController
   end
 
   def make_month
-    pre_month = (Date.tomorrow...Date.tomorrow.end_of_month).to_a
+    pre_month = (Date.today...Date.tomorrow.end_of_month).to_a
     next_month =  (Date.tomorrow.end_of_month..Date.today.next_month).to_a
     if !pre_month
       days = next_month
@@ -93,22 +93,23 @@ class BikesController < ApplicationController
       days = pre_month + next_month
     end
     days[0, 9].map do |date|
-      [ "#{date.month}月#{date.day}日（#{[ "日", "月", "火", "水", "木", "金", "土"][date.wday]}）", date.day]
+      [ "#{date.month}月#{date.day}日（#{[ "日", "月", "火", "水", "木", "金", "土"][date.wday]}）", "#{date.year}/#{date.month}/#{date.day}"]
     end.to_a
   end
 
-  def search_by_date(day)
-    if day.nil? || day == ""
-      return nil
-    end
-    day = day.to_i
-    search_date = Date.today
-    if search_date.day >= day
-      search_date = search_date.next_month
-      search_date = search_date.ago((search_date.day-day).days)
-    else
-      search_date = search_date.since((day-search_date.day).days)
-    end
-    search_date
-  end
+  #def search_by_date(day)
+  #  if day.nil? || day == ""
+  #    return nil
+  #  end
+  #  day = day.to_i
+  #  search_date = Date.today
+  #  if search_date.day >= day
+  #    search_date = search_date.next_month
+  #    search_date = search_date.ago((search_date.day-day).days)
+  #  else
+  #    search_date = search_date.since((day-search_date.day).days)
+  #  end
+  #  search_date
+  #end
+
 end
