@@ -4,9 +4,9 @@ class BikesController < ApplicationController
     dsearch = search_by_date(params[:dsearch])
 
     if dsearch.nil?
-      @reservations = TouristBike.all.order(:day).page(params[:page]).per(9)
+      @reservations = TouristBike.all.order(:start_datetime).page(params[:page]).per(9)
     else
-      @reservations = TouristBike.where(day: dsearch).order(:day).page(params[:page]).per(9)
+      @reservations = TouristBike.where(start_datetime: dsearch).order(:start_datetime).page(params[:page]).per(9)
     end
 
     @prev_day = dsearch

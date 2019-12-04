@@ -1,5 +1,5 @@
 ActiveAdmin.register TouristBike do
-  permit_params :user_prob, :tourist_prob, :place_id, :rent_time, :day, :void
+  permit_params :user_prob, :tourist_prob, :place_id, :end_datetime, :start_datetime, :void
   actions :all, except: [:destroy, :new]
 
   index do
@@ -7,8 +7,8 @@ ActiveAdmin.register TouristBike do
     column :bike
     column :tourist
     column :place_id
-    column :rent_time
-    column :day
+    column :start_datetime
+    column :end_datetime
     actions
   end
 
@@ -19,8 +19,8 @@ ActiveAdmin.register TouristBike do
   form do |f|
     f.inputs do
       f.input :place_id
-      f.input :day
-      f.input :rent_time
+      f.input :end_datetime
+      f.input :start_datetime
       f.input :user_prob
       f.input :tourist_prob
       f.input :void

@@ -12,7 +12,7 @@ class MidnightSetReserveStatusJob < ApplicationJob
   def start_rental
     reservations = TouristBike.where(status: DEFAULT_RENTAL).where.not(tourist_id: nil)
     reservations.each do |res|
-      if after(res.day, 0)
+      if after(res.start_datetime, 0)
         res.update_attributes(status: START_RENTAL)
       end
     end
@@ -21,7 +21,7 @@ class MidnightSetReserveStatusJob < ApplicationJob
   def end_rental
     reservations = TouristBike.where(status: START_RENTAL).where.not(tourist_id: nil)
     reservations.each do |res|
-      if after(res.day, -1)
+      if after(res.start_datetime, -1)
         res.update_attributes(status: END_RENTAL)
       end
     end
@@ -30,7 +30,7 @@ class MidnightSetReserveStatusJob < ApplicationJob
   def end_review
     reservations = TouristBike.where(status: END_RENTAL).where.not(tourist_id: nil)
     reservations.each do |res|
-      if after(res.day, -2)
+      if after(res.start_datetime, -2)
         res.update_attributes(status: REVIEW_RENTAL)
       end
     end
