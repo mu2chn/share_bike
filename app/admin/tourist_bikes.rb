@@ -1,5 +1,5 @@
 ActiveAdmin.register TouristBike do
-  permit_params :user_prob, :tourist_prob, :place_id, :end_datetime, :start_datetime, :void
+  permit_params :user_prob, :tourist_prob, :place_id, :end_datetime, :start_datetime, :void, :status
   actions :all, except: [:destroy, :new]
 
   index do
@@ -23,6 +23,7 @@ ActiveAdmin.register TouristBike do
       f.input :start_datetime
       f.input :user_prob
       f.input :tourist_prob
+      f.input :status
       f.input :void
     end
     f.actions

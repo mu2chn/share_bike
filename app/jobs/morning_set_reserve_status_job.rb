@@ -8,11 +8,9 @@ class MorningSetReserveStatusJob < ApplicationJob
 
   # status START_RENTAL
   def start_notify
-    reservations = TouristBike.where(status: START_RENTAL).where.not(tourist_id: nil)
+    reservations = TouristBike.where(start_datetime: Time.now..(Time.now+15.hours)).where.not(tourist_id: nil)
     reservations.each do |res|
-      if after(res.start_datetime, 0)
-        NotificationMailer.start_rental_confirm_to_user(res).deliver_later
-      end
+      NotificationMailer.start_rental_confirm_to_user(res).deliver_later
     end
   end
 end

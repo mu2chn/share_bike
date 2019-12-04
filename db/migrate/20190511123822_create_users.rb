@@ -82,7 +82,7 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.string "currency"
       t.datetime "created_at", null: false
       t.datetime "updated_at", null: false
-      t.boolean "voided"
+      t.boolean "voided" #should REMOVE
       t.string "payer_id"
       t.string "capture_ticket"
       t.string "capture_deposit"

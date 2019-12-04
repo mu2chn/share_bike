@@ -3,23 +3,13 @@ class NoonSetReserveStatusJob < ApplicationJob
 
   def perform(*args)
     review_mail
-    soon_rental
   end
 
   def review_mail
-    reservations = TouristBike.where(status: END_RENTAL).where.not(tourist_id: nil)
+    reservations = TouristBike.where(end_datetime: (Time.now-2.days)..(Time.now-1.days)).where.not(tourist_id: nil)
     reservations.each do |res|
-      if after(res.start_datetime, -1)
+      unless res.frozen_reserve?
         ReviewMailer.tourist_review(res).deliver_later
-      end
-    end
-  end
-
-  def soon_rental
-    reservations = TouristBike.where(status: DEFAULT_RENTAL).where.not(tourist_id: nil)
-    reservations.each do |res|
-      if after(res.start_datetime, 2)
-        NotificationMailer.soon_rental_confirm_to_user(res).deliver_later
       end
     end
   end

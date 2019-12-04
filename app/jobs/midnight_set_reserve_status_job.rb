@@ -3,36 +3,44 @@ class MidnightSetReserveStatusJob < ApplicationJob
 
   # Early Morning you should exec
   def perform(*args)
-    end_review
     end_rental
-    start_rental
-  end
-
-  # status START_RENTAL
-  def start_rental
-    reservations = TouristBike.where(status: DEFAULT_RENTAL).where.not(tourist_id: nil)
-    reservations.each do |res|
-      if after(res.start_datetime, 0)
-        res.update_attributes(status: START_RENTAL)
-      end
-    end
   end
 
   def end_rental
-    reservations = TouristBike.where(status: START_RENTAL).where.not(tourist_id: nil)
+    #実行時から一日と３時間以内
+    reservations = TouristBike.where(status: 'default').where(end_datetime: (Time.now-1.days-3.hours)..Time.now)
     reservations.each do |res|
-      if after(res.start_datetime, -1)
-        res.update_attributes(status: END_RENTAL)
+      if res.frozen_reserve?
+        #noinspection RubyResolve
+        res.status_freeze!
+      elsif tourist_id.present?
+        #noinspection RubyResolve
+        res.status_end!
+      else
+        #noinspection RubyResolve
+        res.status_unused!
       end
     end
   end
 
-  def end_review
-    reservations = TouristBike.where(status: END_RENTAL).where.not(tourist_id: nil)
+  def reward
+    reservations = TouristBike.where(end_datetime: (Time.now-3.days-3.hours)..(Time.now-2.days)).where(status: 'end').where.not(tourist_id: nil)
     reservations.each do |res|
-      if after(res.start_datetime, -2)
-        res.update_attributes(status: REVIEW_RENTAL)
+      if res.frozen_reserve?
+        #noinspection RubyResolve
+        res.status_freeze!
+        dump = nil
+      else
+        dump = res.dump_reward
+      end
+
+      if dump.nil?
+        #NotifyUs
+      else
+        #noinspection RubyResolve
+        res.status_complete!
       end
     end
+
   end
 end

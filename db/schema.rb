@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_11_123822) do
+ActiveRecord::Schema.define(version: 2019_12_04_154253) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -50,6 +50,36 @@ ActiveRecord::Schema.define(version: 2019_05_11_123822) do
     t.datetime "updated_at", null: false
     t.boolean "void", default: false
     t.index ["user_id"], name: "index_bikes_on_user_id"
+  end
+
+  create_table "payouts", force: :cascade do |t|
+    t.integer "payout_version"
+    t.string "paid_id"
+    t.integer "amount"
+    t.string "currency"
+    t.integer "user_id"
+    t.string "target_email"
+    t.boolean "manual_input", default: false
+    t.boolean "complete_dump", default: false
+    t.text "send_text"
+    t.text "detail"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_payouts_on_user_id"
+  end
+
+  create_table "rewards", force: :cascade do |t|
+    t.integer "amount"
+    t.string "currency"
+    t.integer "user_id"
+    t.boolean "already_payout", default: false
+    t.integer "tourist_bike_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "payout_id"
+    t.index ["payout_id"], name: "index_rewards_on_payout_id"
+    t.index ["tourist_bike_id"], name: "index_rewards_on_tourist_bike_id"
+    t.index ["user_id"], name: "index_rewards_on_user_id"
   end
 
   create_table "tourist_bikes", force: :cascade do |t|
@@ -136,4 +166,8 @@ ActiveRecord::Schema.define(version: 2019_05_11_123822) do
     t.boolean "void", default: false
   end
 
+  add_foreign_key "payouts", "users"
+  add_foreign_key "rewards", "payouts"
+  add_foreign_key "rewards", "tourist_bikes"
+  add_foreign_key "rewards", "users"
 end

@@ -2,7 +2,6 @@ ActiveAdmin.register Bike do
   permit_params :vehicle_num, :security_area, :security_num, :name, :details, :void
   actions :all, except: [:destroy, :new ]
 
-
   index do
     id_column
     column :name
