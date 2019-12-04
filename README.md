@@ -30,6 +30,8 @@ $ rails s -e production
 ### Util
 ```bash
 $ rails c -e production
+
+$ RAILS_ENV=production rake db:migrate VERSION=0
 ```
 
 ### StopServer
