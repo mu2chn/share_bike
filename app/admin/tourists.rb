@@ -10,7 +10,6 @@ ActiveAdmin.register Tourist do
     actions
   end
 
-  filter :phmnumber
   filter :email
   filter :name
   filter :created_at
@@ -18,8 +17,8 @@ ActiveAdmin.register Tourist do
   form do |f|
     f.inputs do
       f.input :name
-      f.input :phmnumber
       f.input :tutorial
+      #f.input :temp_terms
       f.input :authenticated
       f.input :void
     end

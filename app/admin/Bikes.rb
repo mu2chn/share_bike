@@ -17,14 +17,12 @@ ActiveAdmin.register Bike do
   filter :user
   filter :vehicle_num
   filter :security_num
-  filter :security_area
 
   form do |f|
     f.inputs do
       f.input :name
       f.input :vehicle_num
       f.input :security_num
-      f.input :security_area
       f.input :details
       f.input :void
     end

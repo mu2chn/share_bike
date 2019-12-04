@@ -19,6 +19,8 @@ ActiveAdmin.register User do
     f.inputs do
       f.input :name
       f.input :authenticated
+      f.input :tutorial
+      #f.input :temp_terms
       f.input :void
     end
     f.actions
