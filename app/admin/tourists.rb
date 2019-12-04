@@ -5,7 +5,6 @@ ActiveAdmin.register Tourist do
   index do
     id_column
     column :name
-    column :nickname
     column :email
     column :created_at
     actions
@@ -13,14 +12,12 @@ ActiveAdmin.register Tourist do
 
   filter :phmnumber
   filter :email
-  filter :nikname
   filter :name
   filter :created_at
 
   form do |f|
     f.inputs do
       f.input :name
-      f.input :nickname
       f.input :phmnumber
       f.input :tutorial
       f.input :authenticated

@@ -20,7 +20,7 @@
       <li class="list-group-item">車体番号：<%= @bike.vehicle_num %></li>
       <li class="list-group-item">
         所有者：
-        <%= link_to User.find(@bike.user_id).nickname, "/users/show/" + @bike.user_id.to_s %>
+        <%= link_to User.find(@bike.user_id).name, "/users/show/" + @bike.user_id.to_s %>
       </li>
       <li class="list-group-item">日時：<%= "#{@reserve.day.month}/#{@reserve.day.day}" %>(<%= ["日", "月", "火", "水", "木", "金", "土"][@reserve.day.wday] %>)</li>
       <li class="list-group-item">金額：700円</li>

@@ -1,11 +1,8 @@
-<div class="d-flex flex-md-row flex-column align-items-center mt-2">
-  <%= image_tag @bike.image.to_s, class: "img-thumbnail" %>
-</div>
 
-<div class="row">
+<div class="row mt-5">
+  <%= image_tag @bike.image.to_s, class: "img-thumbnail col-md-6" %>
 
-
-  <div class="col-md-6 offset-md-3">
+  <div class="col-md-6">
     <%= form_for(@bike, url: b_update_path) do |f| %>
       <%= render 'layouts/error' %>
 

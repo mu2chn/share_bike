@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_16_183647) do
+ActiveRecord::Schema.define(version: 2019_05_11_123822) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -43,8 +43,7 @@ ActiveRecord::Schema.define(version: 2019_11_16_183647) do
     t.integer "user_id"
     t.string "image"
     t.string "vehicle_num"
-    t.string "security_area"
-    t.integer "security_num"
+    t.string "security_num"
     t.integer "status", default: 0
     t.text "details"
     t.datetime "created_at", null: false
@@ -61,11 +60,6 @@ ActiveRecord::Schema.define(version: 2019_11_16_183647) do
     t.datetime "updated_at", null: false
     t.integer "user_prob"
     t.integer "tourist_prob"
-    t.string "order_id"
-    t.integer "amount"
-    t.datetime "paid_date"
-    t.string "authorization_id"
-    t.string "capture_id"
     t.integer "place_id"
     t.time "rent_time"
     t.integer "status", default: 0
@@ -78,9 +72,7 @@ ActiveRecord::Schema.define(version: 2019_11_16_183647) do
 
   create_table "tourists", force: :cascade do |t|
     t.string "name"
-    t.string "nickname"
     t.string "email"
-    t.string "phmnumber"
     t.boolean "temp_terms", default: false
     t.integer "terms", default: 0
     t.integer "tutorial", default: 0
@@ -99,14 +91,11 @@ ActiveRecord::Schema.define(version: 2019_11_16_183647) do
     t.string "authorization_id"
     t.string "capture_id"
     t.integer "tourist_id"
-    t.boolean "void", default: false
-    t.boolean "refunded", default: false
     t.integer "amount"
     t.string "currency"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "voided"
-    t.string "refund_id"
     t.string "payer_id"
     t.string "capture_ticket"
     t.string "capture_deposit"
@@ -134,7 +123,6 @@ ActiveRecord::Schema.define(version: 2019_11_16_183647) do
 
   create_table "users", force: :cascade do |t|
     t.string "name"
-    t.string "nickname"
     t.string "email"
     t.boolean "temp_terms", default: false
     t.integer "terms", default: 0

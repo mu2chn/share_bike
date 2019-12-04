@@ -51,7 +51,7 @@ class Transaction < ApplicationRecord
   end
 
   def refund_before_ride(client=Payment.init_client)
-    if self.refunded
+    if self.refund_ticket
       return [2, "already refunded"]
     end
     refund = Payment.refund(self.capture_ticket, client)

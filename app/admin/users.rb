@@ -3,14 +3,12 @@ ActiveAdmin.register User do
   actions :all, except: [:destroy, :new ]
 
   filter :email
-  filter :nickname
   filter :name
   filter :created_at
 
   index do
     id_column
     column :name
-    column :nickname
     column :email
     column :created_at
     actions
@@ -20,7 +18,6 @@ ActiveAdmin.register User do
   form do |f|
     f.inputs do
       f.input :name
-      f.input :nickname
       f.input :authenticated
       f.input :void
     end
