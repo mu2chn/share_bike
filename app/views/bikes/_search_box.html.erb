@@ -1,6 +1,6 @@
 <%= form_tag b_index_path, :method => 'get', class: "d-flex justify-content-between align-self-center align-items-center" do %>
 
-    <%= select_tag 'dsearch', options_for_select(@date_hash, selected: @prev_day&.day),
+    <%= select_tag 'dsearch', options_for_select(@date_hash, selected: @prev_day&.strftime("%Y/%m/%d")),
                  class: 'form-control padding-form py-0 mr-5', prompt: "choose-date", id: "inputdate"%>
   <%= submit_tag "Search", :name => nil, class: "btn btn-secondary", id: "button-addon2" %>
 

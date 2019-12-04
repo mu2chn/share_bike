@@ -93,7 +93,7 @@ class BikesController < ApplicationController
       days = pre_month + next_month
     end
     days[0, 9].map do |date|
-      [ "#{date.month}月#{date.day}日（#{[ "日", "月", "火", "水", "木", "金", "土"][date.wday]}）", "#{date.year}/#{date.month}/#{date.day}"]
+      [ "#{date.month}月#{date.day}日（#{[ "日", "月", "火", "水", "木", "金", "土"][date.wday]}）", date.strftime("%Y/%m/%d")]
     end.to_a
   end
 
