@@ -33,12 +33,15 @@ class PaymentApiController < ApplicationController
     reserve_id = /^\d+/.match(reserve_tourist_id)[0].to_i
     @reserve = TouristBike.find(reserve_id)
 
+    #noinspection RubyResolve
     if @reserve.void
       msg = "無効な予約です"
     elsif !@tourist.authenticated
       msg = "メール認証されていません"
     elsif @reserve.end_datetime < Time.now
       msg = "すでに終了しています"
+    elsif @reserve.status_default?
+      msg = "不正な予約です"
     elsif @reserve.tourist_id.present?
       msg = "すでに予約されています"
     else

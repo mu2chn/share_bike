@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_04_154253) do
+ActiveRecord::Schema.define(version: 2019_12_05_111111) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -95,7 +95,9 @@ ActiveRecord::Schema.define(version: 2019_12_04_154253) do
     t.integer "status", default: 0
     t.boolean "void", default: false
     t.integer "transaction_id"
+    t.integer "reward_id"
     t.index ["bike_id"], name: "index_tourist_bikes_on_bike_id"
+    t.index ["reward_id"], name: "index_tourist_bikes_on_reward_id"
     t.index ["tourist_id"], name: "index_tourist_bikes_on_tourist_id"
     t.index ["transaction_id"], name: "index_tourist_bikes_on_transaction_id"
   end
@@ -170,4 +172,5 @@ ActiveRecord::Schema.define(version: 2019_12_04_154253) do
   add_foreign_key "rewards", "payouts"
   add_foreign_key "rewards", "tourist_bikes"
   add_foreign_key "rewards", "users"
+  add_foreign_key "tourist_bikes", "rewards"
 end

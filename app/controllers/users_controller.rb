@@ -61,6 +61,7 @@ class UsersController < ApplicationController
     if_user do |user|
       @user = user
       @bikes = Bike.where(user_id: @user.id)
+      @reserve = TouristBike.includes(:reward).references(:reward).where(bike_id: @bikes)
     end
   end
 

@@ -1,6 +1,7 @@
 class TouristBike < ApplicationRecord
   belongs_to :bike
   belongs_to :tourist, optional: true
+  belongs_to :reward, optional: true
 
   enum status: {
       default: 0, #自転車を借りる前、default値
@@ -39,6 +40,7 @@ class TouristBike < ApplicationRecord
           user_id: user_id,
           tourist_bike_id: self.id
       )
+      self.update_attributes!(reward_id: reward.id)
       #noinspection RubyResolve
       self.status_complete!
     end
