@@ -38,6 +38,9 @@ ActiveAdmin.register TouristBike do
   action_item :refund_deposit, only: :edit do
     link_to 'Refund Deposit', refund_deposit_admin_tourist_bike_path
   end
+  action_item :dump_reward, only: :edit do
+    link_to 'Dump Reward Manually', dump_reward_admin_tourist_bike_path
+  end
 
   member_action :cancel, method: :get do
     status = resource.cancel
@@ -52,5 +55,10 @@ ActiveAdmin.register TouristBike do
   member_action :refund_deposit, method: :get do
     status = resource.refund_deposit
     redirect_to resource_path, notice: "METHOD=refundDeposit #{status}"
+  end
+
+  member_action :dump_reward, method: :get do
+    status = resource.dump_reward
+    redirect_to resource_path, notice: "METHOD=dumpReward #{status}"
   end
 end

@@ -18,18 +18,21 @@ class TouristBike < ApplicationRecord
   def dump_reward
     return nil if self.tourist_id.nil?
     #noinspection RubyResolve
-    #return nil unless self.status_end?
     # set amount and currency
     transaction = Transaction.find(self.transaction_id)
     amount = transaction.ticket_amount*0.4
     currency = transaction.currency
     user_id = self.bike.user_id
-    reward = Reward.create!(
-        amount: amount,
-        currency: currency,
-        user_id: user_id,
-        tourist_bike_id: self.id
-    )
+    ActiveRecord::Base.transaction do
+      reward = Reward.create!(
+          amount: amount,
+          currency: currency,
+          user_id: user_id,
+          tourist_bike_id: self.id
+      )
+      #noinspection RubyResolve
+      self.status_complete!
+    end
   end
 
   #shoud not use
@@ -44,25 +47,28 @@ class TouristBike < ApplicationRecord
     end
   end
 
-
   #########################
   # admin methods
   #########################
 
   def cancel
+    #noinspection RubyResolve
     if self.tourist_id.nil?
       return [1, "no record"]
-    elsif self.status >= 20
-      return [1, "already rental started"]
+    elsif self.status_complete?
+      return [1, "すでにrewardに追加されたため、払い戻しできません"]
     end
 
     trans = Transaction.find(self.transaction_id)
     status = trans.refund_before_ride(Payment.init_client)
     if status[0] == 0
-      self.update_attributes(
-          transaction_id: nil,
-          tourist_id: nil
-      )
+      ActiveRecord::Base.transaction do
+        self.update_attributes!(
+            transaction_id: nil,
+            tourist_id: nil,
+            status: 'default'
+        )
+      end
     end
     status
   end

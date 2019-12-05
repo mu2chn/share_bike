@@ -36,9 +36,6 @@ class MidnightSetReserveStatusJob < ApplicationJob
 
       if dump.nil?
         #NotifyUs
-      else
-        #noinspection RubyResolve
-        res.status_complete!
       end
     end
 
