@@ -10,10 +10,7 @@ class MidnightSetReserveStatusJob < ApplicationJob
     #実行時から一日と３時間以内
     reservations = TouristBike.where(status: 'default').where(end_datetime: (Time.now-1.days-3.hours)..Time.now)
     reservations.each do |res|
-      if res.frozen_reserve?
-        #noinspection RubyResolve
-        res.status_freeze!
-      elsif tourist_id.present?
+      if tourist_id.present?
         #noinspection RubyResolve
         res.status_end!
       else
@@ -26,13 +23,7 @@ class MidnightSetReserveStatusJob < ApplicationJob
   def reward
     reservations = TouristBike.where(end_datetime: (Time.now-3.days-3.hours)..(Time.now-2.days)).where(status: 'end').where.not(tourist_id: nil)
     reservations.each do |res|
-      if res.frozen_reserve?
-        #noinspection RubyResolve
-        res.status_freeze!
-        dump = nil
-      else
-        dump = res.dump_reward
-      end
+      dump = res.dump_reward
 
       if dump.nil?
         #NotifyUs

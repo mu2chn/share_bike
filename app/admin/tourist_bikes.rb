@@ -41,7 +41,9 @@ ActiveAdmin.register TouristBike do
   action_item :dump_reward, only: :edit do
     link_to 'Dump Reward Manually', dump_reward_admin_tourist_bike_path
   end
-
+  action_item :freeze_reserve, only: :edit do
+    link_to '問題発生', freeze_reserve_admin_tourist_bike_path
+  end
   member_action :cancel, method: :get do
     status = resource.cancel
     redirect_to resource_path, notice: "METHOD=Cancel #{status}"
@@ -60,5 +62,10 @@ ActiveAdmin.register TouristBike do
   member_action :dump_reward, method: :get do
     status = resource.dump_reward
     redirect_to resource_path, notice: "METHOD=dumpReward #{status}"
+  end
+
+  member_action :freeze_reserve, method: :get do
+    status = resource.freeze_reserve
+    redirect_to resource_path, notice: "METHOD=freezeReserve #{status}"
   end
 end

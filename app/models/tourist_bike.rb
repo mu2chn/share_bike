@@ -15,8 +15,17 @@ class TouristBike < ApplicationRecord
     user_prob || tourist_prob
   end
 
+  #noinspection RubyResolve
+  def freeze_reserve
+    if self.status_end? || self.status_default?
+      self.status_freeze!
+      return "凍結完了"
+    end
+    "凍結できません"
+  end
+
   def dump_reward
-    return nil if self.tourist_id.nil?
+    return 'ダンプできなかった' if self.tourist_id.nil?
     #noinspection RubyResolve
     # set amount and currency
     transaction = Transaction.find(self.transaction_id)
@@ -33,19 +42,20 @@ class TouristBike < ApplicationRecord
       #noinspection RubyResolve
       self.status_complete!
     end
+    "ダンプしました"
   end
 
   #shoud not use
-  def back_reward
-    reward = Reward.find_by(tourist_bike_id: self.id)
-    if reward.nil? || reward.payout_id.present? || reward.already_payout
-      nil
-    else
-      reward.destroy
-      #noinspection RubyResolve
-      self.status_freeze!
-    end
-  end
+  #def back_reward
+  #  reward = Reward.find_by(tourist_bike_id: self.id)
+  #  if reward.nil? || reward.payout_id.present? || reward.already_payout
+  #    nil
+  #  else
+  #    reward.destroy
+  #    #noinspection RubyResolve
+  #    self.status_freeze!
+  #  end
+  #end
 
   #########################
   # admin methods
@@ -78,12 +88,13 @@ class TouristBike < ApplicationRecord
       return [1, "no record"]
     end
 
-    if self.status <= 30 #ApplicationJob.END_RENTAL
+    #noinspection RubyResolve
+    if self.status_end?
       trans = Transaction.find(self.transaction_id)
       status = trans.capture_for_deposit({amount: {value: 2000, currency_code: "JPY"}})
       return status
     end
-    [1, "not finished rental"]
+    [1, "not finished rental or already completed"]
   end
 
 
