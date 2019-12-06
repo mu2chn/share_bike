@@ -1,23 +1,36 @@
-<h3 class="text-muted mt-3 mb-3 offset-md-3">Update your profile</h3>
-
-<div class="row">
-  <div class="col-md-6 offset-md-3">
-    <%= form_for(@user, url: u_update_path) do |f| %>
-      <%= render 'layouts/error' %>
-
-      <%= f.label :name %>
-      <%= f.text_field :name, class: 'form-control mb-2', disabled: true%>
-
-      <%= f.label :email %>
-      <%= f.text_field :email, class: 'form-control mb-2', disabled: true%>
-
-      <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control mb-2' %>
-
-      <%= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation, class: 'form-control mb-2' %>
-
-      <%= f.submit "Save changes", class: "btn btn-navy" %>
-    <% end %>
+<!--<h3 class="text-muted mt-3 mb-3 offset-md-3">Update your profile</h3>-->
+<div class="card card-nav-tabs card-plain m-0">
+  <div class="card-header card-header-danger bg-white p-0">
+    <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
+    <div class="nav-tabs-navigation">
+      <div class="nav-tabs-wrapper">
+        <ul class="nav nav-tabs" data-tabs="tabs">
+          <li class="nav-item">
+            <a class="nav-link active" href="#profile" data-toggle="tab">プロフィール</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#reward" data-toggle="tab">Rewards</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#history" data-toggle="tab">貸出履歴</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="card-body ">
+    <div class="tab-content">
+      <div class="tab-pane active" id="profile">
+        <%= render "users/my_profile" %>
+      </div>
+      <div class="tab-pane" id="reward">
+        <p> I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that&#x2019;s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I think that&#x2019;s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. </p>
+      </div>
+      <div class="tab-pane" id="history">
+        <%= render "users/history" %>
+      </div>
+    </div>
   </div>
 </div>
+
+

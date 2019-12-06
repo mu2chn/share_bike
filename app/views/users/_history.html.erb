@@ -1,0 +1,40 @@
+<table class="table">
+  <thead>
+  <tr>
+<!--    <th class="text-center">#</th>-->
+    <th>Date</th>
+<!--    <th>Bike</th>-->
+    <th>Place</th>
+    <th class="text-right">Status</th>
+    <th class="text-right">Amount</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @reserve.each do |res| %>
+    <tr>
+<!--      <td class="text-center"><%#= res.id %></td>-->
+      <td><%= res.start_datetime.strftime("%m/%d") %></td>
+<!--      <td>res</td>-->
+      <td><%= res.place_id %></td>
+      <td class="text-right">
+        <%=
+          if res.reward.nil?
+            "未確定"
+          else
+            if res.reward.payout_id.nil?
+              "送金予定"
+            else
+              "送金済み"
+            end
+          end
+        %>
+      </td>
+      <td class="td-actions text-right"><%=
+        amount = res.reward&.amount
+        amount = "未定" if amount.nil?
+        amount
+      %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
