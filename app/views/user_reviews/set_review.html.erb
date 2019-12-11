@@ -1,5 +1,4 @@
 <h3 class="h5 my-5"><%= @tourist.name %>さん、<%= @user.name %>さんとのレビューをお願いします</h3>
-
 <label>評価</label>
 <%= select_tag '評価', options_for_select({"良い": 3, "普通": 2, "悪い": 1}), class: "form-control mb-3", id: "rate" %>
 
@@ -36,15 +35,14 @@
         };
         axios.post('/user/review', body)
             .then(function () {
-                toastr.success("レビューが完了しました！");
-                setTimeout(function () {
-                    location.href = "/";
-                }, 1000)
+                makeAlert(document.getElementById("alert-container"), "レビューありがとうございました", "success");
+                // setTimeout(function () {
+                //     location.href = "/";
+                // }, 1000)
             })
             .catch(function () {
-                toastr.warning("エラーが発生しました");
+                makeAlert(document.getElementById("alert-container"), "エラーが発生しました", "warning");
             })
     }
-
     document.getElementById("send").addEventListener('click', sendComment, false);
 </script>
