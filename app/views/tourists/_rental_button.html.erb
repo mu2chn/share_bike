@@ -1,0 +1,18 @@
+
+<% if reserve.status_default? %>
+  <a class="btn btn-primary" href="<%= r_start_path(reserve.id) %>">
+    レンタル開始
+  </a>
+<% elsif reserve.status_start? %>
+  <a class="btn btn-primary" href="<%= r_end_path(reserve.id) %>">
+    レンタル終了
+  </a>
+<% elsif reserve.status_end? %>
+  <a class="btn btn-primary" disabled>
+    返却完了
+  </a>
+<% end %>
+
+<script>
+
+</script>

@@ -66,13 +66,80 @@ class TouristBikesController < ApplicationController
     end
   end
 
+  def start_rental
+    if_tourist do |user|
+      @reserve = TouristBike.find(params[:id])
+      if user.id != @reserve.tourist_id
+        redirect_to root_path
+        return nil
+      end
+      validation = check_valid_start(@reserve)
+      if validation[0] != 0
+        flash[:warning] = validation[1]
+        redirect_to t_reserve_path
+        return nil
+      end
+      #noinspection RubyResolve
+      @reserve.status_start!
+      flash[:success] = "貸出を開始しました"
+      redirect_to t_reserve_path
+    end
+  end
+
+  def end_rental
+    if_tourist do |user|
+      @reserve = TouristBike.find(params[:id])
+      if user.id != @reserve.tourist_id
+        redirect_to root_path
+        return nil
+      end
+      validation = check_valid_end(@reserve)
+      if validation[0] != 0
+        flash[:warning] == validation[1]
+        redirect_to t_reserve_path
+        return nil
+      end
+      #noinspection RubyResolve
+      @reserve.status_end!
+      flash[:success] = validation[1]
+      redirect_to t_reserve_path
+    end
+  end
+
   private
   def permit_params
     params.permit(:bike_id, :date, :start_datetime, :end_datetime, :place_id)
   end
 
-  def check_valid_reserve
+  def check_valid_start(res)
+    start_time = res.start_datetime
+    end_time = res.end_datetime
+    now = Time.now
+    #noinspection RubyResolve
+    if not res.status_default?
+      return [1, "すでに貸出を開始しています。"]
+    elsif end_time - 10.minutes < now
+      return [1, "終了10分前を過ぎました。貸出ができません。"]
+    elsif start_time > now
+      return [1, "レンタル開始時刻を過ぎてからでお願いします。"]
+    end
 
+    [0, "pass"]
+  end
+
+  def check_valid_end(res)
+    end_time = res.end_datetime
+    now = Time.now
+
+    #noinspection RubyResolve
+    unless res.status_start?
+      return [1, "不正なステータス"]
+    end
+    if end_time < now
+      return [0, "返却を完了しましたが、返却時間を過ぎています。"]
+    end
+
+    [0, "返却を完了しました。"]
   end
 
 end

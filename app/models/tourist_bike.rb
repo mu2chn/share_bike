@@ -5,6 +5,7 @@ class TouristBike < ApplicationRecord
 
   enum status: {
       default: 0, #自転車を借りる前、default値
+      start: 10,
       end: 30, #自転車レンタル終了、、endとunusedに分岐する
       complete: 60, #reward追加時
       unused: 80, #自転車のレンタルがなされなかったとき、endとunusedに分岐する

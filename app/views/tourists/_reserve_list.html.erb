@@ -31,6 +31,10 @@
                     <p>自転車の詳細については<%= link_to "こちら", b_show_path(res.bike_id)%></p>
                     <p>オーナーの詳細については<%= link_to "こちら", u_show_path(res.bike.user_id)%></p>
                   </div>
+                 <div class="col-sm-6">
+                   <%= render partial: 'rental_button', locals: {reserve: res} %>
+                 </div>
+
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
                   </div><!-- /.modal-footer -->

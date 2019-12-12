@@ -17,4 +17,5 @@ module TouristsHelper
   #   session.delete(:tourist_id)
   #   @current_user = nil
   # end
+  #
 end

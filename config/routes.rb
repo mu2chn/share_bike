@@ -30,7 +30,8 @@ Rails.application.routes.draw do
   get '/reserve/payment/:id', to:'tourist_bikes#payment', as: 'r-payment'
   post '/reserve/check', to: 'payment_api#check', as: 'r-check'
   post '/reserve/unpaid', to: 'payment_api#unpaid', as: 'r-unpaid'
-  # get '/t', to: 'payment_api#test'
+  get '/reserve/start/:id', to: 'tourist_bikes#start_rental', as: 'r-start'
+  get '/reserve/end/:id', to: 'tourist_bikes#end_rental', as: 'r-end'
 
   get '/tourists/new', to: 'tourists#new', as: 't-new'
   post '/tourists/create', to: 'tourists#create', as: 't-create'
