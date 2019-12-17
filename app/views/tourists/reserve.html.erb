@@ -5,7 +5,7 @@
   <div class="explain_box">
     <p>ここで予約の管理ができます。自転車を貸す人に連絡を取ることが可能です。</p>
   </div>
-  <%= render 'tourists/reserve_list' %>
+  <%= render 'component/tourists/reserve_list', {reservations: @reservations} %>
 </div>
 
 <div class="mx-auto d-block mt-4">
