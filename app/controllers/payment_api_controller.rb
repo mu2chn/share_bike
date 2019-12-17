@@ -40,7 +40,7 @@ class PaymentApiController < ApplicationController
       msg = "メール認証されていません"
     elsif @reserve.end_datetime < Time.now
       msg = "すでに終了しています"
-    elsif @reserve.status_default?
+    elsif not @reserve.status_default?
       msg = "不正な予約です"
     elsif @reserve.tourist_id.present?
       msg = "すでに予約されています"
