@@ -6,11 +6,11 @@
 
 <% provide :res_title, "提供日" %>
 
-<%= render 'bikes/details' %>
+<%= render 'component/bikes/details', {bike: @bike} %>
 
 <div class="row">
   <div class="col-12 mt-3">
-    <%= render 'util/reserve_list' %>
+    <%= render 'component/tourist_bikes/reserve_list_simple', {reservations: @reservations} %>
   </div>
   <div class="mx-auto d-block mt-4">
     <%= paginate @reservations %>

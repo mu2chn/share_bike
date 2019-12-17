@@ -1,9 +1,5 @@
-<%= render 'bikes/search_box' %>
-
-<%#= render 'bikes/bike_index' %>
-<%#= render 'bikes/reserve_base' %>
-<%= render 'util/reserve_list_accordion' %>
-
+<%= render 'component/tourist_bikes/search_box', {date_hash: @date_hash, prev_day: @prev_day}%>
+<%= render 'component/tourist_bikes/reserve_list_accordion', {reservations: @reservations} %>
 <div class="mx-auto d-block mt-4">
   <%= paginate @reservations %>
 </div>

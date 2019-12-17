@@ -1,9 +1,11 @@
+<!--{reservations: @reservations}-->
+
 <div class="p-3 bg-white rounded shadow-sm">
   <h6 class="border-bottom border-gray pb-2 mb-0 text-muted"><%= yield(:res_title) %></h6>
-  <% if @reservations.empty? %>
+  <% if reservations.empty? %>
     <div class="p-2 mt-1 text-muted">予定が見つかりません</div>
   <% end %>
-  <% @reservations&.each do |res| %>
+  <% reservations&.each do |res| %>
     <div class="media text-muted pt-3">
       <div class="media-body pb-3 mb-0 border-bottom border-gray">
         <div class="px-3">
@@ -48,13 +50,3 @@
     </div>
   <% end %>
 </div>
-
-<!--<style>-->
-<!--  ul li:before {-->
-<!--    font-family: "Font Awesome 5 Free";-->
-<!--    content: "\f00c";-->
-<!--    position: absolute;-->
-<!--    left : 1em; /*左端からのアイコンまで*/-->
-<!--    color: #ffb03f; /*アイコン色*/-->
-<!--  }-->
-<!--</style>-->

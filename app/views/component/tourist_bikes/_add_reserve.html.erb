@@ -1,0 +1,30 @@
+<div class="mt-2 col-lg-10 offset-lg-1 col-6 offset-3">
+    <button type="button" class="btn btn-outline-navy btn-block" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        日程追加
+    </button>
+</div>
+
+<div class="collapse col-12 mt-2" id="collapseExample">
+    <div class="card card-body">
+        <%= form_with(url: reserve_path, method: :post, local: true) do |f| %>
+        <%= f.label "Bike" %>
+        <%= f.select :bike_id, Bike.where(user_id: user.id)&.map {|b| [b.name, b.id]}, {}, {class: 'custom-select mb-1'} %>
+        <%= f.label :day %>
+        <%#= f.date_select :day, {start_year: Date.today.year.to_i, end_year: Date.today.since(1.months).year.to_i, add_month_numbers: true}, {class: 'form-control'} %>
+        <div class="input-group date mb-1" id="datetimepicker4" data-target-input="nearest" aria-describedby="datehelp">
+            <%= f.text_field :date, value: Date.today, class: "form-control datetimepicker-input" %>
+            <div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
+                <div class="input-group-text px-4"><i class="fa fa-calendar"></i></div>
+            </div>
+        </div>
+        <%= f.label "開始時間" %><br/>
+        <%= f.time_select :start_datetime , {:minute_step => 15}, {class: 'custom-select col-5 mb-1'}%><br/>
+        <%= f.label "終了時間" %><br/>
+        <%= f.time_select :end_datetime , {:minute_step => 15}, {class: 'custom-select col-5 mb-1'}%><br/>
+        <%= f.label "場所" %>
+        <%= f.select :place_id, {"ルネ前": 0, "百万遍": 1, "京大病院": 2}, {}, {class: 'custom-select'} %>
+        <small id="datehelp" class="form-text text-muted">右側のボタンででカレンダーから選択できます</small>
+        <%= f.submit "Register", class: "btn btn-navy mt-2" %>
+        <% end %>
+    </div>
+</div>

@@ -1,3 +1,4 @@
+<!--{reservations: @reserve}-->
 <table class="table">
   <thead>
   <tr>
@@ -10,7 +11,7 @@
   </tr>
   </thead>
   <tbody>
-  <% @reserve.each do |res| %>
+  <% reservations.each do |res| %>
     <tr>
 <!--      <td class="text-center"><%#= res.id %></td>-->
       <td><%= res.start_datetime.strftime("%m/%d") %></td>

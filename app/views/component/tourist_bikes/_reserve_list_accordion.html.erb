@@ -1,6 +1,8 @@
+<!--{reservations: @reservations}-->
+
 <div class="accordion" id="accordion2" role="tablist">
-  <%= @reservations.empty? ? simple_format("自転車が見つかりません", class: "py-3 text-muted") : nil %>
-  <% @reservations.each_with_index do |res, i| %>
+  <%= reservations.empty? ? simple_format("自転車が見つかりません", class: "py-3 text-muted") : nil %>
+  <% reservations.each_with_index do |res, i| %>
     <div class="card shadow mb-3">
       <a data-toggle="collapse" class="text-body text-decoration-none" href="#res-<%= res.id %>" aria-expanded="true" aria-controls="collapse1">
 

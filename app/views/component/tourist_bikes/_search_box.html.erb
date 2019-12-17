@@ -1,15 +1,14 @@
-<%= form_tag b_index_path, :method => 'get', class: "d-flex justify-content-between align-self-center align-items-center" do %>
+<!--{date_hash: @date_hash, prev_day: @prev_day}-->
 
-    <%= select_tag 'dsearch', options_for_select(@date_hash, selected: @prev_day&.strftime("%Y/%m/%d")),
+<%= form_tag b_index_path, :method => 'get', class: "d-flex justify-content-between align-self-center align-items-center" do %>
+    <%= select_tag 'dsearch', options_for_select(date_hash, selected: prev_day&.strftime("%Y/%m/%d")),
                  class: 'form-control padding-form py-0 mr-5', prompt: "choose-date", id: "inputdate"%>
   <%= submit_tag "Search", :name => nil, class: "btn btn-secondary", id: "button-addon2" %>
-
 <% end %>
 
 <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#search-collapse" aria-expanded="false" aria-controls="collapseExample">
   詳細検索へ
 </button>
-
 <div class="collapse" id="search-collapse">
   <div class="pb-1 mb-2 col-md-8  border p-3">
     <%= form_tag b_index_path, :method => 'get' do %>
@@ -22,16 +21,10 @@
       </div>
       <div class="form-group ">
         <label>choose date</label>
-      <%= select_tag 'dsearch', options_for_select(@date_hash, selected: @prev_day&.day),
+      <%= select_tag 'dsearch', options_for_select(date_hash, selected: prev_day&.day),
                        class: 'form-control padding-form py-0', prompt: "choose"%>
       </div>
       <%= submit_tag "Search", :name => nil, class: "btn btn-secondary", id: "button-addon2" %>
-
   <% end %>
   </div>
 </div>
-
-<style>
-  .padding-form{
-  }
-</style>
