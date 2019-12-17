@@ -16,8 +16,7 @@ class MidnightSetReserveStatusJob < ApplicationJob
         #noinspection RubyResolve
         #NotifyUs
         res.status_freeze!
-        logger.warn("[warn] ### reserve=#{res.id} did not change status default to start. please check contact.")
-      else
+        DbLogger.dump("res:#{res.id} statusがdefaultかstartに変更されていません. メールが来てないか確認して下さい。")
         #noinspection RubyResolve
         res.status_unused!
       end
@@ -28,7 +27,7 @@ class MidnightSetReserveStatusJob < ApplicationJob
       #noinspection RubyResolve
       #NotifyUs
       res.status_freeze!
-      logger.warn("[warn] ### reserve=#{res.id} did not change status start to end. please check contact.")
+      DbLogger.dump("res:#{res.id} statusがstartからendに変更されていません. メールが来てないか確認して下さい。")
     end
   end
 
@@ -39,7 +38,7 @@ class MidnightSetReserveStatusJob < ApplicationJob
       dump = res.dump_reward
       if dump.nil?
         #NotifyUs
-        logger.warn("[warn] ### reserve=#{res.id} cannot dump reward. please check detail")
+        DbLogger.dump("res:#{res.id} cannot dump reward. 詳細を確認して下さい。")
       end
     end
   end
