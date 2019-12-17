@@ -1,29 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-
   <title>Share Bike</title>
   <%= csrf_meta_tags %>
-
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  <!--    追加分-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="content-language" content="ja">
   <link href="https://fonts.googleapis.com/css?family=Maiden+Orange" rel="stylesheet">
 </head>
 
-<body class="rootbody index-page sidebar-collapse">
+<body class="index-page sidebar-collapse">
 <div class="mother">
-  <header class="fixed-top">
-    <%= render 'layouts/header2', {trans_class: "navbar-transparent", color_on_scroll: 'color-on-scroll=400'} %>
-  </header>
 
-    <%= render 'util/toast' %>
+  <%= render 'util/toast' %>
+  <%= yield %>
 
-    <%= yield %>
 </div>
-
 <%= render 'layouts/footer' %>
 </body>
 </html>

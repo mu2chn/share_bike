@@ -4,39 +4,26 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <meta http-equiv="Expires" content="0">
-
   <title>Share Bike</title>
   <%= csrf_meta_tags %>
-
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  <!--    追加分-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="content-language" content="ja">
   <link href="https://fonts.googleapis.com/css?family=Maiden+Orange" rel="stylesheet">
-
-
 </head>
 
-<body class=" index-page sidebar-collapse">
-
+<body class="index-page sidebar-collapse">
 <div class="mother">
-
-  <header class="fixed-top">
-    <%= render 'layouts/header2', {trans_class: "", color_on_scroll: nil} %>
-  </header>
-
-  <div class="my-4 py-2"></div>
-
+  <%= render 'layouts/header', {trans_class: "", color_on_scroll: nil, no_padding: false} %>
   <div class="container">
-  <div>
-    <%= render 'util/toast' %>
+    <div>
+      <%= render 'util/toast' %>
+    </div>
+      <%= yield %>
   </div>
-    <%= yield %>
 
-  </div>
 </div>
-
 <%= render 'layouts/footer' %>
 </body>
 </html>

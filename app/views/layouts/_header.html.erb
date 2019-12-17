@@ -1,82 +1,89 @@
-<% current_user %>
+<% @current_user = current_user %>
+<% unless no_padding %>
+  <div style="height: 70px"></div>
+<% end %>
+  <header class="fixed-top">
+  <nav class="navbar navbar-expand-lg bg-primary fixed-top <%= trans_class %>" <%= color_on_scroll %>>
+    <div class="container">
+      <div class="navbar-translate">
+        <a class="navbar-brand" href="/" rel="tooltip" title="Share Cycling Service" data-placement="bottom">
+          WhereBike
+        </a>
+        <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-bar top-bar"></span>
+          <span class="navbar-toggler-bar middle-bar"></span>
+          <span class="navbar-toggler-bar bottom-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="./assets/img/blurred-image-1.jpg">
+        <ul class="navbar-nav">
 
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #ffffff; ">
-  <a class="navbar-brand" href="/">WhereBike</a>
-<!--  <button class="navbar-toggler navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">-->
-  <button type="button" class="navbar-toggler border-0" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーションの切替">
-    <span class="navbar-toggler-icon"></span>
-<!--    <span class="navbar-toggler-bar top-bar"></span>-->
-<!--    <span class="navbar-toggler-bar middle-bar"></span>-->
-<!--    <span class="navbar-toggler-bar bottom-bar"></span>-->
-  </button>
 
-  <div class="collapse navbar-collapse" id="Navber">
-    <ul class="navbar-nav mr-auto">
+          <% if @current_user.kind_of?(User) %>
+            <li class="nav-item">
+              <%= link_to(icon("far", "user", class: "fa-white") + " " + @current_user.name, u_edit_path, class: "nav-link active") %>
+            </li>
+          <% elsif @current_user.kind_of?(Tourist) %>
+            <li class="nav-item">
+              <%= link_to(icon("far", "user", class: "fa-white") + " " + @current_user.name, t_edit_path, class: "nav-link active") %>
+            </li>
+          <% else %>
+            <li class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <%= icon("fas", "sign-in-alt", class: "fa-white") %> login
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <%= link_to("京大生の方", u_login_path, class: "dropdown-item") %>
+                <%= link_to("利用者の方", t_login_path, class: "dropdown-item") %>
+              </div>
+            </li>
+          <% end %>
 
-      <li class="nav-item">
-        <% if @current_user.kind_of?(User) %>
-          <%= link_to(icon("far", "user", class: "fa-dark") + " " + @current_user.name, u_edit_path, class: "nav-link active") %>
-        <% elsif @current_user.kind_of?(Tourist) %>
-          <%= link_to(icon("far", "user", class: "fa-dark") + " " + @current_user.name, t_edit_path, class: "nav-link active") %>
-        <% else %>
-          <a href="#" class="nav-link dropdown-toggle text-dark" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= icon("fas", "sign-in-alt", class: "fa-dark") %> login
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <%= link_to("京大生の方", u_login_path, class: "dropdown-item") %>
-            <%= link_to("利用者の方", t_login_path, class: "dropdown-item") %>
-          </div>
-        <% end %>
-      </li>
 
-      <li class="nav-item active">
-        <% if user? %>
-          <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= icon("fas", "bicycle", class: "fa-dark") %> my bike
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <% Bike.where(user_id: @current_user.id).each do |bike| %>
-              <%= link_to(bike.name, "/bikes/edit/" + bike.id.to_s, class: "dropdown-item") %>
+          <li class="nav-item dropdown">
+            <% if @current_user.kind_of?(User) %>
+              <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <%= icon("fas", "bicycle", class: "fa-white") %> my bike
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <% Bike.where(user_id: @current_user.id).each do |bike| %>
+                  <%= link_to(bike.name, "/bikes/edit/" + bike.id.to_s, class: "dropdown-item") %>
+                <% end %>
+                <div class="dropdown-divider"></div>
+                <%= link_to("新規追加", b_new_path, class: "dropdown-item") %>
+              </div>
             <% end %>
-            <div class="dropdown-divider"></div>
-            <%= link_to("新規追加", b_new_path, class: "dropdown-item") %>
-          </div>
-        <% end %>
-      </li>
+          </li>
 
-      <li class="nav-item active">
-        <% if user? %>
-          <%= link_to(icon("fas", "calendar-alt", class: "fa-dark") + " reservations", u_reserve_path, class: "nav-link") %>
-        <% elsif tourist? %>
-          <%= link_to(icon("fas", "plane-departure", class: "fa-dark") + " reservations", t_reserve_path, class: "nav-link") %>
-        <% end %>
-      </li>
+          <li class="nav-item">
+            <% if @current_user.kind_of?(User) %>
+              <%= link_to(icon("fas", "calendar-alt", class: "fa-white") + " reservations", u_reserve_path, class: "nav-link") %>
+            <% elsif @current_user.kind_of?(Tourist) %>
+              <%= link_to(icon("fas", "plane-departure", class: "fa-white") + " reservations", t_reserve_path, class: "nav-link") %>
+            <% end %>
+          </li>
 
-      <li class="nav-item active">
-        <% if tourist? %>
-          <%= link_to(icon("fas", "search", class: "fa-dark") + " search bike", b_index_path, class: "nav-link") %>
-        <% else %>
-          <%= link_to(icon("fas", "search", class: "fa-dark") + " search bike", b_index_path, class: "nav-link") %>
-        <% end %>
-      </li>
+          <li class="nav-item">
+            <% if @current_user.kind_of?(Tourist) %>
+              <%= link_to(icon("fas", "search", class: "fa-white") + " search bike", b_index_path, class: "nav-link") %>
+            <% else %>
+              <%= link_to(icon("fas", "search", class: "fa-white") + " search bike", b_index_path, class: "nav-link") %>
+            <% end %>
+          </li>
 
-      <li class="nav-item active">
-        <% if logged_in? %>
-          <a href="#" class="nav-link dropdown-toggle text-dark" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= icon("fas", "sign-out-alt", class: "fa-dark")%> logout
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <%= link_to("logout", logout_path, class: "dropdown-item") %>
-          </div>
-        <% end %>
-      </li>
-    </ul>
+          <li class="nav-item dropdown">
+            <% if logged_in? %>
+              <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <%= icon("fas", "sign-out-alt", class: "fa-white") %> logout
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <%= link_to("logout", logout_path, class: "dropdown-item") %>
+              </div>
+            <% end %>
+          </li>
 
-  </div><!-- /.navbar-collapse -->
-</nav>
-
-<style>
-  .h-shadow{
-    box-shadow: 5px 5px 7px -5px;
-  }
-</style>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
