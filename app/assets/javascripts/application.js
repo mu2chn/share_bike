@@ -11,7 +11,7 @@
 // about supported directives.
 //
 //= require rails-ujs
-//= require turbolinks
+// require turbolinks
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
@@ -26,3 +26,4 @@
 //= require now-ui-kit
 
 //= require axios/dist/axios
+//= require vue/dist/vue

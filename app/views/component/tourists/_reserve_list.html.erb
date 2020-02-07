@@ -12,36 +12,10 @@
             (<%= ["日", "月", "火", "水", "木", "金", "土"][res.start_datetime.wday] %>)
           </div>
           <% if tourist? %>
-            <button type="button" class="btn btn-navy" data-toggle="modal" data-target="#res<%= res.id %>">
+            <a href="<%= t_reserve_id_path(res.id) %>" class="btn btn-navy">
               詳細を表示
-            </button>
-            <div class="modal fade" id="res<%= res.id %>" tabindex="-1" role="dialog" aria-labelledby="res<%= res.id %>">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" ><%= res.bike.name %> [<%= "#{res.start_datetime.month}/#{res.start_datetime.day}" %>
-                      (<%= ["日", "月", "火", "水", "木", "金", "土"][res.start_datetime.wday] %>)]</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <p>自転車の貸出について、いつ、どこで自転車を引き渡すかをメール（<%= mail_to res.bike.user.email %>）にてホストに確認しましょう。その際、必ず登録済みのメール（<%= @user.email %>）から送信してください。</p>
-                    <p>場所：<a href="/root/place"><%= ["ルネ前", "百万遍", "京大病院"][res.place_id] %></a></p>
-                    <p>時間：<%= res.start_datetime.strftime("%H:%M") %>〜<%= res.end_datetime.strftime("%H:%M") %></p>
-                    <p>自転車の詳細については<%= link_to "こちら", b_show_path(res.bike_id)%></p>
-                    <p>オーナーの詳細については<%= link_to "こちら", u_show_path(res.bike.user_id)%></p>
-                  </div>
-                 <div class="col-sm-6">
-                   <%= render partial: 'component/tourists/rental_button', locals: {reserve: res} %>
-                 </div>
+            </a>
 
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-                  </div><!-- /.modal-footer -->
-                </div><!-- /.modal-content -->
-              </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->
           <% end %>
 
         </div>

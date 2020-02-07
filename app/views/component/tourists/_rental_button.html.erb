@@ -1,18 +1,15 @@
-
 <% if reserve.status_default? %>
-  <a class="btn btn-primary" href="<%= r_start_path(reserve.id) %>">
-    レンタル開始
-  </a>
+  <%= render 'component/tourists/start_rental', {reserve: reserve} %>
 <% elsif reserve.status_start? %>
-  <a class="btn btn-primary" href="<%= r_end_path(reserve.id) %>">
-    レンタル終了
-  </a>
+<%= render 'component/tourists/end_rental' , {reserve: reserve}%>
 <% elsif reserve.status_end? %>
-  <a class="btn btn-primary" disabled>
+  <p class="btn btn-primary">
     返却完了
-  </a>
+  </p>
+<% elsif reserve.status_freeze? %>
+  <p class="btn btn-primary">
+    問題を解決中です。。。
+  </p>
 <% end %>
 
-<script>
 
-</script>

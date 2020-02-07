@@ -1,0 +1,28 @@
+<div id="start_rental_for_tourist">
+  <div>
+    <input type="checkbox" id="q0" v-model="checkbox[0]"/><label for="q0">確認項目１</label><br/>
+    <input type="checkbox" id="q1" v-model="checkbox[1]"/><label for="q1">確認項目２</label><br/>
+    <input type="checkbox" id="q2" v-model="checkbox[2]"/><label for="q2">確認項目３</label><br/>
+  </div>
+<!--      <a class="btn btn-primary" href="<%#= r_start_path(reserve.id) %>" onClick="return vueR.watchAllChecked()">-->
+    <a class="btn btn-primary" href="<%= r_start_path(reserve.id) %>" onClick="return vueR.watchAllChecked()">
+    レンタル開始
+  </a>
+</div>
+<script>
+    const vueR = new Vue({
+        el: "#start_rental_for_tourist",
+        data: {
+            checkbox: [false, false, false]
+        },
+        methods: {
+            watchAllChecked() {
+                const okay = !this.checkbox.includes(false);
+                if (!okay){
+                   alert("チェックできない項目がある場合は貸出できません。代替自転車を用意するのでメールを下さい。")
+                }
+                return okay;
+            }
+        }
+    })
+</script>

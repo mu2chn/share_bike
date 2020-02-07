@@ -95,9 +95,15 @@ class TouristBikesController < ApplicationController
       end
       validation = check_valid_end(@reserve)
       if validation[0] != 0
-        flash[:warning] == validation[1]
+        flash[:warning] = validation[1]
         redirect_to t_reserve_path
         return nil
+      end
+      if params["prob"] == "true"
+        flash[:warning] = "メールを送信します。詳細をメールにてお伝え下さい"
+        @reserve.status_freeze!
+        redirect_to t_reserve_path
+        return nilA
       end
       #noinspection RubyResolve
       @reserve.status_end!

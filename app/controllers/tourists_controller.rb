@@ -2,6 +2,16 @@ class TouristsController < ApplicationController
 
   require 'securerandom'
 
+  def reserve_detail
+    if_tourist do |user|
+      @reserve = TouristBike.find(params[:id])
+      @user = @reserve.bike.user
+      unless @reserve.tourist_id == user.id
+        redirect_to root_path
+      end
+    end
+  end
+
   def new
     if logged_in?
       redirect_to root_path

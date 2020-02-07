@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   get '/tourists/edit', to: 'tourists#edit', as: 't-edit'
   patch '/tourists/update', to: 'tourists#update', as: 't-update'
   get 'tourists/reserve', to: 'tourists#reserve', as: 't-reserve'
+  get 'tourists/reserve/:id', to: 'tourists#reserve_detail', as: 't-reserve-id'
 
   get '/bikes', to: 'bikes#index', as: 'b-index'
   get '/bikes/show/:id', to: 'bikes#show', as: 'b-show'
