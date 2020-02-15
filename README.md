@@ -21,6 +21,7 @@ git version 2.17.1
 $ bundle install --without development
 $ bundle exec rake assets:precompile RAILS_ENV=production
 $ rails db:migrate RAILS_ENV=production
+$ npm install
 $ bundle exec whenever --update-crontab
 # not recommend
 $ rails s -e production
