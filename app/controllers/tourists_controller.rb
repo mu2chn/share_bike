@@ -75,7 +75,7 @@ class TouristsController < ApplicationController
   def reserve
     if_tourist do |user|
       @user = user
-      @reservations = TouristBike.where(tourist_id: @user.id).order(day: "ASC").page(params[:page]).per(8)
+      @reservations = TouristBike.where(tourist_id: @user.id).order(start_datetime: "ASC").page(params[:page]).per(8)
       flash[:success]="支払いが完了しました!" if params[:payment]=="true"
     end
   end
