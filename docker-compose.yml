@@ -1,0 +1,31 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    restart: always
+    environment: 
+      POSTGRES_PASSWORD: pgface
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  web:
+    build: .
+    command: >
+      bash -c "
+        rails db:migrate &&
+        rails s -p 3000 -b '0.0.0.0'
+      "
+    volumes:
+      - .:/share_bike
+      - bundle_path:/tmp
+      # - precompile_path:/public/assets
+    ports:
+      - "3000:3000"
+    links:
+      - db
+
+volumes: 
+  # cache the bundle
+  bundle_path:
+  precompile_path:
+  postgres-data:

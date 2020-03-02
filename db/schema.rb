@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2019_12_12_015946) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -63,7 +66,7 @@ ActiveRecord::Schema.define(version: 2019_12_12_015946) do
     t.string "paid_id"
     t.integer "amount"
     t.string "currency"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.string "target_email"
     t.boolean "manual_input", default: false
     t.boolean "complete_dump", default: false
@@ -77,12 +80,12 @@ ActiveRecord::Schema.define(version: 2019_12_12_015946) do
   create_table "rewards", force: :cascade do |t|
     t.integer "amount"
     t.string "currency"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.boolean "already_payout", default: false
-    t.integer "tourist_bike_id"
+    t.bigint "tourist_bike_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "payout_id"
+    t.bigint "payout_id"
     t.index ["payout_id"], name: "index_rewards_on_payout_id"
     t.index ["tourist_bike_id"], name: "index_rewards_on_tourist_bike_id"
     t.index ["user_id"], name: "index_rewards_on_user_id"
@@ -101,7 +104,7 @@ ActiveRecord::Schema.define(version: 2019_12_12_015946) do
     t.integer "status", default: 0
     t.boolean "void", default: false
     t.integer "transaction_id"
-    t.integer "reward_id"
+    t.bigint "reward_id"
     t.index ["bike_id"], name: "index_tourist_bikes_on_bike_id"
     t.index ["reward_id"], name: "index_tourist_bikes_on_reward_id"
     t.index ["tourist_id"], name: "index_tourist_bikes_on_tourist_id"
