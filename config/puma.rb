@@ -5,16 +5,16 @@
 # and maximum; this matches the default thread size of Active Record.
 #
 
-if Rails.env.development?
-	port        ENV.fetch("PORT") { 3000 }
-elsif Rails.env.production?
-	
-	bind "unix://#{Rails.root}/tmp/sockets/puma.sock"
-	
-	daemonize true
-	workers ENV.fetch("WEB_CONCURRENCY") { 2 }
+# if Rails.env.development?
+port ENV.fetch("PORT") { 3000 }
+# elsif Rails.env.production?
+#
+# 	bind "unix://#{Rails.root}/tmp/sockets/puma.sock"
+#
+# 	daemonize true
+# 	workers ENV.fetch("WEB_CONCURRENCY") { 2 }
 
-end
+# end
 
 
 threads_count = ENV.fetch("RAILS_MAX_THREADS") { 5 }
