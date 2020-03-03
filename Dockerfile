@@ -3,8 +3,9 @@ FROM ruby:2.6.5
 RUN apt-get update -qq && \
     apt-get install -y build-essential \ 
                        libpq-dev \        
-                       nodejs \
                        npm
+RUN curl -sL https://deb.nodesource.com/setup_12.x | sh -
+RUN apt-get -y install nodejs
 
 RUN mkdir /share_bike
 
@@ -18,6 +19,5 @@ RUN bundle install
 
 WORKDIR $APP_ROOT
 ADD . $APP_ROOT
-RUN npm install
 
 EXPOSE  3000

@@ -15,6 +15,13 @@ $ git --version
 git version 2.17.1
 ```
 
+## for Docker
+```
+$ docker-compose up --build -d
+$ docker exec -it web 
+```
+
+
 ## Settings
 ### deploy
 ```bash

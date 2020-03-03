@@ -12,12 +12,13 @@ services:
     build: .
     command: >
       bash -c "
+        npm i &&
         rails db:migrate &&
         rails s -p 3000 -b '0.0.0.0'
       "
     volumes:
       - .:/share_bike
-      - bundle_path:/tmp
+      - bundle-path:/usr/local/bundle:cached
       # - precompile_path:/public/assets
     ports:
       - "3000:3000"
@@ -26,6 +27,6 @@ services:
 
 volumes: 
   # cache the bundle
-  bundle_path:
+  bundle-path:
   precompile_path:
   postgres-data:
