@@ -13,8 +13,8 @@ services:
       DOMAINS: '
         sharebiker.net -> http://web:3000,
       '
-#      STAGE: 'local' #DEV
-       STAGE: 'production' #PRO
+      STAGE: 'production' #PRO
+      #      STAGE: 'local' #DEV
     volumes:
       - sb-ssl-certs:/var/lib/https-portal
       - sb-vhosts:/var/www/vhosts
