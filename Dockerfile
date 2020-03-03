@@ -6,6 +6,7 @@ RUN apt-get update -qq && \
                        npm
 RUN curl -sL https://deb.nodesource.com/setup_12.x | sh -
 RUN apt-get -y install nodejs
+RUN apt-get install -y cron
 
 RUN mkdir /share_bike
 
@@ -15,7 +16,7 @@ WORKDIR $APP_ROOT
 WORKDIR /$APP_ROOT/tmp
 ADD ./Gemfile $APP_ROOT/Gemfile
 ADD ./Gemfile.lock $APP_ROOT/Gemfile.lock
-RUN bundle install
+#RUN bundle install
 
 WORKDIR $APP_ROOT
 ADD . $APP_ROOT
