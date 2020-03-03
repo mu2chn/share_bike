@@ -1,0 +1,39 @@
+version: '3'
+services:
+  https-portal:
+    image: steveltn/https-portal:1
+    container_name: sb-https-portal
+    ports:
+      - '80:80'
+      - '443:443'
+    restart: always
+    links:
+      - web
+    environment:
+      DOMAINS: '
+        sharebiker.net -> http://web:3000,
+      '
+#      STAGE: 'local' #DEV
+       STAGE: 'production' #PRO
+    volumes:
+      - sb-ssl-certs:/var/lib/https-portal
+      - sb-vhosts:/var/www/vhosts
+
+  web:
+    command: >
+      bash -c "
+        npm i &&
+        bundle install &&
+        bundle exec rake assets:precompile RAILS_ENV=production &&
+        rails db:migrate RAILS_ENV=production &&
+        bundle exec whenever --update-crontab &&
+        rails s -p 3000 -b '0.0.0.0' -e production
+      "
+
+volumes:
+  # SSL証明書
+  sb-ssl-certs:
+  # 静的ウェブサイト
+  sb-vhosts:
+
+

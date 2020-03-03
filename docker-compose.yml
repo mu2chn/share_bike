@@ -1,36 +1,5 @@
 version: '3'
 services:
-  https-portal:
-    image: steveltn/https-portal:1
-    container_name: sb-https-portal
-    ports:
-      - '80:80'
-      - '443:443'
-    restart: always
-    links:
-      - ghost
-      - web
-    environment:
-      DOMAINS: '
-        sharebiker.net -> http://web:3000,
-        site.sharebiker.net -> http://ghost:2368
-      '
-      STAGE: 'local' #DEV
-      # STAGE: 'production' #PRO
-    volumes:
-      - sb-ssl-certs:/var/lib/https-portal
-      - sb-vhosts:/var/www/vhosts
-
-  ghost:
-    image: ghost
-    environment:
-      url: http://localhost:2368 #DEV
-      # url: https://site.sharebiker.net #PRO
-    ports:
-      - '2368:2368'
-    volumes:
-      - sb-vghost:/var/lib/ghost/content
-
   db:
     image: postgres
     restart: always
@@ -42,31 +11,16 @@ services:
 
   web:
     build: .
-    command: >
-      bash -c "
-        npm i &&
-        bundle install &&
-        rails db:migrate &&
-        bundle exec whenever --update-crontab &&
-        rails s -p 3000 -b '0.0.0.0'
-      "
     environment:
       TZ: Asia/Tokyo
     volumes:
       - .:/share_bike
       - bundle-path:/usr/local/bundle:cached
-    ports:
-      - "3000:3000"
     links:
       - db
 
-volumes: 
+volumes:
   # cache the bundle
   bundle-path:
   postgres-data:
-  # SSL証明書
-  sb-ssl-certs:
-  # 静的ウェブサイト
-  sb-vhosts:
-  # GHOST
-  sb-vghost:
+
