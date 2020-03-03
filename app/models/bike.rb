@@ -12,6 +12,7 @@ class Bike < ApplicationRecord
   validates :security_num, presence: true
   validates :details, length: {maximum: 255}
   validates :image, presence: true
+  validates :pass, presence: true
 
   def self.easy_search_and(str="")
 

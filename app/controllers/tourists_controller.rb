@@ -5,7 +5,9 @@ class TouristsController < ApplicationController
   def reserve_detail
     if_tourist do |user|
       @reserve = TouristBike.find(params[:id])
-      @user = @reserve.bike.user
+      @bike = @reserve.bike
+      @user = @bike.user
+      @started = during_rental(@reserve)
       unless @reserve.tourist_id == user.id
         redirect_to root_path
       end
@@ -75,7 +77,7 @@ class TouristsController < ApplicationController
   def reserve
     if_tourist do |user|
       @user = user
-      @reservations = TouristBike.where(tourist_id: @user.id).order(start_datetime: "ASC").page(params[:page]).per(8)
+      @reservations = TouristBike.where(tourist_id: @user.id, end_datetime: DateTime.now.ago(3.days)..DateTime.now.since(14.days)).order(start_datetime: "ASC").page(params[:page]).per(8)
       flash[:success]="支払いが完了しました!" if params[:payment]=="true"
     end
   end

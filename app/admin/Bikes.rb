@@ -1,5 +1,5 @@
 ActiveAdmin.register Bike do
-  permit_params :vehicle_num, :security_area, :security_num, :name, :details, :void
+  permit_params :vehicle_num, :security_area, :security_num, :name, :details, :void, :pass
   actions :all, except: [:destroy, :new ]
 
   index do

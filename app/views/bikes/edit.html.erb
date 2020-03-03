@@ -12,6 +12,9 @@
       <%= f.label "車体番号", class: "text-muted" %>
       <%= f.text_field :vehicle_num, class: 'form-control mb-2', disabled: true%>
 
+      <%= f.label "自転車のロック番号（定期的に変更して下さい）" , class: "text-muted"%>
+      <%= f.number_field :pass, class: 'form-control mb-2'%>
+
       <%= f.label :details, class: "text-muted" %>
       <%= f.text_area :details, class: 'form-control mb-2' %>
 

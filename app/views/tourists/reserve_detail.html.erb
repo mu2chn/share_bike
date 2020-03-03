@@ -5,6 +5,7 @@
   <p>自転車の貸出について、いつ、どこで自転車を引き渡すかをメール（<%= mail_to @reserve.bike.user.email %>）にてホストに確認しましょう。その際、必ず登録済みのメール（<%= @user.email %>）から送信してください。</p>
   <p>場所：<a href="/root/place"><%= ["ルネ前", "百万遍", "京大病院"][@reserve.place_id] %></a></p>
   <p>時間：<%= @reserve.start_datetime.strftime("%H:%M") %>〜<%= @reserve.end_datetime.strftime("%H:%M") %></p>
+  <p>自転車PIN[レンタル開始時刻後に公開されます]：<%= @started ? @bike.pass : "****"%></p>
   <p>自転車の詳細については<%= link_to "こちら", b_show_path(@reserve.bike_id)%></p>
-  <p>オーナーの詳細については<%= link_to "こちら", u_show_path(@reserve.bike.user_id)%></p >
+  <p>オーナーの詳細については<%= link_to "こちら", u_show_path(@reserve.bike.user_id)%></p>
  <%= render partial: 'component/tourists/rental_button', locals: {reserve: @reserve} %>

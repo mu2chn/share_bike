@@ -75,11 +75,11 @@ class BikesController < ApplicationController
 
   private
   def bike_params
-    params.require(:bike).permit(:name, :vehicle_num, :security_area, :security_num, :details, :image)
+    params.require(:bike).permit(:name, :vehicle_num, :security_area, :security_num, :details, :image, :pass)
   end
 
   def bike_update_params
-    params.require(:bike).permit(:name, :details, :image)
+    params.require(:bike).permit(:name, :details, :image, :pass)
   end
 
   def make_month
