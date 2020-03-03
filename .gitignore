@@ -25,3 +25,4 @@ nohup.out
 .byebug_history
 /.idea/*
 public/uploads/
+public/assets/*
