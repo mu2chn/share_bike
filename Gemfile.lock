@@ -198,7 +198,8 @@ GEM
       activerecord (>= 5.0)
     popper_js (1.14.5)
     public_suffix (4.0.1)
-    puma (3.12.3)
+    puma (4.3.3)
+      nio4r (~> 2.0)
     rack (2.2.2)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -331,7 +332,7 @@ DEPENDENCIES
   paypal-checkout-sdk
   paypal-sdk-rest
   pg
-  puma (~> 3.12)
+  puma (~> 4.3)
   rails (~> 6.0)
   sass-rails (~> 5.0)
   selenium-webdriver
