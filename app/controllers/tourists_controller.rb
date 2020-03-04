@@ -75,6 +75,18 @@ class TouristsController < ApplicationController
     end
   end
 
+  def forget_pass
+    email = params[:email]
+    u = Tourist.find_by(email: email)
+    if u.present?
+      p pass = SecureRandom.hex(3)
+      u.update_attributes(password: pass)
+      ForgetPass.tell(u, pass).deliver_later
+    end
+    flash[:success] = email + "へ仮パスワードを送信しました"
+    redirect_to t_login_path
+  end
+
   def reserve
     if_tourist do |user|
       @user = user

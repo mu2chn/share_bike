@@ -45,3 +45,7 @@
 }
 .brandtext{ font-family: 'Maiden Orange', cursive;}
 
+.clickable :hover{
+  cursor: pointer;
+  text-underline: #1b1e21;
+}

@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get '/users/edit', to: 'users#edit', as: 'u-edit'
   patch '/users/update', to: 'users#update', as: 'u-update'
   get '/users/reserve', to: 'users#reserve', as: 'u-reserve'
+  post '/users/reset', to: 'users#forget_pass', as: 'u-forget'
 
   post '/reserve', to: 'tourist_bikes#reserve', as: 'reserve'
   delete '/reserve/delete/:id', to: 'tourist_bikes#delete', as: 'r-delete'
@@ -39,6 +40,8 @@ Rails.application.routes.draw do
   patch '/tourists/update', to: 'tourists#update', as: 't-update'
   get 'tourists/reserve', to: 'tourists#reserve', as: 't-reserve'
   get 'tourists/reserve/:id', to: 'tourists#reserve_detail', as: 't-reserve-id'
+  post '/tourists/reset', to: 'tourists#forget_pass', as: 't-forget'
+
 
   get '/bikes', to: 'bikes#index', as: 'b-index'
   get '/bikes/show/:id', to: 'bikes#show', as: 'b-show'
