@@ -9,11 +9,11 @@
       <%= f.label :email %>
       <%= f.text_field :email, class: 'form-control mb-2', disabled: true%>
 
-      <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control mb-2' %>
+      <%= f.label :password %>（6文字以上）
+      <%= f.password_field :password, class: 'form-control mb-2', value: nil %>
 
-      <%= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation, class: 'form-control mb-2' %>
+      <%#= f.label :password_confirmation, "Password Confirmation" %>
+      <%#= f.password_field :password_confirmation, class: 'form-control mb-2', value: nil %>
 
       <%= f.submit "Save changes", class: "btn btn-navy" %>
     <% end %>

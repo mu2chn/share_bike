@@ -66,10 +66,11 @@ class TouristsController < ApplicationController
     if_tourist do |user|
       @user = user
       if @user.update_attributes(update_user_params)
-        flash[:success] = "Updated"
+        flash[:success] = "更新しました"
         redirect_to t_edit_path
       else
-        render t_edit_path
+        flash[:warning] = "更新に失敗しました"
+        redirect_to t_edit_path
       end
     end
   end

@@ -72,7 +72,7 @@ class UsersController < ApplicationController
         flash[:success] = "更新しました"
         redirect_to u_edit_path
       else
-        render u_edit_path
+        redirect_to u_edit_path
       end
     end
   end

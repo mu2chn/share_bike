@@ -63,4 +63,4 @@ $ bundle exec whenever --clear-crontab
  キャッシュ消す
 
 ## デプロイ注意点
-port: 80,443,22, 
+port: 80,443,22
