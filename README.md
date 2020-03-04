@@ -27,6 +27,9 @@ $ docker-compose -f docker-compose.yml -f dev.docker-compose.yml up (--build)
 $ docker-compose -f docker-compose.yml -f pro.docker-compose.yml up (--build)
 ```
 
+## only dev
+validate: KYODAI_EMAIL
+
 
 ## Settings
 ### deploy
@@ -54,3 +57,10 @@ $ RAILS_ENV=production rake db:migrate VERSION=0
 $ ps aux | grep puma
 $ bundle exec whenever --clear-crontab
 ```
+
+### その他
+- localhost:3000が勝手にhttpsにリダイレクトされる
+ キャッシュ消す
+
+## デプロイ注意点
+port: 80,443,22

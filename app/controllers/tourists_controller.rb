@@ -66,12 +66,25 @@ class TouristsController < ApplicationController
     if_tourist do |user|
       @user = user
       if @user.update_attributes(update_user_params)
-        flash[:success] = "Updated"
+        flash[:success] = "更新しました"
         redirect_to t_edit_path
       else
-        render t_edit_path
+        flash[:warning] = "更新に失敗しました"
+        redirect_to t_edit_path
       end
     end
+  end
+
+  def forget_pass
+    email = params[:email]
+    u = Tourist.find_by(email: email)
+    if u.present?
+      p pass = SecureRandom.hex(3)
+      u.update_attributes(password: pass)
+      ForgetPass.tell(u, pass).deliver_later
+    end
+    flash[:success] = email + "へ仮パスワードを送信しました"
+    redirect_to t_login_path
   end
 
   def reserve

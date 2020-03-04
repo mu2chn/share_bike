@@ -29,7 +29,7 @@ class TouristBikesController < ApplicationController
           flash[:success] = "新しく日程を追加しました"
           # redirect_to u_reserve_path
         else
-          flash[:error] = "失敗しました"
+          flash[:warning] = "失敗しました"
         end
       end
       redirect_to u_reserve_path
@@ -56,11 +56,11 @@ class TouristBikesController < ApplicationController
       if @user.id != Bike.find(@reserve.bike_id).user_id
         redirect_to root_path
       elsif !@reserve.tourist_id.nil?
-        flash[:error] = "予約があるので削除できません"
+        flash[:warning] = "予約があるので削除できません"
       elsif @reserve.delete
         flash[:success] = "削除しました"
       else
-        flash[:error] = "削除できませんでした"
+        flash[:warning] = "削除できませんでした"
       end
       redirect_to u_reserve_path
     end

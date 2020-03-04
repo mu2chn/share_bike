@@ -16,7 +16,7 @@
     <% end %>
 
     <h6 class="mt-3"><%= link_to "新規登録はこちら", u_new_path, class: "text-muted" %></h6>
-    <h6 class="mt-3"><span data-toggle="modal" data-target="#myModal" class="forgot-pass text-muted">パスワードをお忘れの場合</span></h6>
+    <h6 class="mt-3"><span data-toggle="modal" data-target="#myModal" class="forgot-pass text-muted clickable">パスワードをお忘れの場合</span></h6>
   </div>
 </div>
 
@@ -31,10 +31,14 @@
       </div>
       <div class="modal-body">
         <p>以下よりメールアドレスを送信してください。仮パスワードを発行いたします。</p>
-        <input type="text" placeholder="Enter e-mail" class="form-control"/>
+        <%= form_with url: u_forget_path, local: true do |form| %>
+          <%= form.email_field :email,class: "form-control" %>
+          <%= form.submit class: "btn btn-primary", value: "送信" %>
+        <% end %>
+<!--        <input type="text" placeholder="Enter e-mail" class="form-control"/>-->
+<!--        <button type="button" class="btn btn-primary" id="submit">送信</button>-->
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" id="submit">送信</button>
       </div><!-- /.modal-footer -->
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
