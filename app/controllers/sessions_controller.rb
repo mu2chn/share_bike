@@ -35,7 +35,7 @@ class SessionsController < ApplicationController
         redirect_to b_index_path
       end
     else
-      flash[:error] = "ログインに失敗しました。メールアドレスやパスワードが間違っていないか確認してください。"
+      flash[:warning] = "ログインに失敗しました。メールアドレスやパスワードが間違っていないか確認してください。"
       if flag == "user"
         redirect_to u_login_path
       elsif flag == "tourist"

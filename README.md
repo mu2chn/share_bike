@@ -57,5 +57,10 @@ $ RAILS_ENV=production rake db:migrate VERSION=0
 $ ps aux | grep puma
 $ bundle exec whenever --clear-crontab
 ```
+
+### その他
+- localhost:3000が勝手にhttpsにリダイレクトされる
+ キャッシュ消す
+
 ## デプロイ注意点
 port: 80,443,22, 

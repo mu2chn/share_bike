@@ -63,11 +63,11 @@ class BikesController < ApplicationController
           flash[:success] = "Updated"
           redirect_to "/bikes/edit/"+params[:id].to_s
         else
-          flash[:error] = "失敗しました"
+          flash[:warning] = "失敗しました"
           redirect_to "/bikes/edit/"+params[:id].to_s
         end
       else
-        flash[:error] = "権限がありません"
+        flash[:warning] = "権限がありません"
         redirect_to root_path
       end
     end
