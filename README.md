@@ -57,3 +57,5 @@ $ RAILS_ENV=production rake db:migrate VERSION=0
 $ ps aux | grep puma
 $ bundle exec whenever --clear-crontab
 ```
+## デプロイ注意点
+port: 80,443,22, 
