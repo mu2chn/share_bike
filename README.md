@@ -27,6 +27,9 @@ $ docker-compose -f docker-compose.yml -f dev.docker-compose.yml up (--build)
 $ docker-compose -f docker-compose.yml -f pro.docker-compose.yml up (--build)
 ```
 
+## only dev
+validate: KYODAI_EMAIL
+
 
 ## Settings
 ### deploy
