@@ -14,13 +14,6 @@
     color: red;
   }
 }
-
-//labelをうすく
-//label{
-//  color: #BBBBBB;
-//}
-
-
 //card-column
 .card-columns {
   @include media-breakpoint-only(sm) {

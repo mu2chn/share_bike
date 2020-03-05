@@ -7,11 +7,18 @@
   </div>
 </div>
 
-<div class="container titles" style="margin-top: 15vh; margin-bottom: 20vh">
+<div class="container titles" style="margin-top: 15vh; margin-bottom: 15vh">
   <div class="row">
-    <h2 class="offset-md-1 text-center col-md-5 col-12 pt-5">WhereBikeって？</h2>
-    <p class="col-md-5 col-12">シェアバイクは新しい自転車貸し借りサービスです。どなたでもご利用に慣れます。シェアバイクは新しい自転車貸し借りサービスです。どなたでもご利用に慣れます。
-      シェアバイクは新しい自転車貸し借りサービスです。どなたでもご利用に慣れます。</p>
+    <div class="offset-md-1 col-12 col-md-5 d-flex align-items-center justify-content-center">
+      <h2>ShareBikerって？</h2>
+    </div>
+    <div class="col-12 col-md-5 text-center">
+      <p class="mt-md-1">
+        ShareBikerは京都の学生の自転車を観光客に貸し出すことで、観光の促進を図ろうという新しいスタイルのシェアサイクルです。
+      </p>
+    </div>
+<!--    <h2 class="offset-md-1 text-center col-md-5 col-12 pt-5">ShareBikerって？</h2>-->
+<!--    <p class="col-md-5 col-12">ShareBikerは京都の学生の自転車を観光客に貸し出すことで、観光の促進を図ろうという新しいスタイルのシェアサイクルです。</p>-->
   </div>
   <div class="btn-group d-flex mt-5 justify-content-center" role="group" aria-label="...">
     <button type="button" class="btn-lg btn-primary border-0" data-toggle="modal" data-target="#firstman">初めての方はこちらへ！</button>
@@ -23,39 +30,39 @@
 <div class="container">
   <div class="row mt-2 mb-5">
     <div class="offset-md-1 col-12 col-md-5 d-flex align-items-center justify-content-center">
-      <%= render 'svg/bike' %>
+      <%= render 'svg/web' %>
     </div>
     <div class="col-12 col-md-5 text-center">
       <p class="mt-md-1">
-        京大生の自転車が簡単に使え、コミュニケーションを簡単にとれます。京大生の自転車が簡単に使え、コミュニケーションを簡単にとれます。京大生の自転車が簡単に使え、コミュニケーションを簡単にとれます。
+        オンラインでの予約システムにより、お好きなタイミングで利用できます。レンタル、返却は基本的にブラウザのみで完結します。
       </p>
     </div>
   </div>
   <div class="row mt-4 mb-5">
     <div class="offset-md-1 col-12 col-md-5 d-flex align-items-center justify-content-center">
-      <%= render 'svg/bike' %>
+      <%= render 'svg/wallet' %>
     </div>
     <div class="col-12 col-md-5 text-center">
       <p class="mt-md-1">
-        京大生の自転車が簡単に使え、コミュニケーションを簡単にとれます。京大生の自転車が簡単に使え、コミュニケーションを簡単にとれます。京大生の自転車が簡単に使え、コミュニケーションを簡単にとれます。
+        自転車を特別に用意する必要がないため、低価格でレンタルできます。
       </p>
     </div>
   </div>
   <div class="row mt-4 mb-5">
     <div class="offset-md-1 col-12 col-md-5 d-flex align-items-center justify-content-center">
-      <%= render 'svg/bike' %>
+      <%= render 'svg/temple' %>
     </div>
     <div class="col-12 col-md-5 text-center">
       <p class="mt-md-1">
-        京大生の自転車が簡単に使え、コミュニケーションを簡単にとれます。京大生の自転車が簡単に使え、コミュニケーションを簡単にとれます。京大生の自転車が簡単に使え、コミュニケーションを簡単にとれます。
+        京大を中心とする観光地で自転車をレンタルできるため、効率的に観光地を回ることができます。
       </p>
     </div>
   </div>
 
-  <h5 class="text-center my-5">いかがでしょうか？面白いと思ったら以下、「初めての方」より詳しい説明をどうぞ！</h5>
+  <h5 class="text-center my-5">いかがでしょうか？興味を持っていただけたら、「初めての方」より詳しい説明をどうぞ！</h5>
   <div class="btn-group d-flex mt-1 justify-content-center" role="group" aria-label="...">
-    <button type="button" class="btn btn-outline-primary w-50" data-toggle="modal" data-target="#firstman">初めての方</button>
-    <button type="button" class="btn btn-outline-primary w-50" data-toggle="modal" data-target="#secondman">登録済みの方</button>
+    <button type="button" class="btn-lg btn-primary w-50" data-toggle="modal" data-target="#firstman">初めての方</button>
+    <button type="button" class="btn-lg btn-primary w-50" data-toggle="modal" data-target="#secondman">登録済みの方</button>
   </div>
 </div>
 
@@ -79,11 +86,9 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-body">
-        <p class="text-center h4 text-muted">いずれか選択してください</p>
-<!--        <div class="btn-group d-flex mt-1" role="group" aria-label="...">-->
-          <a role="button" class="btn btn-first w-100 my-5" href="/root/first-t" data-turbolinks="false">観光客</a>
-          <a role="button" class="btn btn-first w-100" href="/root/first-u" data-turbolinks="false">京大生</a>
-<!--        </div>-->
+        <p class="text-center h4 text-first">いずれか選択してください</p>
+          <a role="button" class="btn btn-info w-100 my-5" href="/root/first-t" data-turbolinks="false">観光客</a>
+          <a role="button" class="btn btn-info w-100" href="/root/first-u" data-turbolinks="false">京大生</a>
       </div>
     </div>
   </div>
