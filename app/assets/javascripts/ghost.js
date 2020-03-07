@@ -1,5 +1,5 @@
 const api = new GhostContentAPI({
-    url: 'https://entry.face0u0.net',
-    key: 'b2b50951d31577aa7fc2167846',
+    url: 'https://cms.sharebiker.net',
+    key: '2c6c69115c0a97b637ae4d1bd5',
     version: "v3"
 });
