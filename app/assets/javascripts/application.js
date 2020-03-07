@@ -17,13 +17,15 @@
 //= require bootstrap-sprockets
 
 // calender 3つ
+
 //= require moment
 //= require moment/ja.js
 //= require tempusdominus-bootstrap-4.js
-
-//= require_tree .
 
 //= require now-ui-kit
 
 //= require axios/dist/axios
 //= require vue/dist/vue
+//= require @tryghost/content-api/umd/content-api.min.js
+
+//= require_tree .
