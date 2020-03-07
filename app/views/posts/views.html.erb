@@ -17,6 +17,34 @@
 </script>
 
 <style>
+
+  h2{
+    padding-top: .5em; padding-bottom: .3em; border-bottom: 1px solid #ccc;margin-bottom: .51em;
+  }
+  h1 {
+    position: relative;
+    padding-bottom: .5em;
+    margin-bottom: 1em;
+  }
+  h1::before,
+  h1::after {
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    content: '';
+    height: 4px;
+  }
+  h1::before {
+    z-index: 2;
+    width: 15%;
+    background-color: #444;
+  }
+  h1::after {
+    width: 100%;
+    background: -webkit-repeating-linear-gradient(45deg, #fff, #fff 2px, #aaa 2px, #aaa 4px);
+    background: repeating-linear-gradient(45deg, #fff, #fff 2px, #aaa 2px, #aaa 4px);
+  }
+
   h1, h2, h3, h4{
     margin-top: 20px;
   }
@@ -30,9 +58,9 @@
 
   table {
     border-collapse: collapse;
-    margin: 0 auto;
+    margin: 10px auto;
     padding: 0;
-    width: 650px;
+    max-width: 1000px;
     table-layout: fixed;
     color: #000;
   }
