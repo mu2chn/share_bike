@@ -8,11 +8,11 @@
 
 <script>
 
-    api.posts.read({id: "<%= @post_id %>"})
+    api.posts.read({slug: "<%= @post_id %>"})
         .then(content => {
             const head = document.getElementById("content_title");
             head.innerHTML = `
-              <h2 style="padding-bottom: .5em; border-bottom: 1px solid #ccc;">${content.title}</h2>
+              <h1 style="padding-top: .5em; padding-bottom: 1em; border-bottom: 1px solid #ccc;">${content.title}</h1>
             `
             const holder = document.getElementById("content_main");
             holder.innerHTML = content.html;
