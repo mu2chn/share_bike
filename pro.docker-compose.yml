@@ -9,12 +9,13 @@ services:
     restart: always
     links:
       - web
+      - ghost
     environment:
       DOMAINS: '
         sharebiker.net -> http://web:3000,
+        cms.sharebiker.net -> http://ghost:2368
       '
       STAGE: 'production' #PRO
-      #      STAGE: 'local' #DEV
     volumes:
       - sb-ssl-certs:/var/lib/https-portal
       - sb-vhosts:/var/www/vhosts
@@ -30,10 +31,18 @@ services:
         rails s -p 3000 -b '0.0.0.0' -e production
       "
 
+  ghost:
+    image: ghost
+    environment:
+      url: https://cms.sharebiker.net
+    volumes:
+      - sb-vghost:/var/lib/ghost/content
+
 volumes:
   # SSL証明書
   sb-ssl-certs:
   # 静的ウェブサイト
   sb-vhosts:
+  sb-vghost:
 
 

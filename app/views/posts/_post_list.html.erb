@@ -1,0 +1,30 @@
+<script>
+    api.posts.browse({limit: 3, include: 'tags,authors'})
+    .then(contents => {
+        console.log(contents);
+        const posts = document.getElementById("posts_list")
+        for(let content of contents){
+            posts.appendChild(createList(content));
+        }
+    });
+
+    function createList(content) {
+      const card = document.createElement("div");
+      card.innerHTML = `
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">${content.title}</h4>
+<!--          <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
+          <p class="card-text">${content.excerpt}</p>
+          <a href="/post/${content.id}" class="card-link">お知らせを見る</a>
+        </div>
+      </div>
+      `
+    return card;
+    }
+</script>
+
+<h3 class="text-center">お知らせ</h3>
+<div id="posts_list"></div>
+
+

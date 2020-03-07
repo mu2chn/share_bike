@@ -1,0 +1,26 @@
+<div id="content_title">
+
+</div>
+
+<div id="content_main">
+
+</div>
+
+<script>
+
+    api.posts.read({id: "<%= @post_id %>"})
+        .then(content => {
+            const head = document.getElementById("content_title");
+            head.innerHTML = `
+              <h2 style="padding-bottom: .5em; border-bottom: 1px solid #ccc;">${content.title}</h2>
+            `
+            const holder = document.getElementById("content_main");
+            holder.innerHTML = content.html;
+        })
+</script>
+
+<style>
+  h1, h2, h3, h4{
+    margin-top: 20px;
+  }
+</style>
