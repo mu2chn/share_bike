@@ -9,7 +9,7 @@
         .then(content => {
             const head = document.getElementById("content_title");
             head.innerHTML = `
-              <h1 style="padding-top: .5em; padding-bottom: 1em; border-bottom: 1px solid #ccc;">${content.title}</h1>
+              <h1 style="margin-bottom: 1em;">${content.title}</h1>
             `
             const holder = document.getElementById("content_main");
             holder.innerHTML = content.html;
@@ -47,6 +47,7 @@
 
   h1, h2, h3, h4{
     margin-top: 50px;
+    margin-bottom: 3px;
   }
 
   ul {list-style-type: square;}

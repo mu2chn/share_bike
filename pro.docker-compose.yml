@@ -1,5 +1,9 @@
 version: '3'
 services:
+  db:
+    volumes:
+    - ./data/postgre:/var/lib/postgresql/data
+
   https-portal:
     image: steveltn/https-portal:1
     container_name: sb-https-portal
@@ -18,7 +22,7 @@ services:
       STAGE: 'production' #PRO
     volumes:
       - sb-ssl-certs:/var/lib/https-portal
-      - sb-vhosts:/var/www/vhosts
+      - ./data/static:/var/www/vhosts
 
   web:
     command: >
@@ -36,13 +40,11 @@ services:
     environment:
       url: https://cms.sharebiker.net
     volumes:
-      - sb-vghost:/var/lib/ghost/content
+      - ./data/ghost:/var/lib/ghost/content
 
 volumes:
   # SSL証明書
   sb-ssl-certs:
-  # 静的ウェブサイト
-  sb-vhosts:
-  sb-vghost:
+
 
 
