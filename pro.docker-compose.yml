@@ -20,6 +20,7 @@ services:
         cms.sharebiker.net -> http://ghost:2368
       '
       STAGE: 'production' #PRO
+      CLIENT_MAX_BODY_SIZE: 10M
     volumes:
       - sb-ssl-certs:/var/lib/https-portal
       - ./data/static:/var/www/vhosts
