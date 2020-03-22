@@ -22,4 +22,3 @@ services:
 volumes:
   # cache the bundle
   bundle-path:
-zi
