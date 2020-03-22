@@ -16,7 +16,7 @@ services:
       - ghost
     environment:
       DOMAINS: '
-        sharebiker.net -> http://web:3000,
+        sharebiker:beforetest@sharebiker.net -> http://web:3000,
         cms.sharebiker.net -> http://ghost:2368
       '
       STAGE: 'production' #PRO
