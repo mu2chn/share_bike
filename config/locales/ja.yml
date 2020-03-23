@@ -11,6 +11,17 @@ ja:
     base:
       unknown: "予期せぬエラーが発生しました。"
       invalid: "不正なアクセスです。"
+    session:
+      create:
+        success:
+          exec: "ログインしました。"
+        fail:
+          exec: "ログインに失敗しました。メールアドレスやパスワードが間違っていないか確認してください。"
+      destroy:
+        success:
+          exec: "ログアウトしました"
+        fail:
+          exec: "すでにログアウトしています"
     payment:
       pay:
         fail:
