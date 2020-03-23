@@ -9,6 +9,14 @@ module CustomException
       end
     end
   end
+
+  class ExpectedException < StandardError
+    attr_reader :msg, :redirect
+    def initialize(msg, redirect)
+      @msg = msg
+      @redirect = redirect
+    end
+  end
 end
 
 

@@ -10,6 +10,38 @@ ja:
   flash:
     base:
       unknown: "予期せぬエラーが発生しました。"
+      invalid: "不正なアクセスです。"
+    reservation:
+      create:
+        fail:
+          unselected: "自転車が選択されていません"
+          not_authenticated: "メール認証を済ませて下さい"
+          no_date: "日付を入力してください"
+          reversed: "開始時刻が終了時刻よりも早いです"
+          too_late: "開始時刻の３０分前までにご登録下さい"
+          too_early: "2ヶ月以上先の予約はできません"
+          same_day: "同じ日に同じ自転車の貸出はできません"
+          exec: "失敗しました"
+        success:
+          exec: "新しく日程を追加しました"
+      delete:
+        fail:
+          filled: "予約があるので削除できません"
+          exec: "削除できませんでした"
+        success:
+          exec: "予約を削除しました"
+      end:
+        success:
+          delay: "返却を完了しましたが、返却時間を過ぎています。"
+          exec: "返却を完了しました。"
+          problem: "メールを送信します。詳細をメールにてお伝え下さい"
+      start:
+        success:
+          exec: "貸出を開始しました"
+        fail:
+          already: "すでに貸出を開始しています。"
+          limit: "終了10分前を過ぎました。貸出ができません。"
+          early: "レンタル開始時刻を過ぎてからでお願いします。"
     bike:
       tutorial:
         index: "ここは自転車検索ページです。日程などから自転車を探すことができます"
