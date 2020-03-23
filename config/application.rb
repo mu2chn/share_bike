@@ -17,5 +17,8 @@ module ShareBike
     # -- all .rb files in that directory are automatically loaded.
     config.time_zone = 'Asia/Tokyo'
     config.active_record.default_timezone = :local
+    I18n.default_locale = :ja
+
+    config.autoload_paths += Dir["#{config.root}/lib/**/"]
   end
 end

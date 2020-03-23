@@ -28,14 +28,14 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       log_in user
       remember user, flag
-      flash[:success] = "ログインしました"
+      flash[:success] = I18n.t('flash.session.create.success.exec')
       if user?
         redirect_to u_reserve_path
       elsif tourist?
         redirect_to b_index_path
       end
     else
-      flash[:warning] = "ログインに失敗しました。メールアドレスやパスワードが間違っていないか確認してください。"
+      flash[:warning] = I18n.t('flash.session.create.fail.exec')
       if flag == "user"
         redirect_to u_login_path
       elsif flag == "tourist"
@@ -57,10 +57,9 @@ class SessionsController < ApplicationController
         log_out
         redirect_to root_path
       end
-      flash[:success] = "ログアウトしました"
+      flash[:success] = I18n.t('flash.session.destroy.success.exec')
     else
-      flash[:warning] = "すでにログアウトしています"
-      redirect_to root_path
+      raise CustomException::NamedException::new(I18n.t('flash.session.destroy.fail.exec'))
     end
   end
 end

@@ -109,5 +109,6 @@ class TouristBike < ApplicationRecord
     trans = Transaction.find(self.transaction_id)
     status = trans.refund_for_deposit
   end
+
 end
 

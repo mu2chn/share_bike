@@ -6,3 +6,122 @@ ja:
       previous: "&lsaquo;"
       next: "&rsaquo;"
       truncate: "..."
+
+  flash:
+    base:
+      unknown: "予期せぬエラーが発生しました。"
+      invalid: "不正なアクセスです。"
+    session:
+      create:
+        success:
+          exec: "ログインしました。"
+        fail:
+          exec: "ログインに失敗しました。メールアドレスやパスワードが間違っていないか確認してください。"
+      destroy:
+        success:
+          exec: "ログアウトしました"
+        fail:
+          exec: "すでにログアウトしています"
+    payment:
+      pay:
+        fail:
+          invalid_resv: "無効な予約です"
+          not_authenticated: "メール認証されていません"
+          already_end: "すでに終了しています"
+          not_default: "不正な予約です"
+          already_reserved: "すでに予約されています"
+          exec: "支払いに失敗しました"
+          not_enough: "金額が不正です"
+    reservation:
+      create:
+        fail:
+          unselected: "自転車が選択されていません"
+          not_authenticated: "メール認証を済ませて下さい"
+          no_date: "日付を入力してください"
+          reversed: "開始時刻が終了時刻よりも早いです"
+          too_late: "開始時刻の３０分前までにご登録下さい"
+          too_early: "2ヶ月以上先の予約はできません"
+          same_day: "同じ日に同じ自転車の貸出はできません"
+          exec: "失敗しました"
+        success:
+          exec: "新しく日程を追加しました"
+      delete:
+        fail:
+          filled: "予約があるので削除できません"
+          exec: "削除できませんでした"
+        success:
+          exec: "予約を削除しました"
+      end:
+        success:
+          delay: "返却を完了しましたが、返却時間を過ぎています。"
+          exec: "返却を完了しました。"
+          problem: "メールを送信します。詳細をメールにてお伝え下さい"
+      start:
+        success:
+          exec: "貸出を開始しました"
+        fail:
+          already: "すでに貸出を開始しています。"
+          limit: "終了10分前を過ぎました。貸出ができません。"
+          early: "レンタル開始時刻を過ぎてからでお願いします。"
+    bike:
+      tutorial:
+        index: "ここは自転車検索ページです。日程などから自転車を探すことができます"
+        show: "ここは予約ページです。気に入った自転車の予約をすることができます。"
+      update:
+        success:
+          exec: "自転車情報を更新しました。"
+        fail:
+          exec: "失敗しました。各項目を見直して下さい。"
+          permission: "権限がありません。"
+      create:
+        success:
+          register: "新しく自転車を追加しました！今度は貸し出す日程を決めましょう"
+        fail:
+          register: "自転車の追加に失敗しました。間違っている項目がないか確認してください。"
+    tourist:
+      reserve:
+        success:
+        end: "支払いが完了しました!"
+      password_reset:
+        success:
+          sendto:
+            "%{email}へパスワード再設定用のメールを送信しました。"
+      update:
+        fail:
+          exec: "更新に失敗しました"
+        success:
+          exec: "更新に成功しました。"
+      authenticate:
+        fail:
+          already: "すでに認証が完了しています"
+          expired: "有効期限が切れているため、urlを再送しました"
+        success:
+          clear: "メール認証が完了しました！"
+      create:
+        fail:
+          register: "ユーザーの作成に失敗しました。"
+        success:
+          register: "乗りたいバイクを探して見ましょう！"
+          sendmail: "登録したメール宛に認証リンクを送信しました。（メールにあるリンクを踏まないと自転車の予約ができません。）"
+    user:
+      password_reset:
+        success:
+          sendto:
+            "%{email}へパスワード再設定用のメールを送信しました。"
+      update:
+        fail:
+          exec: "更新に失敗しました"
+        success:
+          exec: "更新に成功しました。"
+      authenticate:
+        fail:
+          already: "すでに認証が完了しています"
+          expired: "有効期限が切れているため、urlを再送しました"
+        success:
+          clear: "メール認証が完了しました！"
+      create:
+        fail:
+          register: "ユーザーの作成に失敗しました。"
+        success:
+          register: "登録が完了しました！さっそく自転車を追加してみましょう。"
+          sendmail: "登録したメール宛に認証リンクを送信しました。（メールにあるリンクを踏まないと自転車の貸出まではできません。）"

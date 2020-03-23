@@ -2,6 +2,8 @@ require 'securerandom'
 
 class UsersController < ApplicationController
 
+  include UsersService
+
   def new
     if logged_in?
       redirect_to root_path
@@ -11,36 +13,17 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if @user.save(context: :create)
-      AuthMailer.auth_user(@user).deliver_later
-      log_in(@user)
-      flash[:success] = "登録が完了しました！さっそく自転車を追加してみましょう。"
-      flash[:info] = "登録したメール宛に認証リンクを送信しました。（メールにあるリンクを踏まないと自転車の貸出まではできません。）"
-      redirect_to b_new_path
-    else
-      render u_new_path
-    end
+    create_user(@user)
+    flash[:success] = I18n.t('flash.user.create.success.register')
+    flash[:info] = I18n.t('flash.user.create.success.sendmail')
+    redirect_to b_new_path
   end
 
   def authenticate
     @user = User.find_by(email: params[:email])
-    p params[:auth]
-    p @user.authenticate_url
-    if @user.authenticated
-      flash[:info] = "すでに認証が完了しています"
-      redirect_to root_path
-    elsif DateTime.now > @user.authenticate_expire + 1.day
-      str_url = SecureRandom.urlsafe_base64(30)
-      Tourist.update_attributes(authenticate_expire: DateTime.now, authenticate_url: str_url)
-      AuthMailer.auth_tourist(@tourist).deliver_later
-      flash[:info] = "有効期限が切れているため、urlを再送しました"
-      redirect_to root_path
-    elsif @user.authenticate_url== params[:auth]
-      @user.update_attribute(:authenticated, true)
-      AuthMailer.t_complete_auth(@user).deliver_later
-      flash[:info]="認証が完了しました"
-      redirect_to b_index_path
-    end
+    authenticate_user_by_code(@user, params[:auth])
+    flash[:success] = I18n.t('flash.user.authenticate.success.clear')
+    redirect_to b_index_path
   end
 
   def show
@@ -70,25 +53,16 @@ class UsersController < ApplicationController
   def update
     if_user do |user|
       @user = user
-      if @user.update_attributes(update_user_params)
-        flash[:success] = "更新しました"
-        redirect_to u_edit_path
-      else
-        flash[:warning] = "更新に失敗しました"
-        redirect_to u_edit_path
-      end
+      update_user(user, update_user_params)
+      flash[:success] = I18n.t('flash.user.update.success.exec')
+      redirect_to u_edit_path
     end
   end
 
   def forget_pass
     email = params[:email]
-    u = User.find_by(email: email)
-    if u.present?
-      p pass = SecureRandom.hex(3)
-      u.update_attributes(password: pass)
-      ForgetPass.tell(u, pass).deliver_later
-    end
-    flash[:success] = email + "へ仮パスワードを送信しました"
+    reset_password(email)
+    flash[:success] = I18n.t("flash.user.password_reset.success.sendto", email: email)
     redirect_to u_login_path
   end
 

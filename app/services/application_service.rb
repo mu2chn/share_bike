@@ -1,0 +1,3 @@
+module ApplicationService
+
+end
