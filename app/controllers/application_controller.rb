@@ -25,4 +25,14 @@ class ApplicationController < ActionController::Base
     flash[:info] = e.msg
     redirect_to path
   end
+
+  rescue_from CustomException::ApiNamedException, with: :render_json_err
+  def render_json_err(e = nil)
+    render json: {msg: e.reason}, status: :bad_request
+  end
+
+  rescue_from CustomException::ApiCustomJsonException, with: :render_custom_json_err
+  def render_custom_json_err(e = nil)
+    render json: e.json, status: :bad_request
+  end
 end

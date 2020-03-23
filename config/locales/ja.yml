@@ -11,6 +11,16 @@ ja:
     base:
       unknown: "予期せぬエラーが発生しました。"
       invalid: "不正なアクセスです。"
+    payment:
+      pay:
+        fail:
+          invalid_resv: "無効な予約です"
+          not_authenticated: "メール認証されていません"
+          already_end: "すでに終了しています"
+          not_default: "不正な予約です"
+          already_reserved: "すでに予約されています"
+          exec: "支払いに失敗しました"
+          not_enough: "金額が不正です"
     reservation:
       create:
         fail:
