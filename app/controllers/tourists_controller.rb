@@ -2,6 +2,8 @@ class TouristsController < ApplicationController
 
   require 'securerandom'
 
+  include TouristsService
+
   def reserve_detail
     if_tourist do |user|
       @reserve = TouristBike.find(params[:id])
@@ -22,38 +24,17 @@ class TouristsController < ApplicationController
   end
 
   def create
-    custom_params = user_params
-    @user = Tourist.new(custom_params)
-    if @user.save
-      AuthMailer.auth_tourist(@user).deliver_later
-      log_in(@user)
-      flash[:info] = "乗りたいバイクを探して見ましょう！"
-      flash[:info] = "登録したメール宛に認証リンクを送信しました。（メールにあるリンクを踏まないと自転車の予約ができません。）"
-      redirect_to b_index_path
-    else
-      render t_new_path
-    end
+    @tourist = create_tourist(user_params)
+    flash[:info] = I18n.t('flash.tourist.create.success.register')
+    flash[:info] = I18n.t('flash.tourist.create.success.sendmail')
+    redirect_to b_index_path
   end
 
   def authenticate
     @tourist = Tourist.find_by(email: params[:email])
-    p params[:auth]
-    p @tourist.authenticate_url
-    if @tourist.authenticated
-      flash[:info] = "すでに認証が完了しています"
-      redirect_to root_path
-    elsif DateTime.now > @tourist.authenticate_expire + 1.day
-      str_url = SecureRandom.urlsafe_base64(30)
-      Tourist.update_attributes(authenticate_expire: DateTime.now, authenticate_url: str_url)
-      AuthMailer.auth_tourist(@tourist).deliver_later
-      flash[:info] = "有効期限が切れているため、urlを再送しました"
-      redirect_to root_path
-    elsif @tourist.authenticate_url== params[:auth]
-      @tourist.update_attribute(:authenticated, true)
-      AuthMailer.t_complete_auth(@tourist).deliver_later
-      flash[:info]="認証が完了しました"
-      redirect_to b_index_path
-    end
+    authenticate_tourist_by_code(@tourist, params[:auth])
+    flash[:info] = I18n.t('flash.tourist.authenticate.success.clear')
+    redirect_to b_index_path
   end
 
   def edit
@@ -65,25 +46,16 @@ class TouristsController < ApplicationController
   def update
     if_tourist do |user|
       @user = user
-      if @user.update_attributes(update_user_params)
-        flash[:success] = "更新しました"
-        redirect_to t_edit_path
-      else
-        flash[:warning] = "更新に失敗しました"
-        redirect_to t_edit_path
-      end
+      update_tourist(user, update_user_params)
+      flash[:success] = I18n.t('flash.tourist.update.success.exec')
+      redirect_to t_edit_path
     end
   end
 
   def forget_pass
     email = params[:email]
-    u = Tourist.find_by(email: email)
-    if u.present?
-      p pass = SecureRandom.hex(3)
-      u.update_attributes(password: pass)
-      ForgetPass.tell(u, pass).deliver_later
-    end
-    flash[:success] = email + "へ仮パスワードを送信しました"
+    reset_password(email)
+    flash[:success] = I18n.t('flash.tourist.password_reset.success.sendto', email: email)
     redirect_to t_login_path
   end
 
@@ -91,7 +63,7 @@ class TouristsController < ApplicationController
     if_tourist do |user|
       @user = user
       @reservations = TouristBike.where(tourist_id: @user.id, end_datetime: DateTime.now.ago(3.days)..DateTime.now.since(14.days)).order(start_datetime: "ASC").page(params[:page]).per(8)
-      flash[:success]="支払いが完了しました!" if params[:payment]=="true"
+      flash[:success] = I18n.t('flash.tourist.reserve.end') if params[:payment]=="true"
     end
   end
 
