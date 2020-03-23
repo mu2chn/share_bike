@@ -2,6 +2,8 @@ require 'securerandom'
 
 class UsersController < ApplicationController
 
+  include UsersService
+
   def new
     if logged_in?
       redirect_to root_path
@@ -11,15 +13,18 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if @user.save(context: :create)
-      AuthMailer.auth_user(@user).deliver_later
-      log_in(@user)
-      flash[:success] = "登録が完了しました！さっそく自転車を追加してみましょう。"
-      flash[:info] = "登録したメール宛に認証リンクを送信しました。（メールにあるリンクを踏まないと自転車の貸出まではできません。）"
-      redirect_to b_new_path
-    else
-      render u_new_path
-    end
+    create_user(@user)
+    redirect_to b_new_path
+
+    # if @user.save(context: :create)
+    #   AuthMailer.auth_user(@user).deliver_later
+    #   log_in(@user)
+    #   flash[:success] = I18n.t('flash.user.create.success.register')
+    #   flash[:info] = I18n.t('flash.user.create.success.sendmail')
+    #   redirect_to b_new_path
+    # else
+    #   render u_new_path
+    # end
   end
 
   def authenticate

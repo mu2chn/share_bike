@@ -1,6 +1,14 @@
 version: '3'
 services:
   web:
+    build: .
+    environment:
+      TZ: Asia/Tokyo
+    volumes:
+      - .:/share_bike
+      - bundle-path:/usr/local/bundle:cached
+    links:
+      - db
     command: >
       bash -c "
         npm i &&
@@ -11,5 +19,17 @@ services:
       "
     ports:
       - "3000:3000"
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: pgface
+      TZ: Asia/Tokyo
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
 
+volumes:
+  # cache the bundle
+  bundle-path:
+  postgres-data:
 

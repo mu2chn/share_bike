@@ -41,4 +41,12 @@ class ApplicationController < ActionController::Base
     not_end =res.status_start?
     (not_end)
   end
+
+  # refactored
+  rescue_from CustomException::NamedException, with: :render_err
+  def render_err(e = nil)
+    path = Rails.application.routes.recognize_path(request.referer)
+    flash[:warning] = e.reason
+    redirect_to path
+  end
 end

@@ -6,3 +6,14 @@ ja:
       previous: "&lsaquo;"
       next: "&rsaquo;"
       truncate: "..."
+
+  flash:
+    base:
+      unknown: "予期せぬエラーが発生しました。"
+    user:
+      create:
+        fail:
+          register: "ユーザーの作成に失敗しました。"
+        success:
+          register: "登録が完了しました！さっそく自転車を追加してみましょう。"
+          sendmail: "登録したメール宛に認証リンクを送信しました。（メールにあるリンクを踏まないと自転車の貸出まではできません。）"
