@@ -10,6 +10,21 @@ ja:
   flash:
     base:
       unknown: "予期せぬエラーが発生しました。"
+    bike:
+      tutorial:
+        index: "ここは自転車検索ページです。日程などから自転車を探すことができます"
+        show: "ここは予約ページです。気に入った自転車の予約をすることができます。"
+      update:
+        success:
+          exec: "自転車情報を更新しました。"
+        fail:
+          exec: "失敗しました。各項目を見直して下さい。"
+          permission: "権限がありません。"
+      create:
+        success:
+          register: "新しく自転車を追加しました！今度は貸し出す日程を決めましょう"
+        fail:
+          register: "自転車の追加に失敗しました。間違っている項目がないか確認してください。"
     tourist:
       reserve:
         success:
