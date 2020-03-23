@@ -11,6 +11,21 @@ ja:
     base:
       unknown: "予期せぬエラーが発生しました。"
     user:
+      password_reset:
+        success:
+          sendto:
+            "%{email}へパスワード再設定用のメールを送信しました。"
+      update:
+        fail:
+          exec: "更新に失敗しました"
+        success:
+          exec: "更新に成功しました。"
+      authenticate:
+        fail:
+          already: "すでに認証が完了しています"
+          expired: "有効期限が切れているため、urlを再送しました"
+        success:
+          clear: "メール認証が完了しました！"
       create:
         fail:
           register: "ユーザーの作成に失敗しました。"
