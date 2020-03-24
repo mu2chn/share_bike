@@ -24,7 +24,7 @@
       </li>
       <li class="list-group-item">日時：<%= "#{@reserve.start_datetime.month}/#{@reserve.start_datetime.day}" %>(<%= ["日", "月", "火", "水", "木", "金", "土"][@reserve.start_datetime.wday] %>)</li>
       <li class="list-group-item">金額：<%= @reserve.price %>円</li>
-      <li class="list-group-item">場所：<%= ["ルネ前", "百万遍", "京大病院"][@reserve.place_id]%></li>
+      <li class="list-group-item">場所：<%= Parking.find(@reserve.place_id).name%></li>
       <li class="list-group-item">時間：<%= @reserve.start_datetime.strftime("%H:%M") %>〜<%= @reserve.end_datetime.strftime("%H:%M") %></li>
     </ul>
   </div>

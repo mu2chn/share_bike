@@ -21,8 +21,6 @@ ActiveAdmin.register TouristBike do
       f.input :place_id
       f.input :start_datetime
       f.input :end_datetime
-      f.input :user_prob
-      f.input :tourist_prob
       f.input :status
       f.input :void
     end

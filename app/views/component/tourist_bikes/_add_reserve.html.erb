@@ -22,7 +22,9 @@
         <%= f.label "終了時間" %><br/>
         <%= f.time_select :end_datetime , {:minute_step => 15}, {class: 'custom-select col-5 mb-1'}%><br/>
         <%= f.label "場所" %>
-        <%= f.select :place_id, {"ルネ前": 0, "百万遍": 1, "京大病院": 2}, {}, {class: 'custom-select'} %>
+        <% places = {} %>
+        <% Parking.all.each{|p| places[p.name] = p.id} %>
+        <%= f.select :place_id, places, {}, {class: 'custom-select'} %>
         <small id="datehelp" class="form-text text-muted">右側のボタンででカレンダーから選択できます</small>
         <%= f.submit "Register", class: "btn btn-navy mt-2" %>
         <% end %>
