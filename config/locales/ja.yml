@@ -1,4 +1,7 @@
 ja:
+  time:
+    formats:
+      long: "%D %H:%M"
   views:
     pagination:
       first: "&laquo;"

@@ -36,6 +36,13 @@ module CustomException
       end
   end
 
+  class PaymentErr < StandardError
+    attr_reader :msg, :previous_err
+    def initialize(msg, previous_err=nil)
+      @msg = msg
+      @previous_err = previous_err
+    end
+  end
 end
 
 

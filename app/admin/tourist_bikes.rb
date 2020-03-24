@@ -45,27 +45,47 @@ ActiveAdmin.register TouristBike do
     link_to '問題発生', freeze_reserve_admin_tourist_bike_path
   end
   member_action :cancel, method: :get do
-    status = resource.cancel
+    begin
+      status = resource.cancel
+    rescue => e
+      status = e.msg
+    end
     redirect_to resource_path, notice: "METHOD=Cancel #{status}"
   end
 
   member_action :get_deposit, method: :get do
-    status = resource.get_deposit
+    begin
+      status = resource.get_deposit
+    rescue => e
+      status = e.msg
+    end
     redirect_to resource_path, notice: "METHOD=getDeposit #{status}"
   end
 
   member_action :refund_deposit, method: :get do
-    status = resource.refund_deposit
+    begin
+      status = resource.refund_deposit
+    rescue => e
+      status = e.msg
+    end
     redirect_to resource_path, notice: "METHOD=refundDeposit #{status}"
   end
 
   member_action :dump_reward, method: :get do
-    status = resource.dump_reward
+    begin
+      status = resource.dump_reward
+    rescue => e
+      status = e.msg
+    end
     redirect_to resource_path, notice: "METHOD=dumpReward #{status}"
   end
 
   member_action :freeze_reserve, method: :get do
-    status = resource.freeze_reserve
+    begin
+      status = resource.freeze_reserve
+    rescue => e
+      status = e.msg
+    end
     redirect_to resource_path, notice: "METHOD=freezeReserve #{status}"
   end
 end

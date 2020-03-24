@@ -26,7 +26,7 @@ ActiveAdmin.register Transaction do
   end
 
   member_action :order_detail, method: :get do
-    status = resource.show_order[1][:result][:payer]#[:purchase_units]
+    status = resource.show_order[:result][:payer]#[:purchase_units]
     redirect_to resource_path, notice: "DETAIL === #{status}"
   end
 

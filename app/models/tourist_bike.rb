@@ -67,45 +67,42 @@ class TouristBike < ApplicationRecord
   def cancel
     #noinspection RubyResolve
     if self.tourist_id.nil?
-      return [1, "no record"]
+      raise CustomException::PaymentErr::new("no record found")
     elsif self.status_complete?
-      return [1, "すでにrewardに追加されたため、払い戻しできません"]
+      raise CustomException::PaymentErr::new("すでにrewardに追加されたため、払い戻しできません")
     end
 
     trans = Transaction.find(self.transaction_id)
     status = trans.refund_before_ride(Payment.init_client)
-    if status[0] == 0
-      ActiveRecord::Base.transaction do
-        self.update_attributes!(
-            transaction_id: nil,
-            tourist_id: nil,
-            status: 'default'
-        )
-      end
+    ActiveRecord::Base.transaction do
+      self.update_attributes!(
+          transaction_id: nil,
+          tourist_id: nil,
+          status: 'default'
+      )
     end
     status
   end
 
   def get_deposit
     if self.tourist_id.nil?
-      return [1, "no record"]
+      raise CustomException::PaymentErr::new("no record")
     end
 
     #noinspection RubyResolve
     if self.status_end?
       trans = Transaction.find(self.transaction_id)
       status = trans.capture_for_deposit({amount: {value: 2000, currency_code: "JPY"}})
-      return status
+      status
+    else
+      raise CustomException::PaymentErr::new("not finished rental or already completed")
     end
-    [1, "not finished rental or already completed"]
   end
-
 
   def refund_deposit
     if self.tourist_id.nil?
-      return [1, "no record"]
+      raise CustomException::PaymentErr::new("no record")
     end
-
     trans = Transaction.find(self.transaction_id)
     status = trans.refund_for_deposit
   end
