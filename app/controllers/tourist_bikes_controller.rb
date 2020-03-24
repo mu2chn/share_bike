@@ -27,6 +27,7 @@ class TouristBikesController < ApplicationController
       end
       @bike = @reserve.bike
       @tourist = user
+      @deposit = Payment::DEPOSIT
     end
   end
 

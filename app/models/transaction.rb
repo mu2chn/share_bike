@@ -2,7 +2,7 @@ class Transaction < ApplicationRecord
   belongs_to :tourist, optional: true
 
   # amount and currency is valid?
-  def order_detail(expected_amount, expected_currency, client=Payment.init_client)
+  def order_detail(client=Payment.init_client)
     order_detail = Payment.order(self.order_id, client)
     detail  = order_detail
     payer_id = detail[:result][:payer][:payer_id]
@@ -16,14 +16,7 @@ class Transaction < ApplicationRecord
             tourist_id: tourist_id,
             payer_id: payer_id
     )
-
-    if currency != expected_currency
-      self.update_attributes(valid_ticket: false )
-    elsif amount != expected_amount.to_i
-      self.update_attributes(valid_ticket: false )
-    else
-      order_detail
-    end
+    order_detail
   end
 
   def show_order(client=Payment.init_client)

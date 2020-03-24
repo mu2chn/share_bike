@@ -8,6 +8,8 @@ class Payment
   CLIENT_ID = "AbmTHlJhDD2_U9v4JbjXULVdrAcAAFJqb1ZH-ZbpICzZuYWjaMwiQsOoXCytKCcqK2BfP31zjMTpC7sT"
   CLIENT_SECRET = "EOo9mHVWT1T4fubdtQErBcgEXIbd3XTEiCrKjr9l3CwNzDW59PgYlcNP7dEp1DSvYyaAYkXwPexFwZ0_"
 
+  DEPOSIT = 3000
+
   def self.init_client
     begin
       environment = PayPal::SandboxEnvironment.new(CLIENT_ID, CLIENT_SECRET)

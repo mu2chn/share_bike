@@ -13,7 +13,7 @@ module PaymentsService
         authorization_id: json["authorizationID"],
     )
     begin
-      order = transaction.order_detail(2700, "JPY", client)
+      order = transaction.order_detail(client)
     rescue => e
       raise CustomException::ApiCustomJsonException::new({
            msg: I18n.t('flash.payment.pay.fail.not_enough'),
@@ -25,6 +25,15 @@ module PaymentsService
     reserve_tourist_id = order[:result][:purchase_units][0][:reference_id]
     reserve_id = /^\d+/.match(reserve_tourist_id)[0].to_i
     reservation = TouristBike.find(reserve_id)
+
+    expected_amount = Payment::DEPOSIT + reservation.price
+    if transaction.amount != expected_amount or transaction.currency != 'JPY'
+      transaction.update_attributes(valid_ticket: false )
+      raise CustomException::ApiCustomJsonException::new({
+           msg: I18n.t('flash.payment.pay.fail.not_enough'),
+           payment: false
+       })
+    end
 
     #noinspection RubyResolve
     if reservation.void
@@ -39,7 +48,7 @@ module PaymentsService
       msg = I18n.t('flash.payment.pay.fail.already_reserved')
     else
       begin
-        auth = transaction.capture_for_ticket({amount: {value: "700", currency_code: "JPY"}}, client)
+        auth = transaction.capture_for_ticket({amount: {value: reservation.price, currency_code: "JPY"}}, client)
       rescue => e
         raise CustomException::ApiCustomJsonException::new({
              msg: e.msg,

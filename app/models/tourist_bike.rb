@@ -12,10 +12,6 @@ class TouristBike < ApplicationRecord
       freeze: 100 #凍結状態、statusの値は更新されない、手動によりのみなりうる
   }, _prefix: true
 
-  #frozenreserveのとき、更新をしない
-  def frozen_reserve?
-    user_prob || tourist_prob
-  end
 
   #noinspection RubyResolve
   def freeze_reserve
@@ -47,18 +43,6 @@ class TouristBike < ApplicationRecord
     end
     "ダンプしました"
   end
-
-  #shoud not use
-  #def back_reward
-  #  reward = Reward.find_by(tourist_bike_id: self.id)
-  #  if reward.nil? || reward.payout_id.present? || reward.already_payout
-  #    nil
-  #  else
-  #    reward.destroy
-  #    #noinspection RubyResolve
-  #    self.status_freeze!
-  #  end
-  #end
 
   #########################
   # admin methods
@@ -92,7 +76,7 @@ class TouristBike < ApplicationRecord
     #noinspection RubyResolve
     if self.status_end?
       trans = Transaction.find(self.transaction_id)
-      status = trans.capture_for_deposit({amount: {value: 2000, currency_code: "JPY"}})
+      status = trans.capture_for_deposit({amount: {value: Payment::DEPOSIT, currency_code: "JPY"}})
       status
     else
       raise CustomException::PaymentErr::new("not finished rental or already completed")
