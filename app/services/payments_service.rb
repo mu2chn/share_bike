@@ -12,19 +12,28 @@ module PaymentsService
         order_id: json["orderID"],
         authorization_id: json["authorizationID"],
     )
-
-    order = transaction.order_detail(2700, "JPY", client)
-    if order[0] == 1
+    begin
+      order = transaction.order_detail(client)
+    rescue => e
       raise CustomException::ApiCustomJsonException::new({
            msg: I18n.t('flash.payment.pay.fail.not_enough'),
            payment: false
        })
     end
-    tourist = transaction.tourist
 
-    reserve_tourist_id = order[1][:result][:purchase_units][0][:reference_id]
+    tourist = transaction.tourist
+    reserve_tourist_id = order[:result][:purchase_units][0][:reference_id]
     reserve_id = /^\d+/.match(reserve_tourist_id)[0].to_i
     reservation = TouristBike.find(reserve_id)
+
+    expected_amount = Payment::DEPOSIT + reservation.price
+    if transaction.amount != expected_amount or transaction.currency != 'JPY'
+      transaction.update_attributes(valid_ticket: false )
+      raise CustomException::ApiCustomJsonException::new({
+           msg: I18n.t('flash.payment.pay.fail.not_enough'),
+           payment: false
+       })
+    end
 
     #noinspection RubyResolve
     if reservation.void
@@ -38,21 +47,31 @@ module PaymentsService
     elsif reservation.tourist_id.present?
       msg = I18n.t('flash.payment.pay.fail.already_reserved')
     else
-      auth = transaction.capture_for_ticket({amount: {value: "700", currency_code: "JPY"}}, client)
-      if auth[0] == 0
-        if reservation.tourist_id.present?
-          msg = I18n.t('flash.payment.pay.fail.already_reserved')
-          transaction.refund_before_ride(client)
-        else
-          reservation.update_attributes(tourist_id: tourist.id, transaction_id: transaction.id)
-          NotificationMailer.send_confirm_to_user(tourist, reservation).deliver_later
-          return {payment: true}
-        end
+      begin
+        auth = transaction.capture_for_ticket({amount: {value: reservation.price, currency_code: "JPY"}}, client)
+      rescue => e
+        raise CustomException::ApiCustomJsonException::new({
+             msg: e.msg,
+             payment: false
+         })
+      end
+      if reservation.tourist_id.present?
+        msg = I18n.t('flash.payment.pay.fail.already_reserved')
+        transaction.refund_before_ride(client)
       else
-        msg = I18n.t('flash.payment.pay.fail.exec')
+        reservation.update_attributes(tourist_id: tourist.id, transaction_id: transaction.id)
+        NotificationMailer.send_confirm_to_user(tourist, reservation).deliver_later
+        return {payment: true}
       end
     end
-    transaction.void_all_of_order(client)
+    begin
+      transaction.void_all_of_order(client)
+    rescue => e
+      raise CustomException::ApiCustomJsonException::new({
+           msg: "refund error occured.",
+           payment: false
+       })
+    end
     raise CustomException::ApiCustomJsonException::new({
        msg: msg,
        payment: false

@@ -16,7 +16,7 @@
 <!--      <td class="text-center"><%#= res.id %></td>-->
       <td><%= res.start_datetime.strftime("%m/%d") %></td>
 <!--      <td>res</td>-->
-      <td><%= res.place_id %></td>
+      <td><%= Parking.find(res.place_id).name %></td>
       <td class="text-right">
         <%=
           if res.reward.nil?

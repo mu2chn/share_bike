@@ -11,3 +11,5 @@ if Rails.env.development?
   User.create!(name:"face", email: "face@st.kyoto-u.ac.jp", password: "aaaaaa", authenticated: true, temp_terms: true )
   Tourist.create!(name: "face", email:"face93631@eay.jp", password: "aaaaaa", authenticated: true, temp_terms: true)
 end
+
+Parking.create!(name: "京大三号館東", lat: 35.027898, lng: 135.781254)

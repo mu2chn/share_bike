@@ -18,6 +18,9 @@ module TouristBikesService
       elsif !TouristBike.where(bike_id: reservation.bike_id)&.where(start_datetime: reservation.start_datetime).empty?
         raise CustomException::NamedException::new(I18n.t('flash.reservation.create.fail.same_day'))
       elsif reservation.save
+        reservation.update_attributes(
+            price: (reservation.end_datetime - reservation.start_datetime).to_i/3600 * 100
+        )
         return reservation
       else
         raise CustomException::NamedException::new(I18n.t('flash.reservation.create.fail.exec'))

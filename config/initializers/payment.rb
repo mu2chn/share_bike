@@ -8,6 +8,9 @@ class Payment
   CLIENT_ID = "AbmTHlJhDD2_U9v4JbjXULVdrAcAAFJqb1ZH-ZbpICzZuYWjaMwiQsOoXCytKCcqK2BfP31zjMTpC7sT"
   CLIENT_SECRET = "EOo9mHVWT1T4fubdtQErBcgEXIbd3XTEiCrKjr9l3CwNzDW59PgYlcNP7dEp1DSvYyaAYkXwPexFwZ0_"
 
+  DEPOSIT = 3000
+  DUMP_PERCENT = 0.4
+
   def self.init_client
     begin
       environment = PayPal::SandboxEnvironment.new(CLIENT_ID, CLIENT_SECRET)
@@ -24,10 +27,9 @@ class Payment
       refund = PayPalCheckoutSdk::Payments::CapturesRefundRequest::new(capture_id)
       res = client.execute(refund)
     rescue => e
-      p e.result
-      return [1, e.status_code.to_s + e.result.to_s]
+      raise CustomException::PaymentErr::new("refund failed (#{e.status_code.to_s + e.result.to_s})", e)
     end
-    return [0, res]
+    res
   end
 
   def self.capture(authorization_id, capture_body, client=self.init_client)
@@ -37,10 +39,9 @@ class Payment
       request.request_body(capture_body)
       res = client.execute(request)
     rescue => e
-      p e.result
-      return [1, e]
+      raise CustomException::PaymentErr::new("capture failed", e)
     end
-    return [0, res]
+    res
   end
 
   def self.order(order_id, client=self.init_client)
@@ -48,9 +49,9 @@ class Payment
       order = PayPalCheckoutSdk::Orders::OrdersGetRequest::new(order_id)
       order_detail = client.execute(order)
     rescue => e
-      return [1, e]
+      raise CustomException::PaymentErr::new("order failed", e)
     end
-    return [0, order_detail]
+    return order_detail
   end
 
 
@@ -59,9 +60,9 @@ class Payment
       void = PayPalCheckoutSdk::Payments::AuthorizationsVoidRequest::new(authorization_id)
       void_detail = client.execute(void)
     rescue => e
-      return [1, e]
+      raise CustomException::PaymentErr::new("void failed", e)
     end
-    return [0, void_detail]
+    void_detail
   end
 
   def self.re_auth(authorization_id, client=self.init_client)
@@ -69,9 +70,9 @@ class Payment
       re_auth = PayPalCheckoutSdk::Payments::AuthorizationsReauthorizeRequest::new(authorization_id)
       re_auth_detail = client.execute(re_auth)
     rescue => e
-      return [1, e]
+      raise CustomException::PaymentErr::new("re auth failed", e)
     end
-    return [0, re_auth_detail]
+    re_auth_detail
   end
 
 end
