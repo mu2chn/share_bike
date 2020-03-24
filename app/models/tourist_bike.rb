@@ -27,7 +27,7 @@ class TouristBike < ApplicationRecord
     #noinspection RubyResolve
     # set amount and currency
     transaction = Transaction.find(self.transaction_id)
-    amount = transaction.ticket_amount*0.4
+    amount = transaction.ticket_amount*Payment::DUMP_PERCENT
     currency = transaction.currency
     user_id = self.bike.user_id
     ActiveRecord::Base.transaction do

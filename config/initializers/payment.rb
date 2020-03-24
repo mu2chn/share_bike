@@ -9,6 +9,7 @@ class Payment
   CLIENT_SECRET = "EOo9mHVWT1T4fubdtQErBcgEXIbd3XTEiCrKjr9l3CwNzDW59PgYlcNP7dEp1DSvYyaAYkXwPexFwZ0_"
 
   DEPOSIT = 3000
+  DUMP_PERCENT = 0.4
 
   def self.init_client
     begin
