@@ -1,9 +1,5 @@
 version: '3'
 services:
-  db:
-    volumes:
-    - ./data/postgre:/var/lib/postgresql/data
-
   https-portal:
     image: steveltn/https-portal:1
     container_name: sb-https-portal
@@ -26,6 +22,14 @@ services:
       - ./data/static:/var/www/vhosts
 
   web:
+    build: .
+    environment:
+      TZ: Asia/Tokyo
+    volumes:
+      - .:/share_bike
+      - bundle-path:/usr/local/bundle:cached
+    links:
+      - db
     command: >
       bash -c "
         npm i &&
@@ -43,9 +47,17 @@ services:
     volumes:
       - ./data/ghost:/var/lib/ghost/content
 
-volumes:
-  # SSL証明書
-  sb-ssl-certs:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: pgface
+      TZ: Asia/Tokyo
+    volumes:
+      - ./data/postgre:/var/lib/postgresql/data
 
+volumes:
+  sb-ssl-certs:
+  bundle-path:
 
 
