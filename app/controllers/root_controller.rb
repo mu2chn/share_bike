@@ -13,6 +13,7 @@ class RootController < ApplicationController
   end
 
   def place
+    @parking = Parking.all
   end
 
 end
