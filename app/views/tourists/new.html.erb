@@ -5,7 +5,7 @@
     <%= form_for(@user, url: t_create_path) do |f| %>
       <%= render 'layouts/error' %>
 
-      <%= f.label :name %>
+      <%= f.label "名前" %>
       <%= f.text_field :name, class: 'form-control mb-3' %>
 
       <%= f.label :email %>
@@ -14,10 +14,10 @@
       <%#= f.label :address %>
       <%#= f.text_field :address, class: 'form-control mb-3'  %>
 
-      <%= f.label :password %>
+      <%= f.label "パスワード" %>
       <%= f.password_field :password, class: 'form-control mb-3' %>
 
-      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.label :password_confirmation, "パスワード（確認）" %>
       <%= f.password_field :password_confirmation, class: 'form-control mb-3' %>
 
       <div class="clearfix mt-1 mb-3">
