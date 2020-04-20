@@ -8,7 +8,7 @@ class Bike < ApplicationRecord
 
   validates :name, presence: true,
             length: {maximum: 30}
-  validates :vehicle_num, presence: true
+  # validates :vehicle_num, presence: true
   validates :security_num, presence: true
   validates :details, length: {maximum: 255}
   validates :image, presence: true

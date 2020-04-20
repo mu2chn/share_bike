@@ -1,22 +1,12 @@
 <!--{reservations: @reservations}-->
-
-<div class="accordion" id="accordion2" role="tablist">
+<div class="row" id="accordion2" role="tablist">
   <%= reservations.empty? ? simple_format("自転車が見つかりません", class: "py-3 text-muted") : nil %>
   <% reservations.each_with_index do |res, i| %>
+    <div class="col-lg-4 col-sm-6">
     <div class="card shadow mb-3">
-      <a data-toggle="collapse" class="text-body text-decoration-none" href="#res-<%= res.id %>" aria-expanded="true" aria-controls="collapse1">
+        <%= image_tag res.bike.image.to_s, class: "card-img-top" %>
 
-        <div class="card-header _bg-white d-flex justify-content-between" role="tab" id="res-<%= res.id %>">
-            <h6 class="mb-0">
-              <%= res.start_datetime.strftime("%H:%M (%D)") %>
-            </h6>
-          <%= icon("fas", "angle-down", class: "text-right") %>
-        </div>
-      </a>
-
-      <div id="res-<%= res.id %>" class="collapse <%= "show" if i==0 %>" role="tabpanel" aria-labelledby="heading1" data-parent="#accordion2">
         <div class="card-body">
-
           <div class="px-3">
             <% if false %>
               <div class="p-2"><%= Bike.find(res.bike_id).name %></div>
@@ -24,17 +14,15 @@
 
             <ul class="">
               <li>
-                Bike Name: <%= res.bike.name %>
+                名前: <%= res.bike.name %>
               </li>
               <li class="">
-                Rental Date: <%= "#{res.start_datetime.month}/#{res.start_datetime.day}" %>(<%= ["日", "月", "火", "水", "木", "金", "土"][res.start_datetime.wday] %>)</li>
+                場所: <a href="/root/place"><%= Parking.find(res.place_id).name %></a></li>
               <li class="">
-                Place: <a href="/root/place"><%= Parking.find(res.place_id).name %></a></li>
+                日にち: <%= "#{res.start_datetime.month}/#{res.start_datetime.day}" %>(<%= ["日", "月", "火", "水", "木", "金", "土"][res.start_datetime.wday] %>)</li>
               <li class="">
-                Start Time: <%= res.start_datetime.strftime("%H:%M") %></li>
-              <li class="">
-               End Time: <%= res.end_datetime.strftime("%H:%M") %></li>
-              <li class="">Price: <%= res.price %>円</li>
+                時間: <%= res.start_datetime.strftime("%H:%M") %>〜<%= res.end_datetime.strftime("%H:%M") %></li>
+              <li class="">価格: <%= res.price %>円</li>
             </ul>
 
             <br/>
@@ -60,9 +48,8 @@
               </object>
             </div>
           </div>
-
         </div>
-      </div>
+    </div>
     </div>
   <% end %>
 </div>

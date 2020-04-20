@@ -4,19 +4,19 @@
     <%= form_for(@bike, url: b_create_path) do |f| %>
       <%= render 'layouts/bike_error' %>
 
-      <%= f.label "表示名" %>
+      <%= f.label "表示名（お好きなものを）" %>
       <%= f.text_field :name, class: 'form-control mb-3' %>
 
-      <%= f.label "車体番号" %>
-      <%= f.number_field :vehicle_num, class: 'form-control mb-3' %>
+      <%#= f.label "車体番号" %>
+      <%#= f.number_field :vehicle_num, class: 'form-control mb-3' %>
 
-      <%= f.label :security_num %>
+      <%= f.label "防犯番号（防犯登録シールについている番号です！ハイフンはなしで）" %>
       <%= f.number_field :security_num, class: 'form-control mb-3'%>
 
       <%= f.label "自転車のロック番号（ダイヤルのみ、これがないと貸出できません！）" %>
       <%= f.number_field :pass, class: 'form-control mb-3'%>
 
-      <%= f.label :details %>
+      <%= f.label "その他説明事項" %>
       <%= f.text_area :details, class: 'form-control' %>
 
       <div class="custom-file mt-3 mb-2">

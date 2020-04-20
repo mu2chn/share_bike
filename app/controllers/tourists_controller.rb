@@ -9,6 +9,7 @@ class TouristsController < ApplicationController
       @reserve = TouristBike.find(params[:id])
       @bike = @reserve.bike
       @user = @bike.user
+      @tourist = user
       @started = during_rental(@reserve)
       unless @reserve.tourist_id == user.id
         redirect_to root_path

@@ -1,8 +1,17 @@
 <div id="start_rental_for_tourist">
   <div>
-    <input type="checkbox" id="q0" v-model="checkbox[0]"/><label for="q0">確認項目１</label><br/>
-    <input type="checkbox" id="q1" v-model="checkbox[1]"/><label for="q1">確認項目２</label><br/>
-    <input type="checkbox" id="q2" v-model="checkbox[2]"/><label for="q2">確認項目３</label><br/>
+    <ol>
+      <li>
+        <input type="checkbox" id="q0" v-model="checkbox[0]"/>自転車はパンクしていませんか？
+      </li>
+      <li>
+        <input type="checkbox" id="q1" v-model="checkbox[1]"/>自転車のIDが表示されているものと一致していることを確認しましたか？
+      </li>
+      <li>
+        <input type="checkbox" id="q2" v-model="checkbox[2]"/>自転車のライトは正しく光りますか？
+      </li>
+    </ol>
+
   </div>
 <!--      <a class="btn btn-primary" href="<%#= r_start_path(reserve.id) %>" onClick="return vueR.watchAllChecked()">-->
     <a class="btn btn-primary" href="<%= r_start_path(reserve.id) %>" onClick="return vueR.watchAllChecked()">

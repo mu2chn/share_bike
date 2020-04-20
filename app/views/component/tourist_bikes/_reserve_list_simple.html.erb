@@ -15,14 +15,14 @@
 
           <ul class="">
           <li class="">
-            Rental Date: <%= "#{res.start_datetime.month}/#{res.start_datetime.day}" %>(<%= ["日", "月", "火", "水", "木", "金", "土"][res.start_datetime.wday] %>)</li>
+            レンタル日: <%= "#{res.start_datetime.month}/#{res.start_datetime.day}" %>(<%= ["日", "月", "火", "水", "木", "金", "土"][res.start_datetime.wday] %>)</li>
           <li class="">
-            Place: <a href="/root/place"><%= Parking.find(res.place_id).name %></a></li>
+            場所: <a href="/root/place"><%= Parking.find(res.place_id).name %></a></li>
           <li class="">
-            Start Time: <%= res.start_datetime.strftime("%H:%M") %></li>
+            開始時刻: <%= res.start_datetime.strftime("%H:%M") %></li>
           <li class="">
-            End Time: <%= res.end_datetime.strftime("%H:%M") %></li>
-          <li class="">Price: <%= res.price %>円</li>
+            終了時刻: <%= res.end_datetime.strftime("%H:%M") %></li>
+          <li class="">価格: <%= res.price %>円</li>
           </ul>
 
           <br/>

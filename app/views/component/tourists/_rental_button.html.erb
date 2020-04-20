@@ -3,11 +3,11 @@
 <% elsif reserve.status_start? %>
 <%= render 'component/tourists/end_rental' , {reserve: reserve}%>
 <% elsif reserve.status_end? %>
-  <p class="btn btn-primary">
+  <p class="">
     返却完了
   </p>
 <% elsif reserve.status_freeze? %>
-  <p class="btn btn-primary">
+  <p class="">
     問題を解決中です。。。
   </p>
 <% end %>

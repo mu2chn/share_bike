@@ -6,10 +6,10 @@
   <div class="mx-2 w-100">
     <ul class="list-group list-group-flush shadow-sm text-muted">
       <li class="list-group-item">名前：<%= bike.name %></li>
-      <li class="list-group-item">車体番号：<%= bike.vehicle_num %></li>
+      <li class="list-group-item">車体ID：<%= format("%03d",bike.id) %></li>
       <li class="list-group-item">
-        所有者：
-        <%= link_to bike.user.name, "/users/show/" + bike.user_id.to_s %>
+        所有者：<%= bike.user.name %>
+        <%#= link_to bike.user.name, "/users/show/" + bike.user_id.to_s %>
       </li>
     </ul>
   </div>

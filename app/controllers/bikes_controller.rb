@@ -3,15 +3,15 @@ class BikesController < ApplicationController
   include BikesService
 
   def index
-    dsearch = nil
+    day_search = nil
     if params["dsearch"].present?
-      dsearch = Time.parse(params[:dsearch])
-      @reservations = TouristBike.where(start_datetime: Time.now..(Time.now+10.days)).where(start_datetime: dsearch..dsearch+1.days).order(:start_datetime).page(params[:page]).per(9)
+      day_search = Time.parse(params[:dsearch])
+      @reservations = TouristBike.where(start_datetime: Time.now..(Time.now+10.days)).where(start_datetime: day_search..day_search+1.days).order(:start_datetime).page(params[:page]).per(9)
     else
       @reservations = TouristBike.where(start_datetime: Time.now..(Time.now+10.days)).order(:start_datetime).page(params[:page]).per(9)
     end
 
-    @prev_day = dsearch
+    @prev_day = day_search
     @date_hash = make_month
 
     tutorial_index(current_user)
