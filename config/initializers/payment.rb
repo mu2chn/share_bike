@@ -5,15 +5,19 @@ class Payment
   SUCCESS = 0
   CANNOT_EXECUTED = 1
 
-  CLIENT_ID = "AbmTHlJhDD2_U9v4JbjXULVdrAcAAFJqb1ZH-ZbpICzZuYWjaMwiQsOoXCytKCcqK2BfP31zjMTpC7sT"
-  CLIENT_SECRET = "EOo9mHVWT1T4fubdtQErBcgEXIbd3XTEiCrKjr9l3CwNzDW59PgYlcNP7dEp1DSvYyaAYkXwPexFwZ0_"
+  IS_PRODUCTION = true #Rails.env.production?
 
-  DEPOSIT = 3000
+  CLIENT_ID = IS_PRODUCTION ? "AV02sWIY3UBQuPKjJVBbFSkOTIXneMPSR8y7wdgI0p_geuz6Tygaes2P6E6eqvTQtJQIAuVvBIyOqcFU"
+                  : "AbmTHlJhDD2_U9v4JbjXULVdrAcAAFJqb1ZH-ZbpICzZuYWjaMwiQsOoXCytKCcqK2BfP31zjMTpC7sT"
+  CLIENT_SECRET = IS_PRODUCTION ? ENV['LIVE_CLIENT_SECRET']
+                  : "EOo9mHVWT1T4fubdtQErBcgEXIbd3XTEiCrKjr9l3CwNzDW59PgYlcNP7dEp1DSvYyaAYkXwPexFwZ0_"
+
+  DEPOSIT = 300
   DUMP_PERCENT = 0.4
 
   def self.init_client
     begin
-      environment = PayPal::SandboxEnvironment.new(CLIENT_ID, CLIENT_SECRET)
+      environment = IS_PRODUCTION ? PayPal::LiveEnvironment.new(CLIENT_ID, CLIENT_SECRET) : PayPal::SandboxEnvironment.new(CLIENT_ID, CLIENT_SECRET)
       client = PayPal::PayPalHttpClient.new(environment)
     rescue => e
       p e.result

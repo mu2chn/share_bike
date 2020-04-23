@@ -19,7 +19,7 @@ module TouristBikesService
         raise CustomException::NamedException::new(I18n.t('flash.reservation.create.fail.same_day'))
       elsif reservation.save
         reservation.update_attributes(
-            price: (reservation.end_datetime - reservation.start_datetime).to_i/3600 * 100
+            price: (reservation.end_datetime - reservation.start_datetime).to_i/3600 * 1
         )
         return reservation
       else

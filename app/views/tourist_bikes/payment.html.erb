@@ -57,7 +57,7 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <script
-  src="https://www.paypal.com/sdk/js?currency=JPY&client-id=AbmTHlJhDD2_U9v4JbjXULVdrAcAAFJqb1ZH-ZbpICzZuYWjaMwiQsOoXCytKCcqK2BfP31zjMTpC7sT&intent=authorize">
+  src="https://www.paypal.com/sdk/js?currency=JPY&client-id=<%= Payment::CLIENT_ID %>&intent=authorize">
 </script>
 <script>
     $(window).on('load', function(){
