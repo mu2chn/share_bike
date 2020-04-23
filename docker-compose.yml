@@ -21,7 +21,6 @@ services:
       - "3000:3000"
   db:
     image: postgres
-    restart: always
     environment:
       POSTGRES_PASSWORD: pgface
       TZ: Asia/Tokyo

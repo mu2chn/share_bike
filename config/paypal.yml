@@ -1,11 +1,11 @@
 test: &default
 
   # Credentials for REST APIs
-  client_id: AbmTHlJhDD2_U9v4JbjXULVdrAcAAFJqb1ZH-ZbpICzZuYWjaMwiQsOoXCytKCcqK2BfP31zjMTpC7sT
-  client_secret: EOo9mHVWT1T4fubdtQErBcgEXIbd3XTEiCrKjr9l3CwNzDW59PgYlcNP7dEp1DSvYyaAYkXwPexFwZ0_
+#  client_id: AbmTHlJhDD2_U9v4JbjXULVdrAcAAFJqb1ZH-ZbpICzZuYWjaMwiQsOoXCytKCcqK2BfP31zjMTpC7sT
+#  client_secret: EOo9mHVWT1T4fubdtQErBcgEXIbd3XTEiCrKjr9l3CwNzDW59PgYlcNP7dEp1DSvYyaAYkXwPexFwZ0_
 
   # Mode can be 'live' or 'sandbox'
-  mode: sandbox
+#  mode: sandbox
 
   # Credentials for Classic APIs
 #  app_id: APP-80W284485P519543T
@@ -14,7 +14,7 @@ test: &default
 #  signature: AFcWxV21C7fd0v3bYYYRCpSSRl31A7yDhhsPUU2XhtMoZXsWHFxu-RWy
   # # With Certificate
   # cert_path: "config/cert_key.pem"
-  sandbox_email_address: sb-sqo6c341431@business.example.com
+#  sandbox_email_address: sb-sqo6c341431@business.example.com
 
   # # IP Address
   # ip_address: 127.0.0.1
