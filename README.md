@@ -14,6 +14,7 @@ Rails 5.1.7
 $ git --version
 git version 2.17.1
 ```
+:warning: 登録前にSeed実行
 
 ## for Docker
 ```
