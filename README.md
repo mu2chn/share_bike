@@ -16,7 +16,7 @@ git version 2.17.1
 ```
 :warning: 登録前にSeed実行
 :warning: forse ssl 削除
-
+:warning: open port 587
 ## for Docker
 ```
 $ docker-compose up --build -d
